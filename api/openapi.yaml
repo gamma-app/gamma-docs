@@ -2,7 +2,12 @@ openapi: 3.0.0
 paths:
   /public-api/v1.0/generations:
     post:
-      operationId: PublicAPIController_createGenerationV1
+      operationId: createGeneration
+      x-stability: stable
+      summary: Create async generation
+      description: >-
+        Creates an asynchronous generation job from provided text input. Returns
+        a generation ID that can be used to poll for status.
       parameters: []
       requestBody:
         required: true
@@ -11,53 +16,186 @@ paths:
             schema:
               $ref: '#/components/schemas/GenerationDto'
       responses:
-        '201':
-          description: ''
+        '200':
+          description: Generation job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateGenerationResponseDto'
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Invalid or missing API key
+        '402':
+          description: Insufficient credits
+        '403':
+          description: Access denied or feature not available
+      tags:
+        - public-api
+      security:
+        - api-key: []
   /public-api/v1.0/generations/{id}:
     get:
-      operationId: PublicAPIController_getGenerationStatusV1
-      parameters: []
+      operationId: getGenerationStatus
+      x-stability: stable
+      summary: Get generation status
+      description: >-
+        Retrieves the current status of a generation job. Poll this endpoint
+        until status is "completed" or "failed".
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: The unique generation ID returned from the create endpoint
+          schema:
+            example: abc123xyz
+            type: string
       responses:
         '200':
-          description: ''
+          description: Generation status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerationStatusResponseDto'
+        '401':
+          description: Invalid or missing API key
+        '404':
+          description: Generation not found
+      tags:
+        - public-api
+      security:
+        - api-key: []
   /public-api/v1.0/themes:
     get:
-      operationId: PublicAPIController_listThemesV1
-      parameters: []
+      operationId: listThemes
+      x-stability: stable
+      summary: List themes
+      description: >-
+        Lists all themes available to the workspace, including standard themes
+        and custom workspace themes.
+      parameters:
+        - name: query
+          required: false
+          in: query
+          description: Search query to filter themes by name
+          schema:
+            example: corporate
+            type: string
+        - name: limit
+          required: false
+          in: query
+          description: Maximum results to return (1-100)
+          schema:
+            minimum: 1
+            maximum: 50
+            example: 20
+            type: number
+        - name: after
+          required: false
+          in: query
+          description: Pagination cursor from previous response
+          schema:
+            example: eyJpZCI6IjEyMyJ9
+            type: string
       responses:
         '200':
-          description: ''
+          description: Themes retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListThemesResponseDto'
+        '401':
+          description: Invalid or missing API key
+      tags:
+        - public-api
+      security:
+        - api-key: []
   /public-api/v1.0/folders:
     get:
-      operationId: PublicAPIController_listFoldersV1
-      parameters: []
+      operationId: listFolders
+      x-stability: stable
+      summary: List folders
+      description: >-
+        Lists all folders the authenticated user is a member of within the
+        workspace.
+      parameters:
+        - name: query
+          required: false
+          in: query
+          description: Search query to filter folders by name
+          schema:
+            example: marketing
+            type: string
+        - name: limit
+          required: false
+          in: query
+          description: Maximum results to return (1-100)
+          schema:
+            minimum: 1
+            maximum: 50
+            example: 20
+            type: number
+        - name: after
+          required: false
+          in: query
+          description: Pagination cursor from previous response
+          schema:
+            example: eyJpZCI6IjEyMyJ9
+            type: string
       responses:
         '200':
-          description: ''
-  /public-api/v1.0/me:
-    get:
-      operationId: PublicAPIController_getMeV1
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  /public-api/v1.0/generations/details/{id}:
-    get:
-      operationId: PublicAPIController_getGenerationDetails
-      parameters: []
-      responses:
-        '200':
-          description: ''
+          description: Folders retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFoldersResponseDto'
+        '401':
+          description: Invalid or missing API key
+      tags:
+        - public-api
+      security:
+        - api-key: []
   /public-api/v1.0/gammas/{gammaId}/archive:
     post:
-      operationId: PublicAPIController_archiveGammaV1
-      parameters: []
+      operationId: archiveGamma
+      x-stability: stable
+      summary: Archive a Gamma
+      description: >-
+        Archives a Gamma document. The operation is idempotent - archiving an
+        already archived Gamma succeeds.
+      parameters:
+        - name: gammaId
+          required: true
+          in: path
+          description: The unique ID of the Gamma to archive
+          schema:
+            example: gamma_abc123
+            type: string
       responses:
-        '201':
-          description: ''
+        '200':
+          description: Gamma archived successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveGammaResponseDto'
+        '401':
+          description: Invalid or missing API key
+        '403':
+          description: Access denied - edit permission required
+      tags:
+        - public-api
+      security:
+        - api-key: []
   /public-api/v1.0/generations/from-template:
     post:
-      operationId: PublicAPIController_createFromTemplateGeneration
+      operationId: createFromTemplateGeneration
+      x-feature-flag: publicApi.generateFromTemplate
+      x-stability: beta
+      summary: Create generation from template
+      description: >-
+        Creates an asynchronous generation job from a template Gamma with
+        variable substitution. Requires the publicApi.generateFromTemplate
+        feature flag.
       parameters: []
       requestBody:
         required: true
@@ -66,64 +204,24 @@ paths:
             schema:
               $ref: '#/components/schemas/FromTemplateGenerationDto'
       responses:
-        '201':
-          description: ''
-  /public-api/v0.2/generations/generate-sync:
-    post:
-      operationId: PublicAPIController_generateFromTextV02
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  /public-api/v0.2/generations:
-    post:
-      operationId: PublicAPIController_createGenerationV02
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  /public-api/v0.2/generations/{id}:
-    get:
-      operationId: PublicAPIController_getGenerationStatusV02
-      parameters: []
-      responses:
         '200':
-          description: ''
-  /public-api/v0.2/me:
-    get:
-      operationId: PublicAPIController_getMeV02
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  /public-api/v0.2/themes:
-    get:
-      operationId: PublicAPIController_listThemesV02
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  /public-api/v0.2/folders:
-    get:
-      operationId: PublicAPIController_listFoldersV02
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  /public-api-keys/create:
-    post:
-      operationId: PublicApiKeysController_createApiKey
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  /public-api-keys/deactivate:
-    post:
-      operationId: PublicApiKeysController_deactivateApiKey
-      parameters: []
-      responses:
-        '201':
-          description: ''
+          description: Generation job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FromTemplateGenerationResponseDto'
+        '400':
+          description: Invalid request or template not found
+        '401':
+          description: Invalid or missing API key
+        '402':
+          description: Insufficient credits
+        '403':
+          description: Feature not enabled for workspace
+      tags:
+        - public-api
+      security:
+        - api-key: []
 info:
   title: Gamma Public API
   description: >-
@@ -147,9 +245,613 @@ components:
       name: X-API-KEY
       description: API key for authentication
   schemas:
+    TextMode:
+      type: string
+      description: How to interpret the input text
+      enum:
+        - generate
+        - condense
+        - preserve
+    DocFormat:
+      type: string
+      description: Output format
+      enum:
+        - presentation
+        - document
+        - social
+        - webpage
+    CardSplit:
+      type: string
+      description: Content splitting strategy across cards
+      enum:
+        - inputTextBreaks
+        - auto
+    TextAmount:
+      type: string
+      description: Controls the amount of text generated per card
+      enum:
+        - brief
+        - medium
+        - detailed
+        - extensive
+    AILocale:
+      type: string
+      description: ISO language code for content generation
+      enum:
+        - en
+        - en-gb
+        - en-in
+        - es
+        - es-es
+        - es-mx
+        - es-419
+        - ca
+        - fr
+        - zh-cn
+        - zh-tw
+        - ko
+        - ja
+        - ja-da
+        - pt-br
+        - pt-pt
+        - de
+        - it
+        - ru
+        - pl
+        - uk
+        - ro
+        - hu
+        - cs
+        - el
+        - tr
+        - ar
+        - ar-sa
+        - he
+        - fa
+        - nl
+        - sv
+        - da
+        - nb
+        - fi
+        - id
+        - vi
+        - hi
+        - gu
+        - mr
+        - te
+        - bn
+        - ta
+        - ur
+        - kn
+        - ml
+        - th
+        - sr
+        - hr
+        - sq
+        - bg
+        - sl
+        - bs
+        - mk
+        - sw
+        - ha
+        - yo
+        - tl
+        - ms
+        - kk
+        - uz
+        - af
+        - lv
+        - lt
+        - et
+        - is
+        - cy
+    TextOptionsDto:
+      type: object
+      properties:
+        amount:
+          example: auto
+          $ref: '#/components/schemas/TextAmount'
+        tone:
+          type: string
+          description: The tone or writing style (e.g., professional, casual, academic)
+          example: professional
+          maxLength: 500
+        audience:
+          type: string
+          description: Target audience description for tailored content
+          example: marketing executives
+          maxLength: 500
+        language:
+          example: en
+          $ref: '#/components/schemas/AILocale'
+    ImageSource:
+      type: string
+      description: Source for card images
+      enum:
+        - webAllImages
+        - webFreeToUse
+        - webFreeToUseCommercially
+        - aiGenerated
+        - pictographic
+        - giphy
+        - pexels
+        - placeholder
+        - noImages
+        - themeAccent
+    ImageOptionsDto:
+      type: object
+      properties:
+        model:
+          type: object
+          description: >-
+            AI model for image generation. Model availability depends on feature
+            flags.
+          example: flux-kontext-fast
+        style:
+          type: string
+          description: Style description for AI-generated images
+          example: photorealistic, professional
+          maxLength: 500
+        source:
+          example: aiGenerated
+          $ref: '#/components/schemas/ImageSource'
+    CardDimensions:
+      type: string
+      description: Card dimensions/aspect ratio
+      enum:
+        - fluid
+        - 16x9
+        - 4x3
+        - pageless
+        - letter
+        - a4
+        - 1x1
+        - 4x5
+        - 9x16
+    HeaderFooterElementType:
+      type: string
+      description: Type of element to display
+      enum:
+        - cardNumber
+        - image
+        - text
+    HeaderFooterElementDto:
+      type: object
+      properties:
+        type:
+          example: text
+          $ref: '#/components/schemas/HeaderFooterElementType'
+        source:
+          type: string
+          enum:
+            - themeLogo
+            - custom
+          description: Source for the image element
+          example: themeLogo
+        src:
+          type: string
+          description: HTTPS URL for custom image
+          example: https://example.com/logo.png
+        value:
+          type: string
+          description: Text content to display
+          example: Confidential
+          maxLength: 500
+        size:
+          type: string
+          enum:
+            - sm
+            - md
+            - lg
+            - xl
+          description: Size of the image element
+          example: md
+      required:
+        - type
+    HeaderFooterDto:
+      type: object
+      properties:
+        topLeft:
+          $ref: '#/components/schemas/HeaderFooterElementDto'
+        topCenter:
+          $ref: '#/components/schemas/HeaderFooterElementDto'
+        topRight:
+          $ref: '#/components/schemas/HeaderFooterElementDto'
+        bottomLeft:
+          $ref: '#/components/schemas/HeaderFooterElementDto'
+        bottomCenter:
+          $ref: '#/components/schemas/HeaderFooterElementDto'
+        bottomRight:
+          $ref: '#/components/schemas/HeaderFooterElementDto'
+        hideFromFirstCard:
+          type: boolean
+          description: Hide header/footer from first card
+          example: true
+        hideFromLastCard:
+          type: boolean
+          description: Hide header/footer from last card
+          example: false
+    CardOptionsDto:
+      type: object
+      properties:
+        dimensions:
+          example: 16x9
+          $ref: '#/components/schemas/CardDimensions'
+        headerFooter:
+          $ref: '#/components/schemas/HeaderFooterDto'
+    WorkspacePermission:
+      type: string
+      description: Access level for workspace members
+      enum:
+        - edit
+        - comment
+        - view
+        - noAccess
+        - fullAccess
+    ExternalPermission:
+      type: string
+      description: Access level for external users via shared link
+      enum:
+        - edit
+        - comment
+        - view
+        - noAccess
+    EmailPermission:
+      type: string
+      description: Permission level for email recipients
+      enum:
+        - edit
+        - comment
+        - view
+        - fullAccess
+    EmailOptionsDto:
+      type: object
+      properties:
+        recipients:
+          description: List of email addresses to share with
+          example:
+            - user@example.com
+          type: array
+          items:
+            type: string
+        access:
+          example: view
+          $ref: '#/components/schemas/EmailPermission'
+      required:
+        - recipients
+        - access
+    SharingOptionsDto:
+      type: object
+      properties:
+        workspaceAccess:
+          example: view
+          $ref: '#/components/schemas/WorkspacePermission'
+        externalAccess:
+          example: noAccess
+          $ref: '#/components/schemas/ExternalPermission'
+        enableSearchEngineIndexing:
+          type: boolean
+          description: Enable search engine indexing for public Gammas
+          example: false
+        emailOptions:
+          $ref: '#/components/schemas/EmailOptionsDto'
+    ExportFormat:
+      type: string
+      description: Auto-export format after generation completes
+      enum:
+        - pptx
+        - pdf
+        - png
     GenerationDto:
       type: object
-      properties: {}
+      properties:
+        inputText:
+          type: string
+          description: Input text for generation (topic, outline, or content)
+          example: Quarterly sales report for Q3 2024
+          maxLength: 400000
+        additionalInstructions:
+          type: string
+          description: Additional context or instructions for AI
+          example: Focus on year-over-year growth metrics
+          maxLength: 5000
+        textMode:
+          example: generate
+          $ref: '#/components/schemas/TextMode'
+        format:
+          example: presentation
+          $ref: '#/components/schemas/DocFormat'
+        numCards:
+          type: number
+          description: Target number of cards to generate
+          example: 10
+          minimum: 1
+        cardSplit:
+          example: auto
+          $ref: '#/components/schemas/CardSplit'
+        themeId:
+          type: string
+          description: Theme ID from the /themes endpoint
+          example: theme_abc123
+        textOptions:
+          $ref: '#/components/schemas/TextOptionsDto'
+        imageOptions:
+          $ref: '#/components/schemas/ImageOptionsDto'
+        cardOptions:
+          $ref: '#/components/schemas/CardOptionsDto'
+        sharingOptions:
+          $ref: '#/components/schemas/SharingOptionsDto'
+        folderIds:
+          description: Folders to add the generated Gamma to
+          example:
+            - folder_abc
+          maxItems: 10
+          type: array
+          items:
+            type: string
+        exportAs:
+          example: pdf
+          $ref: '#/components/schemas/ExportFormat'
+        asyncImageGeneration:
+          type: boolean
+          description: Generate images asynchronously for faster response
+          example: true
+      required:
+        - inputText
+        - textMode
+    CreateGenerationResponseDto:
+      type: object
+      properties:
+        generationId:
+          type: string
+          description: Unique generation job identifier for status polling
+          example: abc123xyz
+        warnings:
+          type: string
+          description: Warnings about ignored or adjusted request parameters
+          example: Image model ignored when source is 'web'
+      required:
+        - generationId
+    GenerationStatus:
+      type: string
+      description: Current status of the generation job
+      enum:
+        - pending
+        - completed
+        - failed
+    ErrorResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error description
+          example: Failed to generate content
+        statusCode:
+          type: number
+          description: HTTP status code
+          example: 500
+      required:
+        - message
+        - statusCode
+    CreditsResponseDto:
+      type: object
+      properties:
+        deducted:
+          type: number
+          description: Credits deducted for this generation
+          example: 10
+        remaining:
+          type: number
+          description: Credits remaining in workspace after deduction
+          example: 490
+      required:
+        - deducted
+        - remaining
+    GenerationStatusResponseDto:
+      type: object
+      properties:
+        generationId:
+          type: string
+          description: Generation job identifier
+          example: abc123xyz
+        status:
+          example: completed
+          $ref: '#/components/schemas/GenerationStatus'
+        gammaId:
+          type: string
+          description: File identifier for the generated Gamma
+          example: 9xJZ8QmN2
+        gammaUrl:
+          type: string
+          description: URL to view the generated Gamma
+          example: https://gamma.app/docs/abc123
+        error:
+          description: Error details when status is "failed"
+          allOf:
+            - $ref: '#/components/schemas/ErrorResponseDto'
+        exportUrl:
+          type: string
+          description: Download URL for exported file (PDF/PPTX)
+          example: https://gamma.app/export/abc123.pdf
+        credits:
+          description: Credit deduction details
+          allOf:
+            - $ref: '#/components/schemas/CreditsResponseDto'
+      required:
+        - generationId
+        - status
+    ThemeType:
+      type: string
+      description: Source of the theme
+      enum:
+        - standard
+        - custom
+    ThemeItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique theme identifier
+          example: theme_abc123
+        name:
+          type: string
+          description: Theme display name
+          example: Corporate Blue
+        colorKeywords:
+          description: Color-related keywords
+          example:
+            - blue
+            - professional
+            - modern
+          type: array
+          items:
+            type: string
+        toneKeywords:
+          description: Tone/style keywords
+          example:
+            - formal
+            - business
+          type: array
+          items:
+            type: string
+        type:
+          example: standard
+          $ref: '#/components/schemas/ThemeType'
+      required:
+        - id
+        - name
+        - type
+    ListThemesResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of themes
+          type: array
+          items:
+            $ref: '#/components/schemas/ThemeItemDto'
+        hasMore:
+          type: boolean
+          description: Whether more results are available
+          example: true
+        nextCursor:
+          type: string
+          description: Cursor for next page, null if no more results
+          example: eyJpZCI6IjQ1NiJ9
+          nullable: true
+      required:
+        - data
+        - hasMore
+    FolderItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique folder identifier
+          example: folder_abc123
+        name:
+          type: string
+          description: Folder display name
+          example: Marketing Materials
+      required:
+        - id
+        - name
+    ListFoldersResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of folders
+          type: array
+          items:
+            $ref: '#/components/schemas/FolderItemDto'
+        hasMore:
+          type: boolean
+          description: Whether more results are available
+          example: true
+        nextCursor:
+          type: string
+          description: Cursor for next page, null if no more results
+          example: eyJpZCI6IjQ1NiJ9
+          nullable: true
+      required:
+        - data
+        - hasMore
+    ArchiveGammaResponseDto:
+      type: object
+      properties:
+        gammaId:
+          type: string
+          description: ID of the archived Gamma
+          example: gamma_abc123
+        archived:
+          type: boolean
+          description: Always true on success
+          example: true
+      required:
+        - gammaId
+        - archived
+    FromTemplateImageOptionsDto:
+      type: object
+      properties:
+        model:
+          type: object
+          description: AI model for image generation
+          example: flux-schnell
+        style:
+          type: string
+          description: Style description for AI-generated images
+          example: photorealistic
+          maxLength: 500
+      x-stability: beta
     FromTemplateGenerationDto:
       type: object
-      properties: {}
+      properties:
+        prompt:
+          type: string
+          description: Text prompt describing the content to generate
+          example: Q3 financial summary for investors
+          maxLength: 400000
+        gammaId:
+          type: string
+          description: File ID of the template Gamma (must have exactly one Page)
+          example: gamma_abc123
+        themeId:
+          type: string
+          description: Theme ID to apply to generated content
+          example: theme_xyz789
+        imageOptions:
+          $ref: '#/components/schemas/FromTemplateImageOptionsDto'
+        sharingOptions:
+          $ref: '#/components/schemas/SharingOptionsDto'
+        folderIds:
+          description: Folders to add the generated Gamma to
+          example:
+            - folder_abc
+          maxItems: 10
+          type: array
+          items:
+            type: string
+        exportAs:
+          example: pdf
+          $ref: '#/components/schemas/ExportFormat'
+        asyncImageGeneration:
+          type: boolean
+          description: Generate images asynchronously for faster response
+          example: true
+      x-stability: beta
+      required:
+        - prompt
+        - gammaId
+    FromTemplateGenerationResponseDto:
+      type: object
+      properties:
+        generationId:
+          type: string
+          description: Generation job identifier for status polling
+          example: gen_xyz789
+        warnings:
+          type: string
+          description: Warnings about request processing
+          example: Some template variables were not found
+      x-stability: beta
+      required:
+        - generationId
