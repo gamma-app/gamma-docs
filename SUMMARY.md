@@ -1,13 +1,25 @@
 # Table of contents
 
-## Overview
+## Endpoints
 
-* [Introduction to Gamma's API offerings](README.md)
-* [Async Patterns & Polling](overview/async-patterns-and-polling.md)
-* [Understanding the API options](overview/understanding-the-api-options.md)
-* [Generate API parameters explained](overview/generate-api-parameters-explained.md)
-* [Create from Template API parameters explained](overview/create-from-template-api-parameters-explained.md)
-* [Header & Footer Formatting](overview/header-and-footer-formatting.md)
-* [List Themes and List Folders APIs explained](overview/list-themes-and-list-folders-apis-explained.md)
-* [Access and Pricing](overview/access-and-pricing.md)
-* [Get Help](overview/get-help.md)
+* ```yaml
+  type: builtin:openapi
+  props:
+    models: false
+    downloadLink: false
+  dependencies:
+    spec:
+      ref:
+        kind: openapi
+        spec: gamma-public-api-v1
+  ```
+
+## Accepted Values
+
+* [Image model accepted values](README.md)
+* [Output language accepted values](accepted-values/output-language-accepted-values.md)
+
+## Errors & Warnings
+
+* [Error codes](errors-and-warnings/error-codes.md)
+* [Warnings](errors-and-warnings/warnings.md)
