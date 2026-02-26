@@ -50,7 +50,7 @@ Once connected, you can ask Claude to create presentations, documents, and more 
 
 Automate Gamma content creation as part of your Zapier workflows.
 
-* **Integration page**: [gamma.app on Zapier](https://zapier.com/apps/gamma/integrations)
+* **Integration page**: [Gamma on Zapier](https://zapier.com/apps/gamma/integrations)
 
 ### What you can do
 
@@ -75,7 +75,7 @@ Your Gamma API key is required. Generate one from your [account settings](https:
 
 Build visual automation workflows that include Gamma content creation.
 
-* **Integration page**: [gamma.app on Make](https://www.make.com/en/integrations/gamma-app)
+* **Integration page**: [Gamma on Make](https://www.make.com/en/integrations/gamma-app)
 
 ### What you can do
 
@@ -99,6 +99,8 @@ Your Gamma API key is required. Generate one from your [account settings](https:
 ## n8n Integration
 
 Use Gamma in your self-hosted or cloud n8n automation workflows.
+
+* **Integration page**: [Gamma on n8n](https://n8n.io/integrations/gamma/)
 
 ### What you can do
 

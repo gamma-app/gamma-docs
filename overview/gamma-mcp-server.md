@@ -68,7 +68,7 @@ The setup process varies depending on which AI tool you're using. See the [Conne
 The Gamma MCP server uses OAuth with Dynamic Client Registration (DCR). Your platform must support DCR to connect. If you're unsure, check with your engineering team before submitting.
 {% endhint %}
 
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSfYourFormIdHere/viewform" class="button primary">Request MCP Access</a>
+<a href="https://docs.google.com/forms/d/1y5EJFP8pbl2-0PfTQexcs5vsvWpnPj3Q9bKOaH_4wuE/viewform" class="button primary">Request MCP Access</a>
 
 The form will ask for:
 
