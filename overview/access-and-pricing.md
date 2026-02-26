@@ -1,3 +1,8 @@
+---
+description: API access requirements, credit-based pricing, and plan details.
+icon: key
+---
+
 # Access and Pricing
 
 ## Access

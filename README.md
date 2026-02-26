@@ -2,6 +2,7 @@
 description: >-
   When creating AI generated images in your gamma, you can specify which model
   to use.
+icon: image
 ---
 
 # Image model accepted values

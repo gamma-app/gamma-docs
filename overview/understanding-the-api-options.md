@@ -1,5 +1,6 @@
 ---
 description: Overview of the different API offerings and when to use each.
+icon: compass
 ---
 
 # Understanding the API options

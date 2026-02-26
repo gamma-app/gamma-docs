@@ -2,6 +2,7 @@
 description: >-
   What Create from Template API parameters represent and how they affect your
   Gamma creation. Read this before heading to the API Reference page.
+icon: copy
 ---
 
 # Create from Template API parameters explained

@@ -1,5 +1,6 @@
 ---
 description: Gamma MCP powers Gamma Connectors and integrations in popular AI tools.
+icon: robot
 ---
 
 # Gamma MCP Server

@@ -2,6 +2,7 @@
 description: >-
   List API methods support bulk fetching through cursor-based pagination. You
   can list folders with GET /v1.0/folders and list themes with GET /v1.0/themes.
+icon: palette
 ---
 
 # List Themes and List Folders APIs explained

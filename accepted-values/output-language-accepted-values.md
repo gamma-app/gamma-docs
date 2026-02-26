@@ -1,5 +1,6 @@
 ---
 description: Specify the output language of your gamma.
+icon: language
 ---
 
 # Output language accepted values

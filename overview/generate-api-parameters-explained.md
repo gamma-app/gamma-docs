@@ -2,6 +2,7 @@
 description: >-
   How the the Generate API parameters influence your gamma. Read this before
   heading to the API Reference page.
+icon: sliders
 ---
 
 # Generate API parameters explained

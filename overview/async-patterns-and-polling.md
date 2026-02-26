@@ -1,5 +1,6 @@
 ---
 description: Understanding how to work with Gamma’s asynchronous API and poll for results
+icon: arrows-rotate
 ---
 
 # Async Patterns & Polling

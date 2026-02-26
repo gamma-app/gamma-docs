@@ -1,5 +1,6 @@
 ---
 description: Connect Gamma to your favorite AI tools and automation platforms.
+icon: plug
 ---
 
 # Connectors and Integrations

@@ -1,5 +1,6 @@
 ---
 description: Understanding warning messages in API responses.
+icon: triangle-exclamation
 ---
 
 # Warnings

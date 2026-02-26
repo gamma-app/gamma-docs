@@ -1,5 +1,6 @@
 ---
 description: There are several ways to get in touch with us.
+icon: life-ring
 ---
 
 # Get Help

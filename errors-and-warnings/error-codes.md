@@ -1,5 +1,6 @@
 ---
 description: Detailed descriptions of API error codes.
+icon: circle-exclamation
 ---
 
 # Error codes

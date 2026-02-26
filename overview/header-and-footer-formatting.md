@@ -1,5 +1,6 @@
 ---
 description: Detailed guide to customizing headers and footers in Gamma presentations
+icon: table-columns
 ---
 
 # Header & Footer Formatting
