@@ -25,11 +25,11 @@ Identifies the template you want to modify. You can find and copy the gammaId fo
 
 {% columns %}
 {% column %}
-<figure><img src="https://files.readme.io/9464bbfb332e5c5798be313563bb9e0c91153fbb28bc88d4da79ac7a2faf865b-CleanShot_2025-11-03_at_15.10.362x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/template-gamma-id.png" alt="Finding the gamma ID for a template"><figcaption></figcaption></figure>
 {% endcolumn %}
 
 {% column %}
-<figure><img src="https://files.readme.io/a5a8861282b3bf86679595b2cf684fce46ac54c0059f9ff19d7dcfd411e8aed7-CleanShot_2025-11-03_at_15.16.562x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/template-one-page.png" alt="Template must have exactly one page"><figcaption></figcaption></figure>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -69,7 +69,7 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 
 * You can use the [GET Themes](https://app.gitbook.com/s/IrzC0mooWT36AKgnkerQ/endpoints/default#get-v1.0-themes) endpoint to pull a list of themes from your workspace. Or you can copy over the themeId from the app directly.
 
-<div data-with-frame="true"><figure><img src="https://files.readme.io/d01171ca7562e427d8469ee2d0391e54400235ca558d6da8e61cf35e957d8833-CleanShot_2025-11-03_at_14.24.272x.png" alt=""><figcaption></figcaption></figure></div>
+<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Finding the theme ID in the Gamma app"><figcaption><p>Copy the theme ID directly from the Gamma app</p></figcaption></figure>
 
 {% code title="Example" %}
 ```json
@@ -83,7 +83,7 @@ Defines which folder(s) your gamma is stored in.
 
 *   You can use the [GET Folders](https://app.gitbook.com/s/IrzC0mooWT36AKgnkerQ/endpoints/default#get-v1.0-folders) endpoint to pull a list of folders. Or you can copy over the folderIds from the app directly.
 
-    <div data-with-frame="true"><figure><img src="https://files.readme.io/eefcb9b3f6404e96978f1a92aed2820c178ed1dbf550873c6e3da0538c466740-CleanShot_2025-11-03_at_14.27.362x.png" alt=""><figcaption></figcaption></figure></div>
+<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Finding the folder ID in the Gamma app"><figcaption><p>Copy the folder ID directly from the Gamma app</p></figcaption></figure>
 * You must be a member of a folder to be able to add gammas to that folder.
 
 ```json

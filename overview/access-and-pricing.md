@@ -10,10 +10,14 @@ icon: key
 * API access is available to subscribers on Pro, Ultra, Teams, and Business plans. View [pricing plans here](https://gamma.app/pricing).
 * To get started, generate an API key through your [account settings](https://gamma.app/settings).
 
+<figure><img src="../.gitbook/assets/api-key-settings.png" alt="API key generation in Gamma account settings"><figcaption><p>Generate an API key from Settings → API keys</p></figcaption></figure>
+
 ## Usage and pricing
 
 * API billing uses a credit-based system. Higher tier subscribers receive more monthly credits.
 * If you run out of credits, you can upgrade to a higher subscription tier, purchase credits ad hoc, or enable auto-recharge (_recommended_) at [gamma.app/settings/billing](https://gamma.app/settings/billing).
+
+<figure><img src="../.gitbook/assets/billing-credits.png" alt="Credit management and auto-recharge in billing settings"><figcaption><p>Manage credits and enable auto-recharge from Settings → Billing</p></figcaption></figure>
 
 ## How credits work
 
