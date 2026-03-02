@@ -129,7 +129,7 @@ paths:
         - name: limit
           required: false
           in: query
-          description: Maximum results to return (1-100)
+          description: Maximum results to return
           schema:
             minimum: 1
             maximum: 50
@@ -189,13 +189,11 @@ paths:
   /public-api/v1.0/generations/from-template:
     post:
       operationId: createFromTemplateGeneration
-      x-feature-flag: publicApi.generateFromTemplate
-      x-stability: beta
+      x-stability: stable
       summary: Create generation from template
       description: >-
         Creates an asynchronous generation job from a template Gamma with
-        variable substitution. Requires the publicApi.generateFromTemplate
-        feature flag.
+        variable substitution.
       parameters: []
       requestBody:
         required: true
@@ -235,8 +233,6 @@ tags:
 servers:
   - url: https://api.gamma.app
     description: Production
-  - url: https://api.staging.gamma.app
-    description: Staging
 components:
   securitySchemes:
     api-key:
@@ -382,11 +378,64 @@ components:
       type: object
       properties:
         model:
-          type: object
-          description: >-
-            AI model for image generation. Model availability depends on feature
-            flags.
+          type: string
+          description: AI model for image generation. Available models depend on your plan.
           example: flux-kontext-fast
+          enum:
+            - dall-e-3
+            - imagen-3-flash
+            - imagen-3-pro
+            - imagen-4-fast
+            - imagen-4-pro
+            - imagen-4-ultra
+            - playground-3
+            - ideogram-v2
+            - ideogram-v2-turbo
+            - ideogram-v2a
+            - ideogram-v2a-turbo
+            - ideogram-v3
+            - ideogram-v3-turbo
+            - ideogram-v3-quality
+            - ideogram-v3-flash
+            - flux-1-schnell
+            - flux-1-pro
+            - flux-1-quick
+            - flux-1-ultra
+            - flux-kontext-pro
+            - flux-kontext-max
+            - flux-kontext-fast
+            - leonardo-phoenix
+            - recraft-v3
+            - recraft-v3-svg
+            - recraft-v4
+            - recraft-v4-svg
+            - recraft-v4-pro
+            - luma-photon-1
+            - luma-photon-flash-1
+            - gpt-image-1-low
+            - gpt-image-1-medium
+            - gpt-image-1-high
+            - gpt-image-1-mini-low
+            - gpt-image-1-mini-medium
+            - gpt-image-1-mini-high
+            - qwen-image
+            - qwen-image-fast
+            - gemini-2.5-flash-image
+            - veo-3.1-fast
+            - veo-3.1
+            - luma-ray-2-flash
+            - luma-ray-2
+            - leonardo-motion-2-fast
+            - leonardo-motion-2
+            - gemini-3-pro-image
+            - gemini-3-pro-image-hd
+            - gemini-3.1-flash-image-mini
+            - gemini-3.1-flash-image
+            - gemini-3.1-flash-image-hd
+            - flux-2-pro
+            - flux-2-flex
+            - flux-2-max
+            - flux-2-klein
         style:
           type: string
           description: Style description for AI-generated images
@@ -793,9 +842,64 @@ components:
       type: object
       properties:
         model:
-          type: object
+          type: string
           description: AI model for image generation
-          example: flux-schnell
+          example: flux-kontext-fast
+          enum:
+            - dall-e-3
+            - imagen-3-flash
+            - imagen-3-pro
+            - imagen-4-fast
+            - imagen-4-pro
+            - imagen-4-ultra
+            - playground-3
+            - ideogram-v2
+            - ideogram-v2-turbo
+            - ideogram-v2a
+            - ideogram-v2a-turbo
+            - ideogram-v3
+            - ideogram-v3-turbo
+            - ideogram-v3-quality
+            - ideogram-v3-flash
+            - flux-1-schnell
+            - flux-1-pro
+            - flux-1-quick
+            - flux-1-ultra
+            - flux-kontext-pro
+            - flux-kontext-max
+            - flux-kontext-fast
+            - leonardo-phoenix
+            - recraft-v3
+            - recraft-v3-svg
+            - recraft-v4
+            - recraft-v4-svg
+            - recraft-v4-pro
+            - luma-photon-1
+            - luma-photon-flash-1
+            - gpt-image-1-low
+            - gpt-image-1-medium
+            - gpt-image-1-high
+            - gpt-image-1-mini-low
+            - gpt-image-1-mini-medium
+            - gpt-image-1-mini-high
+            - qwen-image
+            - qwen-image-fast
+            - gemini-2.5-flash-image
+            - veo-3.1-fast
+            - veo-3.1
+            - luma-ray-2-flash
+            - luma-ray-2
+            - leonardo-motion-2-fast
+            - leonardo-motion-2
+            - gemini-3-pro-image
+            - gemini-3-pro-image-hd
+            - gemini-3.1-flash-image-mini
+            - gemini-3.1-flash-image
+            - gemini-3.1-flash-image-hd
+            - flux-2-pro
+            - flux-2-flex
+            - flux-2-max
+            - flux-2-klein
         style:
           type: string
           description: Style description for AI-generated images
@@ -837,7 +941,7 @@ components:
           type: boolean
           description: Generate images asynchronously for faster response
           example: true
-      x-stability: beta
+      x-stability: stable
       required:
         - prompt
         - gammaId

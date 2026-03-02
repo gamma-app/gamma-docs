@@ -131,9 +131,6 @@ Gamma's REST API works with any automation platform or custom application that c
 
 ### Supported platforms include
 
-* **Workato** — Enterprise automation
-* **Pipedream** — Developer-first workflows
-* **Power Automate** — Microsoft ecosystem automation
 * **Custom applications** — Any backend that can call REST APIs
 
 ### Getting started

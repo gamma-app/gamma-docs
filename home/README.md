@@ -51,7 +51,7 @@ Gamma handles layout, visuals, and polish like magic.
 {% column %}
 ### <i class="fa-file-export">:file-export:</i> Flexible Export
 
-Export to PDF/PPTX. Plug into tools like Zapier, Make, Workato, and n8n.
+Export to PDF/PPTX. Plug into tools like Zapier, Make, and n8n.
 {% endcolumn %}
 {% endcolumns %}
 

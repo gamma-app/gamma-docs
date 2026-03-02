@@ -26,6 +26,15 @@
         spec: gamma-public-api-v1
   ```
 
+## Best Practices
+
+* [Image URL Best Practices](overview/image-url-best-practices.md)
+* [Charts and Structured Content](overview/charts-and-structured-content.md)
+
+## Common Questions
+
+* [Common Feature Requests](overview/common-feature-requests.md)
+
 ## Connectors & MCP
 
 * [Connectors and Integrations](overview/connectors-and-integrations.md)

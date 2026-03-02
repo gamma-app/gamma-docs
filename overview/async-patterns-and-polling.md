@@ -363,8 +363,8 @@ Generations typically complete in 1-3 minutes. If you're waiting longer than 5 m
 If you receive a 429 error:
 
 * You're polling too frequently (use 5+ second intervals)
-* You've exceeded 50 generations/hour - wait and retry
 * Check the `Retry-After` header for guidance
+* If you're using an integration platform (Zapier, Make, n8n), the rate limit may be on their side rather than Gamma's
 {% endhint %}
 
 ## Related
