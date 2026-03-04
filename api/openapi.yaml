@@ -618,10 +618,6 @@ components:
         externalAccess:
           example: noAccess
           $ref: '#/components/schemas/ExternalPermission'
-        enableSearchEngineIndexing:
-          type: boolean
-          description: Enable search engine indexing for public Gammas
-          example: false
         emailOptions:
           description: Email sharing configuration
           allOf:
@@ -693,10 +689,6 @@ components:
         exportAs:
           example: pdf
           $ref: '#/components/schemas/ExportFormat'
-        asyncImageGeneration:
-          type: boolean
-          description: Generate images asynchronously for faster response
-          example: true
       required:
         - inputText
         - textMode
@@ -995,10 +987,6 @@ components:
         exportAs:
           example: pdf
           $ref: '#/components/schemas/ExportFormat'
-        asyncImageGeneration:
-          type: boolean
-          description: Generate images asynchronously for faster response
-          example: true
       x-stability: stable
       required:
         - prompt
