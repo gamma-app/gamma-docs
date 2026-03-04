@@ -1,6 +1,6 @@
 openapi: 3.0.0
 paths:
-  /public-api/v1.0/generations:
+  /v1.0/generations:
     post:
       operationId: createGeneration
       x-stability: stable
@@ -22,6 +22,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateGenerationResponseDto'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateGenerationResponseDto'
         '400':
           description: Invalid request parameters
         '401':
@@ -34,7 +40,7 @@ paths:
         - public-api
       security:
         - api-key: []
-  /public-api/v1.0/generations/{id}:
+  /v1.0/generations/{id}:
     get:
       operationId: getGenerationStatus
       x-stability: stable
@@ -65,7 +71,7 @@ paths:
         - public-api
       security:
         - api-key: []
-  /public-api/v1.0/themes:
+  /v1.0/themes:
     get:
       operationId: listThemes
       x-stability: stable
@@ -110,7 +116,7 @@ paths:
         - public-api
       security:
         - api-key: []
-  /public-api/v1.0/folders:
+  /v1.0/folders:
     get:
       operationId: listFolders
       x-stability: stable
@@ -155,7 +161,7 @@ paths:
         - public-api
       security:
         - api-key: []
-  /public-api/v1.0/gammas/{gammaId}/archive:
+  /v1.0/gammas/{gammaId}/archive:
     post:
       operationId: archiveGamma
       x-stability: stable
@@ -178,6 +184,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArchiveGammaResponseDto'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveGammaResponseDto'
         '401':
           description: Invalid or missing API key
         '403':
@@ -186,7 +198,7 @@ paths:
         - public-api
       security:
         - api-key: []
-  /public-api/v1.0/generations/from-template:
+  /v1.0/generations/from-template:
     post:
       operationId: createFromTemplateGeneration
       x-stability: stable
@@ -204,6 +216,12 @@ paths:
       responses:
         '200':
           description: Generation job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FromTemplateGenerationResponseDto'
+        '201':
+          description: ''
           content:
             application/json:
               schema:
@@ -231,7 +249,7 @@ tags:
   - name: public-api
     description: Public API endpoints for external integrations
 servers:
-  - url: https://api.gamma.app
+  - url: https://public-api.gamma.app
     description: Production
 components:
   securitySchemes:
@@ -351,11 +369,13 @@ components:
           type: string
           description: The tone or writing style (e.g., professional, casual, academic)
           example: professional
+          minLength: 0
           maxLength: 500
         audience:
           type: string
           description: Target audience description for tailored content
           example: marketing executives
+          minLength: 0
           maxLength: 500
         language:
           example: en
@@ -440,7 +460,10 @@ components:
           type: string
           description: Style description for AI-generated images
           example: photorealistic, professional
+          minLength: 0
           maxLength: 500
+        stylePreset:
+          type: string
         source:
           example: aiGenerated
           $ref: '#/components/schemas/ImageSource'
@@ -472,46 +495,61 @@ components:
           $ref: '#/components/schemas/HeaderFooterElementType'
         source:
           type: string
+          description: Source for the image element
+          example: themeLogo
           enum:
             - themeLogo
             - custom
-          description: Source for the image element
-          example: themeLogo
         src:
           type: string
           description: HTTPS URL for custom image
           example: https://example.com/logo.png
+          minLength: 1
+          maxLength: 2048
         value:
           type: string
           description: Text content to display
           example: Confidential
+          minLength: 1
           maxLength: 500
         size:
           type: string
+          description: Size of the image element
+          example: md
           enum:
             - sm
             - md
             - lg
             - xl
-          description: Size of the image element
-          example: md
       required:
         - type
     HeaderFooterDto:
       type: object
       properties:
         topLeft:
-          $ref: '#/components/schemas/HeaderFooterElementDto'
+          description: Element in top-left position
+          allOf:
+            - $ref: '#/components/schemas/HeaderFooterElementDto'
         topCenter:
-          $ref: '#/components/schemas/HeaderFooterElementDto'
+          description: Element in top-center position
+          allOf:
+            - $ref: '#/components/schemas/HeaderFooterElementDto'
         topRight:
-          $ref: '#/components/schemas/HeaderFooterElementDto'
+          description: Element in top-right position
+          allOf:
+            - $ref: '#/components/schemas/HeaderFooterElementDto'
         bottomLeft:
-          $ref: '#/components/schemas/HeaderFooterElementDto'
+          description: Element in bottom-left position
+          allOf:
+            - $ref: '#/components/schemas/HeaderFooterElementDto'
         bottomCenter:
-          $ref: '#/components/schemas/HeaderFooterElementDto'
+          description: Element in bottom-center position
+          allOf:
+            - $ref: '#/components/schemas/HeaderFooterElementDto'
         bottomRight:
-          $ref: '#/components/schemas/HeaderFooterElementDto'
+          description: Element in bottom-right position
+          allOf:
+            - $ref: '#/components/schemas/HeaderFooterElementDto'
         hideFromFirstCard:
           type: boolean
           description: Hide header/footer from first card
@@ -527,7 +565,9 @@ components:
           example: 16x9
           $ref: '#/components/schemas/CardDimensions'
         headerFooter:
-          $ref: '#/components/schemas/HeaderFooterDto'
+          description: Header and footer configuration
+          allOf:
+            - $ref: '#/components/schemas/HeaderFooterDto'
     WorkspacePermission:
       type: string
       description: Access level for workspace members
@@ -583,7 +623,9 @@ components:
           description: Enable search engine indexing for public Gammas
           example: false
         emailOptions:
-          $ref: '#/components/schemas/EmailOptionsDto'
+          description: Email sharing configuration
+          allOf:
+            - $ref: '#/components/schemas/EmailOptionsDto'
     ExportFormat:
       type: string
       description: Auto-export format after generation completes
@@ -598,11 +640,13 @@ components:
           type: string
           description: Input text for generation (topic, outline, or content)
           example: Quarterly sales report for Q3 2024
+          minLength: 1
           maxLength: 400000
         additionalInstructions:
           type: string
           description: Additional context or instructions for AI
           example: Focus on year-over-year growth metrics
+          minLength: 0
           maxLength: 5000
         textMode:
           example: generate
@@ -623,13 +667,21 @@ components:
           description: Theme ID from the /themes endpoint
           example: theme_abc123
         textOptions:
-          $ref: '#/components/schemas/TextOptionsDto'
+          description: Text generation options
+          allOf:
+            - $ref: '#/components/schemas/TextOptionsDto'
         imageOptions:
-          $ref: '#/components/schemas/ImageOptionsDto'
+          description: Image generation and selection options
+          allOf:
+            - $ref: '#/components/schemas/ImageOptionsDto'
         cardOptions:
-          $ref: '#/components/schemas/CardOptionsDto'
+          description: Card dimensions and layout options
+          allOf:
+            - $ref: '#/components/schemas/CardOptionsDto'
         sharingOptions:
-          $ref: '#/components/schemas/SharingOptionsDto'
+          description: Sharing and permissions options
+          allOf:
+            - $ref: '#/components/schemas/SharingOptionsDto'
         folderIds:
           description: Folders to add the generated Gamma to
           example:
@@ -784,9 +836,9 @@ components:
           example: true
         nextCursor:
           type: string
+          nullable: true
           description: Cursor for next page, null if no more results
           example: eyJpZCI6IjQ1NiJ9
-          nullable: true
       required:
         - data
         - hasMore
@@ -818,9 +870,9 @@ components:
           example: true
         nextCursor:
           type: string
+          nullable: true
           description: Cursor for next page, null if no more results
           example: eyJpZCI6IjQ1NiJ9
-          nullable: true
       required:
         - data
         - hasMore
@@ -904,6 +956,7 @@ components:
           type: string
           description: Style description for AI-generated images
           example: photorealistic
+          minLength: 0
           maxLength: 500
       x-stability: beta
     FromTemplateGenerationDto:
@@ -913,6 +966,7 @@ components:
           type: string
           description: Text prompt describing the content to generate
           example: Q3 financial summary for investors
+          minLength: 1
           maxLength: 400000
         gammaId:
           type: string
@@ -923,9 +977,13 @@ components:
           description: Theme ID to apply to generated content
           example: theme_xyz789
         imageOptions:
-          $ref: '#/components/schemas/FromTemplateImageOptionsDto'
+          description: Image generation options
+          allOf:
+            - $ref: '#/components/schemas/FromTemplateImageOptionsDto'
         sharingOptions:
-          $ref: '#/components/schemas/SharingOptionsDto'
+          description: Sharing and permissions options
+          allOf:
+            - $ref: '#/components/schemas/SharingOptionsDto'
         folderIds:
           description: Folders to add the generated Gamma to
           example:
