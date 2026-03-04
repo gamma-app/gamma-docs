@@ -17,7 +17,7 @@ Gamma generates content using AI, which can take 30 seconds to several minutes d
 The initial `POST /generations` request **`only returns a generationId`** — it does NOT return the presentation URL or export files. You MUST poll the status endpoint to receive:
 
 * `gammaUrl` - The URL to view/share your presentation
-* `pdfUrl` / `pptxUrl` - Export file URLs (if you requested exports)
+* `exportUrl` - Download URL for the exported file (if you requested an export via `exportAs`)
 {% endhint %}
 
 ## The Basic Flow
@@ -27,18 +27,17 @@ POST /generations      →  Returns { generationId: "abc123" }
 Wait ~5 seconds
 GET /generations/abc123  →  Returns { status: "pending" }
 Wait ~5 seconds  
-GET /generations/abc123  →  Returns { status: "completed", gammaUrl: "...", pdfUrl: "..." }
+GET /generations/abc123  →  Returns { status: "completed", gammaUrl: "...", exportUrl: "..." }
 ```
 
 ## What You Get Back
 
 When status is `completed`, the response includes:
 
-| Field      | Description                                                                      |
-| ---------- | -------------------------------------------------------------------------------- |
-| `gammaUrl` | Direct link to view/share the presentation in Gamma                              |
-| `pdfUrl`   | Download link for PDF export (if `exportOptions.formats` included `pdf`)         |
-| `pptxUrl`  | Download link for PowerPoint export (if `exportOptions.formats` included `pptx`) |
+| Field       | Description                                                         |
+| ----------- | ------------------------------------------------------------------- |
+| `gammaUrl`  | Direct link to view/share the presentation in Gamma                 |
+| `exportUrl` | Download URL for the exported file (if `exportAs` was specified)    |
 
 {% hint style="success" %}
 Export URLs are **temporary signed URLs** that expire after some time. If you need to store the files, download them promptly after generation completes.

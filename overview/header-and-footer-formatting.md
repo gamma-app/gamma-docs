@@ -142,7 +142,7 @@ Card numbers have no additional configuration — just specify the position and 
 
 ## Hiding from First/Last Cards
 
-You often want to hide headers/footers from title cards or closing cards. Add these properties **at the position level**:
+You often want to hide headers/footers from title cards or closing cards. Add these properties **at the `headerFooter` level** (they apply to all positions):
 
 ```json
 {
@@ -150,14 +150,13 @@ You often want to hide headers/footers from title cards or closing cards. Add th
     "headerFooter": {
       "topRight": {
         "type": "image",
-        "source": "themeLogo",
-        "hideFromFirstCard": true,
-        "hideFromLastCard": true
+        "source": "themeLogo"
       },
       "bottomRight": {
-        "type": "cardNumber",
-        "hideFromFirstCard": true
-      }
+        "type": "cardNumber"
+      },
+      "hideFromFirstCard": true,
+      "hideFromLastCard": true
     }
   }
 }
@@ -185,19 +184,17 @@ You often want to hide headers/footers from title cards or closing cards. Add th
         "type": "image",
         "source": "custom",
         "src": "https://example.com/company-logo.png",
-        "size": "sm",
-        "hideFromFirstCard": true
+        "size": "sm"
       },
       "bottomRight": {
-        "type": "cardNumber",
-        "hideFromFirstCard": true,
-        "hideFromLastCard": true
+        "type": "cardNumber"
       },
       "bottomLeft": {
         "type": "text",
-        "value": "Confidential - Internal Use Only",
-        "hideFromFirstCard": true
-      }
+        "value": "Confidential - Internal Use Only"
+      },
+      "hideFromFirstCard": true,
+      "hideFromLastCard": true
     }
   }
 }

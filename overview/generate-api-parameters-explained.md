@@ -137,7 +137,7 @@ Helps you add more specifications about your desired output.
 
 * You can add specifications to steer content, layouts, and other aspects of the output.
 * Works best when the instructions do not conflict with other parameters, eg, if the `textMode` is defined as `condense`, and the `additionalInstructions` say to preserve all text, the output will not be able to respect these conflicting requests.
-* Character limits: 1-2000.
+* Character limits: 1-5000.
 
 ```json
 "additionalInstructions": "Make the card headings humorous and catchy"
@@ -171,14 +171,14 @@ Defines which folder(s) your gamma is stored in.
 
 ### `exportAs` _(optional)_
 
-Indicates if you'd like to return the generated gamma as a PDF or PPTX file as well as a Gamma URL.
+Indicates if you'd like to return the generated gamma as an exported file as well as a Gamma URL.
 
-* Options are `pdf` or `pptx`
+* Options are `pdf`, `pptx`, or `png`
 * Download the files once generated as the links will become invalid after a period of time.
-* If you do not wish to directly export to a PDF or PPTX via the API, you may always do so later via the app.
+* If you do not wish to directly export via the API, you may always do so later via the app.
 
 {% hint style="warning" %}
-**One export format per request.** You can export to PDF \*or\* PPTX, but not both in a single API call. If you need both formats, make two separate generation requests or export the second format manually from the Gamma app.
+**One export format per request.** You can export to PDF, PPTX, or PNG, but not multiple formats in a single API call. If you need multiple formats, make separate generation requests or export additional formats manually from the Gamma app.
 {% endhint %}
 
 {% code title="Example" %}
@@ -273,11 +273,12 @@ Determines where the images for the gamma are sourced from. You can choose from 
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `aiGenerated`              | If you choose this option, you can also specify the `imageOptions.model` you want to use as well as an `imageOptions.style`. These parameters do not apply to other `source` options. |
 | `pictographic`             | Pulls images from Pictographic.                                                                                                                                                       |
-| `unsplash`                 | Gets images from Unsplash.                                                                                                                                                            |
+| `pexels`                   | Gets images from Pexels.                                                                                                                                                              |
 | `giphy`                    | Gets GIFs from Giphy.                                                                                                                                                                 |
 | `webAllImages`             | Pulls the most relevant images from the web, even if licensing is unknown.                                                                                                            |
 | `webFreeToUse`             | Pulls images licensed for personal use.                                                                                                                                               |
 | `webFreeToUseCommercially` | Gets images licensed for commercial use, like a sales pitch.                                                                                                                          |
+| `themeAccent`              | Uses accent images from your selected theme.                                                                                                                                          |
 | `placeholder`              | Creates a gamma with placeholders for which images can be manually added later.                                                                                                       |
 | `noImages`                 | Creates a gamma with no images. Select this option if you are providing your own image URLs in `inputText` and want only those in your gamma.                                         |
 
@@ -414,10 +415,10 @@ Allows you to specify elements in the header and footer of the cards. Not applic
         "size": "sm"
       },
       "bottomRight": {
-        "type": "cardNumber",
+        "type": "cardNumber"
       },
-      "hideFromFirstCard": "true"
-    },
+      "hideFromFirstCard": true
+    }
 }
 ```
 {% endcode %}
@@ -434,11 +435,11 @@ Allows you to specify elements in the header and footer of the cards. Not applic
       },
       "bottomRight": {
         "type": "text",
-        "value": "© 2025 Company™"
+        "value": "© 2026 Company™"
       },
-      "hideFromFirstCard": "true",
-      "hideFromLastCard": "true"
-    },
+      "hideFromFirstCard": true,
+      "hideFromLastCard": true
+    }
 }
 ```
 {% endcode %}

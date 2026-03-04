@@ -92,14 +92,14 @@ Defines which folder(s) your gamma is stored in.
 
 ### `exportAs` _(optional)_
 
-Indicates if you'd like to return the generated gamma as a PDF or PPTX file as well as a Gamma URL.
+Indicates if you'd like to return the generated gamma as an exported file as well as a Gamma URL.
 
-* Options are `pdf` or `pptx`
+* Options are `pdf`, `pptx`, or `png`
 * Download the files once generated as the links will become invalid after a period of time.
-* If you do not wish to directly export to a PDF or PPTX via the API, you may always do so later via the app.
+* If you do not wish to directly export via the API, you may always do so later via the app.
 
 {% hint style="warning" %}
-**One export format per request.** You can export to PDF \*or\* PPTX, but not both in a single API call. If you need both formats, make two separate generation requests or export the second format manually from the Gamma app.
+**One export format per request.** You can export to PDF, PPTX, or PNG, but not multiple formats in a single API call. If you need multiple formats, make separate generation requests or export additional formats manually from the Gamma app.
 {% endhint %}
 
 {% code title="Example" %}
