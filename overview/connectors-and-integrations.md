@@ -99,25 +99,35 @@ Your Gamma API key is required. Generate one from your [account settings](https:
 {% tab title="n8n" %}
 ## n8n Integration
 
-Use Gamma in your self-hosted or cloud n8n automation workflows.
+Use Gamma in your self-hosted or cloud n8n automation workflows with the official Gamma node.
 
 * **Integration page**: [Gamma on n8n](https://n8n.io/integrations/gamma/)
 
 ### What you can do
 
 * Automate presentation creation from any of n8n's 400+ integrations
-* Pull data from CRMs, databases, and APIs into Gamma-generated content
+* Generate content from CRM data, databases, and APIs using the native Gamma node
+* List your workspace themes and folders to dynamically configure generations
 * Build end-to-end pipelines: data ingestion → content generation → distribution
+
+### Available operations
+
+| Resource | Operation | Description |
+| --- | --- | --- |
+| Generation | **Create** | Generate a new presentation, document, social post, or webpage |
+| Generation | **Create from Template** | Remix an existing Gamma with a new prompt |
+| Generation | **Get Status** | Check the status of a generation |
+| Theme | **List** | Get available themes from your workspace |
+| Folder | **List** | Get workspace folders |
+| User | **Get Me** | Get authenticated user and workspace info |
 
 ### Getting started
 
-1. Add an **HTTP Request** node to your n8n workflow.
-2. Configure it as a POST request to `https://public-api.gamma.app/v1.0/generations`.
-3. Add your API key in the headers: `X-API-KEY: your-api-key`.
-4. Set the request body with your generation parameters.
-5. Add a second HTTP Request node to poll `GET /v1.0/generations/{id}` for the result.
-
-For a detailed walkthrough, see our [async patterns and polling guide](async-patterns-and-polling.md).
+1. In the n8n editor, click **+** and search for **Gamma**.
+2. Select the Gamma node and choose your operation (e.g., **Create** under Generation).
+3. Create a new **Gamma credential** by entering your API key.
+4. Configure your generation parameters (input text, text mode, format, theme, etc.).
+5. To poll for results, add a second Gamma node with the **Get Status** operation and map the generation ID from the previous step.
 
 {% hint style="info" %}
 Your Gamma API key is required. Generate one from your [account settings](https://gamma.app/settings).
