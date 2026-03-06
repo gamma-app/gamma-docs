@@ -17,9 +17,17 @@ layout:
 
 # Gamma Developer Documentation
 
+{% columns %}
+{% column valign="middle" %}
 One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared.
 
 <a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="overview/understanding-the-api-options.md" class="button secondary">API overview</a>
+{% endcolumn %}
+
+{% column %}
+<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="375"><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
 
 ### Make your first request
 
@@ -87,15 +95,7 @@ const { generationId } = await response.json();
 
 Then poll `GET /v1.0/generations/{generationId}` until `status` is `completed`. See [Async Patterns and Polling](overview/async-patterns-and-polling.md) for full examples.
 
-{% columns %}
-{% column valign="middle" %}
 ## Choose how you build
-{% endcolumn %}
-
-{% column %}
-<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="375"><figcaption></figcaption></figure>
-{% endcolumn %}
-{% endcolumns %}
 
 {% columns %}
 {% column %}
