@@ -32,16 +32,14 @@
 * [Image URL Best Practices](overview/image-url-best-practices.md)
 * [Charts and Structured Content](overview/charts-and-structured-content.md)
 
-## Connectors
-
-* [Connectors and Integrations](overview/connectors-and-integrations.md)
-
-## MCP
+## MCP & Connectors
 
 * [Gamma MCP Server](overview/gamma-mcp-server.md)
+* [Connectors and Integrations](overview/connectors-and-integrations.md)
 
 ## Reference Data
 
+* [Changelog](overview/changelog.md)
 * [Image model accepted values](accepted-values/image-model-accepted-values.md)
 * [Output language accepted values](accepted-values/output-language-accepted-values.md)
 * [Error codes](errors-and-warnings/error-codes.md)
