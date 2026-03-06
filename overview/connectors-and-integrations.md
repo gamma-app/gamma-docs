@@ -7,6 +7,10 @@ icon: plug
 
 Gamma integrates with popular AI assistants and automation platforms so you can create presentations, documents, webpages, and social posts from the tools you already use.
 
+{% hint style="info" %}
+**ChatGPT and Claude** work on all Gamma plans, including Free and Plus — no API key needed. **Zapier, Make, and n8n** require an API key (Pro, Ultra, Teams, or Business plan). See [Access and Pricing](access-and-pricing.md).
+{% endhint %}
+
 {% tabs %}
 {% tab title="Claude" %}
 ## Claude Connector
@@ -197,9 +201,9 @@ See the [Generate API parameters guide](generate-api-parameters-explained.md) fo
 
 ## Which integration method is right for you?
 
-| You want to... | Use |
-| --- | --- |
-| Create gammas through conversation with an AI assistant | [Claude Connector](#claude-connector) or [ChatGPT App](#chatgpt-app) |
-| Automate Gamma as part of a no-code workflow | [Zapier](#zapier-integration), [Make](#make-integration), or [n8n](#n8n-integration) |
-| Build a custom integration with an AI tool via MCP | [Gamma MCP Server](gamma-mcp-server.md) |
-| Build a custom app with full programmatic control | [Gamma API](generate-api-parameters-explained.md) |
+| You want to... | Use | Plan required |
+| --- | --- | --- |
+| Create gammas with an AI assistant | [ChatGPT](#chatgpt-app) or [Claude](#claude-connector) | Any plan |
+| Automate with no-code workflows | [Zapier](#zapier-integration), [Make](#make-integration), or [n8n](#n8n-integration) | Pro+ (API key) |
+| Build a custom MCP integration | [Gamma MCP Server](gamma-mcp-server.md) | Any plan |
+| Build a custom app with full programmatic control | [Gamma API](generate-api-parameters-explained.md) | Pro+ (API key) |

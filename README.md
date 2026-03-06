@@ -31,7 +31,7 @@ One API call. Polished presentations, documents, websites, and social posts — 
 
 ## Quickstart
 
-Authenticate with your API key via the `X-API-KEY` header. API access requires a Pro, Ultra, Teams, or Business plan.
+Authenticate with your API key via the `X-API-KEY` header. API key access requires a Pro, Ultra, Teams, or Business plan. [ChatGPT and Claude connectors](overview/connectors-and-integrations.md) work on all plans.
 
 {% tabs %}
 {% tab title="cURL" %}

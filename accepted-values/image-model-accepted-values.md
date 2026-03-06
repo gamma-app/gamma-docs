@@ -16,7 +16,7 @@ icon: image
 {% endhint %}
 
 {% hint style="warning" %}
-**Plan Requirements:** Some models require a specific Gamma plan (Plus, Pro, or Ultra). Models are grouped by minimum plan tier below.
+**Plan Requirements:** Some models require a specific Gamma plan (Plus, Pro, or Ultra). Models are grouped by minimum plan tier below. These tiers apply to both API and connector usage. API key access requires Pro or higher — see [Access and Pricing](../overview/access-and-pricing.md).
 {% endhint %}
 
 ## Free (All Plans)

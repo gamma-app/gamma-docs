@@ -41,7 +41,7 @@ Browse your Gamma folders or search for specific folders by name and organize yo
 To use a Gamma Connector, you'll need:
 
 * An AI tool with a Gamma Connector available in its Connectors or Agents library.
-* A Gamma account (any plan works, but a paying plan is recommended for best results).
+* A Gamma account on any plan. Generations charge credits — paying plans include more monthly credits.
 
 ### How to connect
 

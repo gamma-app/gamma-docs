@@ -7,10 +7,15 @@ icon: key
 
 ## Access
 
-* API access is available to subscribers on Pro, Ultra, Teams, and Business plans. View [pricing plans here](https://gamma.app/pricing).
-* To get started, generate an API key through your [account settings](https://gamma.app/settings).
+### API keys (Zapier, Make, n8n, direct integration)
+
+API key access is available on Pro, Ultra, Teams, and Business plans. Generate an API key from your [account settings](https://gamma.app/settings). View [pricing plans here](https://gamma.app/pricing).
 
 <figure><img src="../.gitbook/assets/api-key-settings.png" alt="API key generation in Gamma account settings"><figcaption><p>Generate an API key from Settings → API keys</p></figcaption></figure>
+
+### Connectors (ChatGPT, Claude)
+
+Connectors are available on all plans, including Free and Plus. No API key required — connect directly from [ChatGPT or Claude](connectors-and-integrations.md) and authenticate with your Gamma account. Generations via connectors charge credits the same way as API calls.
 
 ## Usage and pricing
 
