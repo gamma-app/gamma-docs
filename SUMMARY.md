@@ -20,9 +20,12 @@
 * [Image URL Best Practices](overview/image-url-best-practices.md)
 * [Charts and Structured Content](overview/charts-and-structured-content.md)
 
-## Connectors & MCP
+## Connectors
 
 * [Connectors and Integrations](overview/connectors-and-integrations.md)
+
+## MCP
+
 * [Gamma MCP Server](overview/gamma-mcp-server.md)
 
 ## Reference Data
