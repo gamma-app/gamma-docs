@@ -53,31 +53,28 @@ Create gammas directly from ChatGPT conversations using the Gamma app.
 
 {% stepper %}
 {% step %}
-### Open ChatGPT
+### Open the App Directory
 
-Go to [ChatGPT](https://chatgpt.com) (web or desktop app).
+Go to **Settings** → **Apps**, or browse the [ChatGPT app directory](https://chatgpt.com/apps) directly.
 {% endstep %}
 
 {% step %}
-### Find Apps
+### Find Gamma
 
-Click the **Apps** icon in the sidebar or go to [chatgpt.com/apps](https://chatgpt.com/apps).
-{% endstep %}
-
-{% step %}
-### Add Gamma
-
-Search for "Gamma" and click to add it.
+Search for "Gamma" — it's listed as **Gamma: Create presentations and docs**.
 {% endstep %}
 
 {% step %}
 ### Connect
 
-Click **Connect**, then click **Allow** to grant access to your Gamma account. Choose the right workspace if applicable.
+Click **Connect** and complete the authorization flow to grant access to your Gamma account. Choose the right workspace if applicable.
 {% endstep %}
 {% endstepper %}
 
-Once connected, you can mention @Gamma in any ChatGPT conversation to create presentations, documents, and more — all generated in Gamma.
+Once connected, invoke Gamma in any conversation by:
+
+* **@mention**: type `@Gamma` in your prompt
+* **App menu**: click **+** then **More** and select Gamma
 
 {% hint style="info" %}
 **Example prompt:** "@Gamma Create a 10-slide sales enablement deck covering our Q3 product launches, competitive positioning, and customer success stories. Use a professional theme."
