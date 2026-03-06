@@ -14,20 +14,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GenerationDto'
+              $ref: '#/components/schemas/Generation'
       responses:
         '200':
           description: Generation job created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateGenerationResponseDto'
+                $ref: '#/components/schemas/CreateGenerationResponse'
         '201':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateGenerationResponseDto'
+                $ref: '#/components/schemas/CreateGenerationResponse'
         '400':
           description: Invalid request parameters
         '401':
@@ -62,7 +62,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenerationStatusResponseDto'
+                $ref: '#/components/schemas/GenerationStatusResponse'
         '401':
           description: Invalid or missing API key
         '404':
@@ -90,7 +90,7 @@ paths:
         - name: limit
           required: false
           in: query
-          description: Maximum number of themes to return
+          description: Maximum results to return (1-100)
           schema:
             minimum: 1
             maximum: 50
@@ -99,7 +99,7 @@ paths:
         - name: after
           required: false
           in: query
-          description: Cursor for pagination (from previous response's nextCursor)
+          description: Pagination cursor from previous response
           schema:
             example: eyJpZCI6IjEyMyJ9
             type: string
@@ -109,7 +109,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListThemesResponseDto'
+                $ref: '#/components/schemas/ListThemesResponse'
         '401':
           description: Invalid or missing API key
       tags:
@@ -135,7 +135,7 @@ paths:
         - name: limit
           required: false
           in: query
-          description: Maximum number of folders to return
+          description: Maximum results to return
           schema:
             minimum: 1
             maximum: 50
@@ -144,7 +144,7 @@ paths:
         - name: after
           required: false
           in: query
-          description: Cursor for pagination (from previous response's nextCursor)
+          description: Pagination cursor from previous response
           schema:
             example: eyJpZCI6IjEyMyJ9
             type: string
@@ -154,7 +154,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListFoldersResponseDto'
+                $ref: '#/components/schemas/ListFoldersResponse'
         '401':
           description: Invalid or missing API key
       tags:
@@ -183,13 +183,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ArchiveGammaResponseDto'
+                $ref: '#/components/schemas/ArchiveGammaResponse'
         '201':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ArchiveGammaResponseDto'
+                $ref: '#/components/schemas/ArchiveGammaResponse'
         '401':
           description: Invalid or missing API key
         '403':
@@ -212,20 +212,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FromTemplateGenerationDto'
+              $ref: '#/components/schemas/FromTemplateGeneration'
       responses:
         '200':
           description: Generation job created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FromTemplateGenerationResponseDto'
+                $ref: '#/components/schemas/FromTemplateGenerationResponse'
         '201':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FromTemplateGenerationResponseDto'
+                $ref: '#/components/schemas/FromTemplateGenerationResponse'
         '400':
           description: Invalid request or template not found
         '401':
@@ -259,109 +259,148 @@ components:
       name: X-API-KEY
       description: API key for authentication
   schemas:
-    TextOptionsDto:
+    TextMode:
+      type: string
+      description: How to interpret the input text
+      enum:
+        - generate
+        - condense
+        - preserve
+    DocFormat:
+      type: string
+      description: Output format
+      enum:
+        - presentation
+        - document
+        - social
+        - webpage
+    CardSplit:
+      type: string
+      description: Content splitting strategy across cards
+      enum:
+        - inputTextBreaks
+        - auto
+    TextAmount:
+      type: string
+      description: Controls the amount of text generated per card
+      enum:
+        - brief
+        - medium
+        - detailed
+        - extensive
+    AILocale:
+      type: string
+      description: ISO language code for content generation
+      enum:
+        - en
+        - en-gb
+        - en-in
+        - es
+        - es-es
+        - es-mx
+        - es-419
+        - ca
+        - fr
+        - zh-cn
+        - zh-tw
+        - ko
+        - ja
+        - ja-da
+        - pt-br
+        - pt-pt
+        - de
+        - it
+        - ru
+        - pl
+        - uk
+        - ro
+        - hu
+        - cs
+        - el
+        - tr
+        - ar
+        - ar-sa
+        - he
+        - fa
+        - nl
+        - sv
+        - da
+        - nb
+        - fi
+        - id
+        - vi
+        - hi
+        - gu
+        - mr
+        - te
+        - bn
+        - ta
+        - ur
+        - kn
+        - ml
+        - th
+        - sr
+        - hr
+        - sq
+        - bg
+        - sl
+        - bs
+        - mk
+        - sw
+        - ha
+        - yo
+        - tl
+        - ms
+        - kk
+        - uz
+        - af
+        - lv
+        - lt
+        - et
+        - is
+        - cy
+    TextOptions:
       type: object
       properties:
         amount:
-          type: string
-          description: Controls the amount of text generated per card
           example: auto
-          enum:
-            - brief
-            - medium
-            - detailed
-            - extensive
-        language:
-          type: string
-          description: Language code for the generated content
-          example: en
-          enum:
-            - en
-            - en-gb
-            - en-in
-            - es
-            - es-es
-            - es-mx
-            - es-419
-            - ca
-            - fr
-            - zh-cn
-            - zh-tw
-            - ko
-            - ja
-            - ja-da
-            - pt-br
-            - pt-pt
-            - de
-            - it
-            - ru
-            - pl
-            - uk
-            - ro
-            - hu
-            - cs
-            - el
-            - tr
-            - ar
-            - ar-sa
-            - he
-            - fa
-            - nl
-            - sv
-            - da
-            - nb
-            - fi
-            - id
-            - vi
-            - hi
-            - gu
-            - mr
-            - te
-            - bn
-            - ta
-            - ur
-            - kn
-            - ml
-            - th
-            - sr
-            - hr
-            - sq
-            - bg
-            - sl
-            - bs
-            - mk
-            - sw
-            - ha
-            - yo
-            - tl
-            - ms
-            - kk
-            - uz
-            - af
-            - lv
-            - lt
-            - et
-            - is
-            - cy
+          $ref: '#/components/schemas/TextAmount'
         tone:
           type: string
-          description: The tone or writing style for the generated text
+          description: The tone or writing style (e.g., professional, casual, academic)
           example: professional
           minLength: 0
           maxLength: 500
         audience:
           type: string
-          description: The target audience for the content
+          description: Target audience description for tailored content
           example: marketing executives
           minLength: 0
           maxLength: 500
-    ImageOptionsDto:
+        language:
+          example: en
+          $ref: '#/components/schemas/AILocale'
+    ImageSource:
+      type: string
+      description: Source for card images
+      enum:
+        - webAllImages
+        - webFreeToUse
+        - webFreeToUseCommercially
+        - aiGenerated
+        - pictographic
+        - giphy
+        - pexels
+        - placeholder
+        - noImages
+        - themeAccent
+    ImageOptions:
       type: object
       properties:
         model:
           type: string
-          description: AI model to use for image generation
-          example: flux-schnell
+          description: AI model for image generation. Available models depend on your plan.
+          example: flux-kontext-fast
           enum:
             - dall-e-3
             - imagen-3-flash
@@ -417,259 +456,266 @@ components:
             - flux-2-flex
             - flux-2-max
             - flux-2-klein
-        source:
-          type: string
-          description: 'Source for images: AI-generated or web search'
-          example: aiGenerated
-          enum:
-            - webAllImages
-            - webFreeToUse
-            - webFreeToUseCommercially
-            - aiGenerated
-            - pictographic
-            - giphy
-            - pexels
-            - placeholder
-            - noImages
-            - themeAccent
         style:
           type: string
           description: Style description for AI-generated images
           example: photorealistic, professional
           minLength: 0
-          maxLength: 5000
-    HeaderFooterElementDto:
+          maxLength: 500
+        source:
+          example: aiGenerated
+          $ref: '#/components/schemas/ImageSource'
+    CardDimensions:
+      type: string
+      description: Card dimensions/aspect ratio
+      enum:
+        - fluid
+        - 16x9
+        - 4x3
+        - pageless
+        - letter
+        - a4
+        - 1x1
+        - 4x5
+        - 9x16
+    HeaderFooterElementType:
+      type: string
+      description: Type of element to display
+      enum:
+        - cardNumber
+        - image
+        - text
+    HeaderFooterElement:
       type: object
       properties:
         type:
-          type: object
-          description: Type of element to display
           example: text
+          $ref: '#/components/schemas/HeaderFooterElementType'
         source:
-          type: object
-          description: Image source type (required when type is "image")
+          type: string
+          description: Source for the image element
           example: themeLogo
+          enum:
+            - themeLogo
+            - custom
         src:
           type: string
-          description: Custom image URL (required when source is "custom")
+          description: HTTPS URL for custom image
           example: https://example.com/logo.png
           minLength: 1
           maxLength: 2048
         value:
           type: string
-          description: Text content (required when type is "text")
+          description: Text content to display
           example: Confidential
           minLength: 1
           maxLength: 500
         size:
-          type: object
+          type: string
           description: Size of the image element
           example: md
+          enum:
+            - sm
+            - md
+            - lg
+            - xl
       required:
         - type
-    HeaderFooterDto:
+    HeaderFooter:
       type: object
       properties:
         topLeft:
           description: Element in top-left position
           allOf:
-            - $ref: '#/components/schemas/HeaderFooterElementDto'
+            - $ref: '#/components/schemas/HeaderFooterElement'
         topCenter:
           description: Element in top-center position
           allOf:
-            - $ref: '#/components/schemas/HeaderFooterElementDto'
+            - $ref: '#/components/schemas/HeaderFooterElement'
         topRight:
           description: Element in top-right position
           allOf:
-            - $ref: '#/components/schemas/HeaderFooterElementDto'
+            - $ref: '#/components/schemas/HeaderFooterElement'
         bottomLeft:
           description: Element in bottom-left position
           allOf:
-            - $ref: '#/components/schemas/HeaderFooterElementDto'
+            - $ref: '#/components/schemas/HeaderFooterElement'
         bottomCenter:
           description: Element in bottom-center position
           allOf:
-            - $ref: '#/components/schemas/HeaderFooterElementDto'
+            - $ref: '#/components/schemas/HeaderFooterElement'
         bottomRight:
           description: Element in bottom-right position
           allOf:
-            - $ref: '#/components/schemas/HeaderFooterElementDto'
+            - $ref: '#/components/schemas/HeaderFooterElement'
         hideFromFirstCard:
           type: boolean
-          description: Hide header/footer from the first card (title card)
+          description: Hide header/footer from first card
           example: true
         hideFromLastCard:
           type: boolean
-          description: Hide header/footer from the last card
+          description: Hide header/footer from last card
           example: false
-    CardOptionsDto:
+    CardOptions:
       type: object
       properties:
         dimensions:
-          type: string
-          description: Card aspect ratio/dimensions
-          example: '16:9'
-          enum:
-            - fluid
-            - 16x9
-            - 4x3
-            - pageless
-            - letter
-            - a4
-            - 1x1
-            - 4x5
-            - 9x16
+          example: 16x9
+          $ref: '#/components/schemas/CardDimensions'
         headerFooter:
           description: Header and footer configuration
           allOf:
-            - $ref: '#/components/schemas/HeaderFooterDto'
-    EmailOptionsDto:
+            - $ref: '#/components/schemas/HeaderFooter'
+    WorkspacePermission:
+      type: string
+      description: Access level for workspace members
+      enum:
+        - edit
+        - comment
+        - view
+        - noAccess
+        - fullAccess
+    ExternalPermission:
+      type: string
+      description: Access level for external users via shared link
+      enum:
+        - edit
+        - comment
+        - view
+        - noAccess
+    EmailPermission:
+      type: string
+      description: Permission level for email recipients
+      enum:
+        - edit
+        - comment
+        - view
+        - fullAccess
+    EmailOptions:
       type: object
       properties:
-        access:
-          type: string
-          description: Permission level for email recipients
-          example: view
-          enum:
-            - edit
-            - comment
-            - view
-            - fullAccess
         recipients:
-          description: Email addresses to share with
+          description: List of email addresses to share with
           example:
             - user@example.com
           type: array
           items:
             type: string
+        access:
+          example: view
+          $ref: '#/components/schemas/EmailPermission'
       required:
         - recipients
-    SharingOptionsDto:
+        - access
+    SharingOptions:
       type: object
       properties:
         workspaceAccess:
-          type: string
-          description: Default access level for workspace members
           example: view
-          enum:
-            - edit
-            - comment
-            - view
-            - noAccess
-            - fullAccess
+          $ref: '#/components/schemas/WorkspacePermission'
         externalAccess:
-          type: string
-          description: Access level for external users (via shared link)
-          example: none
-          enum:
-            - edit
-            - comment
-            - view
-            - noAccess
+          example: noAccess
+          $ref: '#/components/schemas/ExternalPermission'
         emailOptions:
           description: Email sharing configuration
           allOf:
-            - $ref: '#/components/schemas/EmailOptionsDto'
-    GenerationDto:
+            - $ref: '#/components/schemas/EmailOptions'
+    ExportFormat:
+      type: string
+      description: Auto-export format after generation completes
+      enum:
+        - pptx
+        - pdf
+        - png
+    Generation:
       type: object
       properties:
-        textMode:
-          type: string
-          description: How to interpret the input text
-          example: outline
-          enum:
-            - generate
-            - condense
-            - preserve
-        format:
-          type: string
-          description: Output format for the generated Gamma
-          example: presentation
-          enum:
-            - presentation
-            - document
-            - social
-            - webpage
-        cardSplit:
-          type: string
-          description: How to split content across cards
-          example: auto
-          enum:
-            - inputTextBreaks
-            - auto
-        exportAs:
-          type: string
-          description: Export format for automatic export after generation
-          example: pdf
-          enum:
-            - pptx
-            - pdf
-            - png
         inputText:
           type: string
-          description: The text content to generate from (topic, outline, or full content)
+          description: Input text for generation (topic, outline, or content)
           example: Quarterly sales report for Q3 2024
           minLength: 1
           maxLength: 400000
         additionalInstructions:
           type: string
-          description: Additional instructions for the AI
+          description: Additional context or instructions for AI
           example: Focus on year-over-year growth metrics
           minLength: 0
           maxLength: 5000
+        textMode:
+          example: generate
+          $ref: '#/components/schemas/TextMode'
+        format:
+          example: presentation
+          $ref: '#/components/schemas/DocFormat'
         numCards:
           type: number
-          description: Target number of cards/slides to generate
+          description: Target number of cards to generate
           example: 10
           minimum: 1
+        cardSplit:
+          example: auto
+          $ref: '#/components/schemas/CardSplit'
         themeId:
           type: string
-          description: Theme ID to apply (from /themes endpoint)
+          description: Theme ID from the /themes endpoint
           example: theme_abc123
         textOptions:
           description: Text generation options
           allOf:
-            - $ref: '#/components/schemas/TextOptionsDto'
+            - $ref: '#/components/schemas/TextOptions'
         imageOptions:
           description: Image generation and selection options
           allOf:
-            - $ref: '#/components/schemas/ImageOptionsDto'
+            - $ref: '#/components/schemas/ImageOptions'
         cardOptions:
           description: Card dimensions and layout options
           allOf:
-            - $ref: '#/components/schemas/CardOptionsDto'
+            - $ref: '#/components/schemas/CardOptions'
         sharingOptions:
           description: Sharing and permissions options
           allOf:
-            - $ref: '#/components/schemas/SharingOptionsDto'
+            - $ref: '#/components/schemas/SharingOptions'
         folderIds:
-          description: Folder IDs to place the generated Gamma in
+          description: Folders to add the generated Gamma to
           example:
             - folder_abc
+          maxItems: 10
           type: array
           items:
             type: string
+        exportAs:
+          example: pdf
+          $ref: '#/components/schemas/ExportFormat'
       required:
         - inputText
-    CreateGenerationResponseDto:
+        - textMode
+    CreateGenerationResponse:
       type: object
       properties:
         generationId:
           type: string
-          description: Unique identifier for the generation job
+          description: Unique generation job identifier for status polling
           example: abc123xyz
         warnings:
           type: string
-          description: Warnings about the request (e.g., ignored parameters)
-          example: Image model ignored when source is web
+          description: Warnings about ignored or adjusted request parameters
+          example: Image model ignored when source is 'web'
       required:
         - generationId
-    ErrorResponseDto:
+    GenerationStatus:
+      type: string
+      description: Current status of the generation job
+      enum:
+        - pending
+        - completed
+        - failed
+    ErrorResponse:
       type: object
       properties:
         message:
           type: string
-          description: Human-readable error message
+          description: Human-readable error description
           example: Failed to generate content
         statusCode:
           type: number
@@ -678,55 +724,60 @@ components:
       required:
         - message
         - statusCode
-    CreditsResponseDto:
+    CreditsResponse:
       type: object
       properties:
         deducted:
           type: number
-          description: Number of credits deducted for this operation
+          description: Credits deducted for this generation
           example: 10
         remaining:
           type: number
-          description: Remaining credits in the workspace
+          description: Credits remaining in workspace after deduction
           example: 490
       required:
         - deducted
         - remaining
-    GenerationStatusResponseDto:
+    GenerationStatusResponse:
       type: object
       properties:
         generationId:
           type: string
-          description: Unique identifier for the generation job
+          description: Generation job identifier
           example: abc123xyz
         status:
-          type: object
-          description: Current status of the generation job
           example: completed
+          $ref: '#/components/schemas/GenerationStatus'
         gammaId:
           type: string
-          description: File ID of the generated Gamma (when completed)
+          description: File identifier for the generated Gamma
           example: 9xJZ8QmN2
         gammaUrl:
           type: string
-          description: URL to the generated Gamma (when completed)
+          description: URL to view the generated Gamma
           example: https://gamma.app/docs/abc123
         error:
-          description: Error details (when failed)
+          description: Error details when status is "failed"
           allOf:
-            - $ref: '#/components/schemas/ErrorResponseDto'
+            - $ref: '#/components/schemas/ErrorResponse'
         exportUrl:
           type: string
-          description: URL to download exported file (when exportAs was specified)
+          description: Download URL for exported file (PDF/PPTX)
           example: https://gamma.app/export/abc123.pdf
         credits:
-          description: Credit usage information
+          description: Credit deduction details
           allOf:
-            - $ref: '#/components/schemas/CreditsResponseDto'
+            - $ref: '#/components/schemas/CreditsResponse'
       required:
         - generationId
         - status
-    ThemeItemDto:
+    ThemeType:
+      type: string
+      description: Source of the theme
+      enum:
+        - standard
+        - custom
+    ThemeItem:
       type: object
       properties:
         id:
@@ -735,10 +786,10 @@ components:
           example: theme_abc123
         name:
           type: string
-          description: Display name of the theme
+          description: Theme display name
           example: Corporate Blue
         colorKeywords:
-          description: Keywords describing the theme's color palette
+          description: Color-related keywords
           example:
             - blue
             - professional
@@ -747,7 +798,7 @@ components:
           items:
             type: string
         toneKeywords:
-          description: Keywords describing the theme's tone/style
+          description: Tone/style keywords
           example:
             - formal
             - business
@@ -755,35 +806,33 @@ components:
           items:
             type: string
         type:
-          type: object
-          description: 'Theme type: standard (built-in) or custom (workspace-created)'
           example: standard
+          $ref: '#/components/schemas/ThemeType'
       required:
         - id
         - name
         - type
-    ListThemesResponseDto:
+    ListThemesResponse:
       type: object
       properties:
         data:
-          description: Array of theme items
+          description: List of themes
           type: array
           items:
-            $ref: '#/components/schemas/ThemeItemDto'
+            $ref: '#/components/schemas/ThemeItem'
         hasMore:
           type: boolean
-          description: Whether more results exist beyond this page
+          description: Whether more results are available
           example: true
         nextCursor:
           type: string
           nullable: true
-          description: Cursor for fetching the next page (null if no more results)
+          description: Cursor for next page, null if no more results
           example: eyJpZCI6IjQ1NiJ9
       required:
         - data
         - hasMore
-        - nextCursor
-    FolderItemDto:
+    FolderItem:
       type: object
       properties:
         id:
@@ -792,47 +841,46 @@ components:
           example: folder_abc123
         name:
           type: string
-          description: Display name of the folder
+          description: Folder display name
           example: Marketing Materials
       required:
         - id
         - name
-    ListFoldersResponseDto:
+    ListFoldersResponse:
       type: object
       properties:
         data:
-          description: Array of folder items
+          description: List of folders
           type: array
           items:
-            $ref: '#/components/schemas/FolderItemDto'
+            $ref: '#/components/schemas/FolderItem'
         hasMore:
           type: boolean
-          description: Whether more results exist beyond this page
+          description: Whether more results are available
           example: true
         nextCursor:
           type: string
           nullable: true
-          description: Cursor for fetching the next page (null if no more results)
+          description: Cursor for next page, null if no more results
           example: eyJpZCI6IjQ1NiJ9
       required:
         - data
         - hasMore
-        - nextCursor
-    ArchiveGammaResponseDto:
+    ArchiveGammaResponse:
       type: object
       properties:
         gammaId:
           type: string
-          description: The ID of the archived Gamma
+          description: ID of the archived Gamma
           example: gamma_abc123
         archived:
           type: boolean
-          description: Confirmation that the Gamma is archived
+          description: Always true on success
           example: true
       required:
         - gammaId
         - archived
-    FromTemplateImageOptionsDto:
+    FromTemplateImageOptions:
       type: object
       properties:
         model:
@@ -896,66 +944,62 @@ components:
             - flux-2-klein
         style:
           type: string
-          description: Style description for images
+          description: Style description for AI-generated images
           example: photorealistic
           minLength: 0
-          maxLength: 5000
-    FromTemplateGenerationDto:
+          maxLength: 500
+      x-stability: stable
+    FromTemplateGeneration:
       type: object
       properties:
-        exportAs:
-          type: string
-          description: Export format for automatic export after generation
-          example: pdf
-          enum:
-            - pptx
-            - pdf
-            - png
         prompt:
           type: string
-          description: Text prompt describing what to generate
+          description: Text prompt describing the content to generate
           example: Q3 financial summary for investors
           minLength: 1
           maxLength: 400000
         gammaId:
           type: string
-          description: >-
-            The File ID of the gamma to be used as a template. The File must
-            contain exactly one Page.
+          description: File ID of the template Gamma (must have exactly one Page)
           example: gamma_abc123
         themeId:
           type: string
-          description: Theme ID to apply to the generated Gamma
+          description: Theme ID to apply to generated content
           example: theme_xyz789
         imageOptions:
           description: Image generation options
           allOf:
-            - $ref: '#/components/schemas/FromTemplateImageOptionsDto'
+            - $ref: '#/components/schemas/FromTemplateImageOptions'
         sharingOptions:
           description: Sharing and permissions options
           allOf:
-            - $ref: '#/components/schemas/SharingOptionsDto'
+            - $ref: '#/components/schemas/SharingOptions'
         folderIds:
-          description: Folder IDs to place the generated Gamma in
+          description: Folders to add the generated Gamma to
           example:
             - folder_abc
+          maxItems: 10
           type: array
           items:
             type: string
+        exportAs:
+          example: pdf
+          $ref: '#/components/schemas/ExportFormat'
       x-stability: stable
       required:
         - prompt
         - gammaId
-    FromTemplateGenerationResponseDto:
+    FromTemplateGenerationResponse:
       type: object
       properties:
         generationId:
           type: string
-          description: Unique identifier for the generation job
+          description: Generation job identifier for status polling
           example: gen_xyz789
         warnings:
           type: string
-          description: Warnings about the request
+          description: Warnings about request processing
           example: Some template variables were not found
+      x-stability: stable
       required:
         - generationId
