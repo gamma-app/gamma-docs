@@ -23,7 +23,7 @@ layout:
 
 {% columns %}
 {% column valign="middle" %}
-Generate polished presentations, documents, websites, and social posts from text — with full control over themes, layout, images, and export.
+One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared. You bring the content, Gamma handles the rest.
 
 <a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/understanding-the-api-options" class="button secondary">Read the docs</a>
 {% endcolumn %}
@@ -96,6 +96,8 @@ const { generationId } = await response.json();
 {% endcolumn %}
 {% endcolumns %}
 
+<figure><img src=".gitbook/assets/landscape-developer.png" alt=""><figcaption></figcaption></figure>
+
 ## Choose how you build
 
 {% columns %}
@@ -140,7 +142,7 @@ API access is available on Pro, Ultra, Teams, and Business plans. Generate your 
 
 ## What you can build
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Generate from text</strong></td><td>Send text, get a polished gamma. Control format, tone, audience, card count, and language.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr><tr><td><strong>Generate from template</strong></td><td>Design a template in the app, then generate new content into the same layout via API.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/create-from-template-api-parameters-explained">Create from Template</a></td></tr><tr><td><strong>Apply brand themes</strong></td><td>List workspace themes and lock every generation to your brand colors, fonts, and logo.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/list-themes-and-list-folders-apis-explained">Themes and Folders APIs</a></td></tr><tr><td><strong>Export to PDF, PPTX, PNG</strong></td><td>Auto-export on generation complete. Download the file from the export URL in the status response.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/async-patterns-and-polling">Async patterns and polling</a></td></tr><tr><td><strong>Custom headers & footers</strong></td><td>Place logos, page numbers, and text in 6 positions per card. Use your theme logo or a custom image URL.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/header-and-footer-formatting">Header and footer formatting</a></td></tr><tr><td><strong>Set sharing & permissions</strong></td><td>Control workspace access, external link permissions, and email directly to recipients — all in the same API call.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4><i class="fa-bolt">:bolt:</i> Generate from text</h4></td><td>Send text, get a polished gamma. Control format, tone, audience, card count, and language.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr><tr><td><h4><i class="fa-layer-group">:layer-group:</i> Generate from template</h4></td><td>Design a template in the app, then generate new content into the same layout via API.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/create-from-template-api-parameters-explained">Create from Template</a></td></tr><tr><td><h4><i class="fa-palette">:palette:</i> Apply brand themes</h4></td><td>List workspace themes and lock every generation to your brand colors, fonts, and logo.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/list-themes-and-list-folders-apis-explained">Themes and Folders APIs</a></td></tr><tr><td><h4><i class="fa-file-export">:file-export:</i> Export to PDF, PPTX, PNG</h4></td><td>Auto-export on generation complete. Download the file from the export URL in the status response.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/async-patterns-and-polling">Async patterns and polling</a></td></tr><tr><td><h4><i class="fa-table-columns">:table-columns:</i> Custom headers & footers</h4></td><td>Place logos, page numbers, and text in 6 positions per card. Use your theme logo or a custom image URL.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/header-and-footer-formatting">Header and footer formatting</a></td></tr><tr><td><h4><i class="fa-share-nodes">:share-nodes:</i> Set sharing & permissions</h4></td><td>Control workspace access, external link permissions, and email directly to recipients — all in the same API call.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr></tbody></table>
 
 ## What's new
 
