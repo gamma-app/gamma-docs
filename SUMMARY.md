@@ -4,7 +4,7 @@
 
 ## Get Started
 
-* [Understand the API Options](overview/understanding-the-api-options.md)
+* [API Overview](overview/understanding-the-api-options.md)
 * [Access and Pricing](overview/access-and-pricing.md)
 
 ## Generate Content
