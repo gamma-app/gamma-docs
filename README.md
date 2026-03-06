@@ -21,7 +21,7 @@ layout:
 {% column valign="middle" %}
 One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared.
 
-<a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="overview/understanding-the-api-options.md" class="button secondary">API overview</a>
+<a href="https://gamma.app/settings/api-keys" class="button primary">Get your API key</a><a href="overview/generate-api-parameters-explained.md" class="button secondary">API reference</a>
 {% endcolumn %}
 
 {% column %}
@@ -29,19 +29,22 @@ One API call. Polished presentations, documents, websites, and social posts — 
 {% endcolumn %}
 {% endcolumns %}
 
-### Make your first request
+## Quickstart
+
+Authenticate with your API key via the `X-API-KEY` header. API access requires a Pro, Ultra, Teams, or Business plan.
+
+### 1. Create a generation
 
 {% tabs %}
 {% tab title="cURL" %}
 ```bash
 curl -X POST https://public-api.gamma.app/v1.0/generations \
   -H "Content-Type: application/json" \
-  -H "X-API-KEY: your-api-key" \
+  -H "X-API-KEY: $GAMMA_API_KEY" \
   -d '{
     "inputText": "Q3 product launch strategy",
     "textMode": "generate",
     "format": "presentation",
-    "themeId": "your-theme-id",
     "numCards": 10,
     "exportAs": "pdf"
   }'
@@ -50,20 +53,23 @@ curl -X POST https://public-api.gamma.app/v1.0/generations \
 
 {% tab title="Python" %}
 ```python
-import requests
+import requests, os
 
 response = requests.post(
     "https://public-api.gamma.app/v1.0/generations",
-    headers={"X-API-KEY": "your-api-key"},
+    headers={
+        "X-API-KEY": os.environ["GAMMA_API_KEY"],
+        "Content-Type": "application/json",
+    },
     json={
         "inputText": "Q3 product launch strategy",
         "textMode": "generate",
         "format": "presentation",
-        "themeId": "your-theme-id",
         "numCards": 10,
         "exportAs": "pdf",
     },
 )
+response.raise_for_status()
 generation_id = response.json()["generationId"]
 ```
 {% endtab %}
@@ -76,13 +82,12 @@ const response = await fetch(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-API-KEY": "your-api-key",
+      "X-API-KEY": process.env.GAMMA_API_KEY,
     },
     body: JSON.stringify({
       inputText: "Q3 product launch strategy",
       textMode: "generate",
       format: "presentation",
-      themeId: "your-theme-id",
       numCards: 10,
       exportAs: "pdf",
     }),
@@ -93,46 +98,45 @@ const { generationId } = await response.json();
 {% endtab %}
 {% endtabs %}
 
-Then poll `GET /v1.0/generations/{generationId}` until `status` is `completed`. See [Async Patterns and Polling](overview/async-patterns-and-polling.md) for full examples.
+Response:
 
-## Choose how you build
+```json
+{
+  "generationId": "abc123xyz"
+}
+```
 
-{% columns %}
-{% column %}
-### <i class="fa-code">:code:</i> Gamma API
+### 2. Poll for results
 
-Generate from text or templates, apply themes, configure headers/footers, set permissions, and auto-export.
+Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`.
 
-* [Generate API parameters](overview/generate-api-parameters-explained.md)
-* [Create from Template](overview/create-from-template-api-parameters-explained.md)
-* [Async patterns and polling](overview/async-patterns-and-polling.md)
-{% endcolumn %}
+```bash
+curl https://public-api.gamma.app/v1.0/generations/abc123xyz \
+  -H "X-API-KEY: $GAMMA_API_KEY"
+```
 
-{% column %}
-### <i class="fa-robot">:robot:</i> Connectors & MCP
+Completed response:
 
-Use Gamma from Claude and other AI assistants. Generate content through natural conversation.
+```json
+{
+  "generationId": "abc123xyz",
+  "status": "completed",
+  "gammaUrl": "https://gamma.app/docs/abc123",
+  "exportUrl": "https://gamma.app/export/abc123.pdf",
+  "credits": { "deducted": 15, "remaining": 485 }
+}
+```
 
-* [Connectors and Integrations](overview/connectors-and-integrations.md)
-* [Gamma MCP Server](overview/gamma-mcp-server.md)
-{% endcolumn %}
-{% endcolumns %}
+That's it — your presentation is live at `gammaUrl` and the PDF is ready at `exportUrl`.
 
-{% columns %}
-{% column %}
-### <i class="fa-wand-magic-sparkles">:wand-magic-sparkles:</i> No-Code Automation
+{% hint style="info" %}
+Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization: Bearer`. See [Error codes](errors-and-warnings/error-codes.md) for other common issues.
+{% endhint %}
 
-Zapier, Make, and n8n. Trigger generation from forms, CRMs, spreadsheets — no code required.
+### Next steps
 
-* [Zapier, Make, and n8n setup](overview/connectors-and-integrations.md)
-{% endcolumn %}
+Browse the sidebar for the full API surface, or jump to:
 
-{% column %}
-### <i class="fa-key">:key:</i> Get Access
-
-Available on Pro, Ultra, Teams, and Business plans.
-
-* [Access and pricing](overview/access-and-pricing.md)
-* [Get help](overview/get-help.md)
-{% endcolumn %}
-{% endcolumns %}
+* [All generation parameters](overview/generate-api-parameters-explained.md) — format, themes, images, headers/footers, sharing
+* [Template-based generation](overview/create-from-template-api-parameters-explained.md) — design once, generate variations
+* [Connectors and Integrations](overview/connectors-and-integrations.md) — Claude, Zapier, Make, n8n
