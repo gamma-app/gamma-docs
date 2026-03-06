@@ -7,27 +7,6 @@
 * [API Overview](overview/understanding-the-api-options.md)
 * [Access and Pricing](overview/access-and-pricing.md)
 
-## Generate Content
-
-* [Generate from text](overview/generate-api-parameters-explained.md)
-* [Generate from template](overview/create-from-template-api-parameters-explained.md)
-* [Async Patterns and Polling](overview/async-patterns-and-polling.md)
-
-## Customize Output
-
-* [Use themes and folders](overview/list-themes-and-list-folders-apis-explained.md)
-* [Header and Footer Formatting](overview/header-and-footer-formatting.md)
-* [Image URL Best Practices](overview/image-url-best-practices.md)
-* [Charts and Structured Content](overview/charts-and-structured-content.md)
-
-## Connectors
-
-* [Connectors and Integrations](overview/connectors-and-integrations.md)
-
-## MCP
-
-* [Gamma MCP Server](overview/gamma-mcp-server.md)
-
 ## Generations
 
 * [POST /generations](endpoints/create-generation.md)
@@ -42,6 +21,24 @@
 ## Management
 
 * [POST /gammas/{gammaId}/archive](endpoints/archive-gamma.md)
+
+## Guides
+
+* [Generate from text](overview/generate-api-parameters-explained.md)
+* [Generate from template](overview/create-from-template-api-parameters-explained.md)
+* [Async Patterns and Polling](overview/async-patterns-and-polling.md)
+* [Use themes and folders](overview/list-themes-and-list-folders-apis-explained.md)
+* [Header and Footer Formatting](overview/header-and-footer-formatting.md)
+* [Image URL Best Practices](overview/image-url-best-practices.md)
+* [Charts and Structured Content](overview/charts-and-structured-content.md)
+
+## Connectors
+
+* [Connectors and Integrations](overview/connectors-and-integrations.md)
+
+## MCP
+
+* [Gamma MCP Server](overview/gamma-mcp-server.md)
 
 ## Reference Data
 

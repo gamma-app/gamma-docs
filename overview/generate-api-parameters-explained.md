@@ -82,7 +82,7 @@ Determines the artifact Gamma will create for you.
 
 Defines which theme from Gamma will be used for the output. Themes determine the look and feel of the gamma, including colors and fonts.
 
-* You can use the `GET /v1.0/themes` endpoint to pull a list of themes from your workspace. Or you can copy over the themeId from the app directly.
+* You can use the [`GET /v1.0/themes`](../endpoints/list-themes.md) endpoint to pull a list of themes from your workspace. Or you can copy over the themeId from the app directly.
 
 <figure><img src="../.gitbook/assets/theme-id-location.png" alt="Finding the theme ID in the Gamma app"><figcaption><p>Copy the theme ID directly from the Gamma app</p></figcaption></figure>
 
@@ -156,7 +156,7 @@ The more specific you are, the better the results!
 
 Defines which folder(s) your gamma is stored in.
 
-* You can use the `GET /v1.0/folders` endpoint to pull a list of folders. Or you can copy over the folderIds from the app directly.
+* You can use the [`GET /v1.0/folders`](../endpoints/list-folders.md) endpoint to pull a list of folders. Or you can copy over the folderIds from the app directly.
 * You must be a member of a folder to be able to add gammas to that folder.
 
 <figure><img src="../.gitbook/assets/folder-id-location.png" alt="Finding the folder ID in the Gamma app"><figcaption><p>Copy the folder ID directly from the Gamma app</p></figcaption></figure>
@@ -249,7 +249,7 @@ Describes who will be reading/viewing the gamma, which allows Gamma to cater the
 
 Determines the language in which your gamma is generated, regardless of the language of the `inputText`.
 
-* You can choose from the languages listed on the Output language accepted values page in Reference Data.
+* You can choose from the languages listed in [Output language accepted values](../accepted-values/output-language-accepted-values.md).
 
 {% code title="Example" %}
 ```json
@@ -290,7 +290,7 @@ Determines where the images for the gamma are sourced from. You can choose from 
 
 This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The `imageOptions.model` parameter determines which model is used to generate images.
 
-* You can choose from the models listed on the Image model accepted values page in Reference Data.
+* You can choose from the models listed in [Image model accepted values](../accepted-values/image-model-accepted-values.md).
 * If no value is specified for this parameter, Gamma automatically selects a model for you.
 
 {% code title="Example" %}
