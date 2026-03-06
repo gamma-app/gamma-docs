@@ -39,7 +39,7 @@
 
 ## Reference
 
-* [Image model accepted values](README.md)
+* [Image model accepted values](accepted-values/image-model-accepted-values.md)
 * [Output language accepted values](accepted-values/output-language-accepted-values.md)
 * [Error codes](errors-and-warnings/error-codes.md)
 * [Warnings](errors-and-warnings/warnings.md)

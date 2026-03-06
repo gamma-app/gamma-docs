@@ -1,105 +1,138 @@
 ---
 description: >-
-  When creating AI generated images in your gamma, you can specify which model
-  to use.
-icon: image
+  Build with the Gamma API — generate presentations, documents, websites, and
+  social posts programmatically.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
-# Image model accepted values
+# Gamma Developer Documentation
 
-* In the `imageOptions.source` parameter, use `aiGenerated` as the value.
-* In the `imageOptions.model` parameter, use one of the strings below.
-* Conversely, if you're not sure which image model you'd like to use, you can leave the `imageOptions.model` parameter blank and Gamma will select a model for you.
+One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared.
 
-{% hint style="info" %}
-**Polling tip:** Some models — particularly Ultra-tier, HD, and video models — take longer to generate than standard models. If using these via the API, we recommend increasing your polling timeout to 10 minutes with 30-second intervals to avoid premature timeouts.
-{% endhint %}
+<a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="overview/understanding-the-api-options.md" class="button secondary">API overview</a>
 
-{% hint style="warning" %}
-**Plan Requirements:** Some models require a specific Gamma plan (Plus, Pro, or Ultra). Models are grouped by minimum plan tier below.
-{% endhint %}
+### Make your first request
 
-## Free (All Plans)
+{% tabs %}
+{% tab title="cURL" %}
+```bash
+curl -X POST https://public-api.gamma.app/v1.0/generations \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: your-api-key" \
+  -d '{
+    "inputText": "Q3 product launch strategy",
+    "textMode": "generate",
+    "format": "presentation",
+    "themeId": "your-theme-id",
+    "numCards": 10,
+    "exportAs": "pdf"
+  }'
+```
+{% endtab %}
 
-| Model Name | String | Credits/Image |
-| --- | --- | --- |
-| Flux 2 Fast | `flux-2-klein` | 2 |
-| Flux Kontext Fast | `flux-kontext-fast` | 2 |
-| Imagen 3 Fast | `imagen-3-flash` | 2 |
-| Luma Photon Flash | `luma-photon-flash-1` | 2 |
-| Ideogram 3 Turbo | `ideogram-v3-turbo` | 10 |
-| Qwen Image Fast | `qwen-image-fast` | 3 |
+{% tab title="Python" %}
+```python
+import requests
 
-## Plus Plan
+response = requests.post(
+    "https://public-api.gamma.app/v1.0/generations",
+    headers={"X-API-KEY": "your-api-key"},
+    json={
+        "inputText": "Q3 product launch strategy",
+        "textMode": "generate",
+        "format": "presentation",
+        "themeId": "your-theme-id",
+        "numCards": 10,
+        "exportAs": "pdf",
+    },
+)
+generation_id = response.json()["generationId"]
+```
+{% endtab %}
 
-| Model Name | String | Credits/Image |
-| --- | --- | --- |
-| Flux 2 Pro | `flux-2-pro` | 8 |
-| Imagen 4 Fast | `imagen-4-fast` | 10 |
-| Luma Photon | `luma-photon-1` | 10 |
-| Recraft V4 | `recraft-v4` | 12 |
-| Leonardo Phoenix | `leonardo-phoenix` | 15 |
-| Nano Banana Flash (Gemini 2.5 Flash) | `gemini-2.5-flash-image` | 20 |
-| Qwen Image | `qwen-image` | 3 |
+{% tab title="JavaScript" %}
+```javascript
+const response = await fetch(
+  "https://public-api.gamma.app/v1.0/generations",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-API-KEY": "your-api-key",
+    },
+    body: JSON.stringify({
+      inputText: "Q3 product launch strategy",
+      textMode: "generate",
+      format: "presentation",
+      themeId: "your-theme-id",
+      numCards: 10,
+      exportAs: "pdf",
+    }),
+  }
+);
+const { generationId } = await response.json();
+```
+{% endtab %}
+{% endtabs %}
 
-## Pro Plan
+Then poll `GET /v1.0/generations/{generationId}` until `status` is `completed`. See [Async Patterns and Polling](overview/async-patterns-and-polling.md) for full examples.
 
-| Model Name | String | Credits/Image |
-| --- | --- | --- |
-| Flux 2 Flex | `flux-2-flex` | 20 |
-| Flux 2 Max | `flux-2-max` | 20 |
-| Flux Kontext Pro | `flux-kontext-pro` | 20 |
-| Ideogram 3 | `ideogram-v3` | 20 |
-| Imagen 4 | `imagen-4-pro` | 20 |
-| Recraft V3 | `recraft-v3` | 20 |
-| Nano Banana Pro (Gemini 3 Pro) | `gemini-3-pro-image` | 20 |
-| GPT Image | `gpt-image-1-medium` | 30 |
-| Dall-E 3 | `dall-e-3` | 33 |
-| Recraft V3 Vector | `recraft-v3-svg` | 40 |
-| Recraft V4 Vector | `recraft-v4-svg` | 40 |
+{% columns %}
+{% column valign="middle" %}
+## Choose how you build
+{% endcolumn %}
 
-## Nano Banana 2
+{% column %}
+<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="375"><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
 
-| Model Name | String | Credits/Image | Resolution |
-| --- | --- | --- | --- |
-| Nano Banana 2 Mini | `gemini-3.1-flash-image-mini` | 34 | 1K |
-| Nano Banana 2 | `gemini-3.1-flash-image` | 50 | 2K |
-| Nano Banana 2 HD | `gemini-3.1-flash-image-hd` | 75 | 4K |
+{% columns %}
+{% column %}
+### <i class="fa-code">:code:</i> Gamma API
 
-## Ultra Plan
+Generate from text or templates, apply themes, configure headers/footers, set permissions, and auto-export.
 
-| Model Name | String | Credits/Image |
-| --- | --- | --- |
-| Imagen 4 Ultra | `imagen-4-ultra` | 30 |
-| Ideogram 3 Quality | `ideogram-v3-quality` | 45 |
-| Nano Banana Pro HD (Gemini 3 Pro HD) | `gemini-3-pro-image-hd` | 70 |
-| GPT Image Detailed | `gpt-image-1-high` | 120 |
-| Recraft V4 Pro | `recraft-v4-pro` | 125 |
+* [Generate API parameters](overview/generate-api-parameters-explained.md)
+* [Create from Template](overview/create-from-template-api-parameters-explained.md)
+* [Async patterns and polling](overview/async-patterns-and-polling.md)
+{% endcolumn %}
 
-## Video Models (Ultra Plan)
+{% column %}
+### <i class="fa-robot">:robot:</i> Connectors & MCP
 
-{% hint style="info" %}
-Video models may take significantly longer to generate (up to several minutes). If using these via the API, we recommend polling for up to 10 minutes with 30-second intervals.
-{% endhint %}
+Use Gamma from Claude and other AI assistants. Generate content through natural conversation.
 
-| Model Name | String | Credits/Video |
-| --- | --- | --- |
-| Leonardo Motion 2 Fast | `leonardo-motion-2-fast` | 98 |
-| Luma Ray 2 Flash | `luma-ray-2-flash` | 120 |
-| Leonardo Motion 2 | `leonardo-motion-2` | 195 |
-| Veo 3.1 Fast | `veo-3.1-fast` | 300 |
-| Luma Ray 2 | `luma-ray-2` | 350 |
-| Veo 3.1 | `veo-3.1` | 800 |
+* [Connectors and Integrations](overview/connectors-and-integrations.md)
+* [Gamma MCP Server](overview/gamma-mcp-server.md)
+{% endcolumn %}
+{% endcolumns %}
 
-## Deprecated Models
+{% columns %}
+{% column %}
+### <i class="fa-wand-magic-sparkles">:wand-magic-sparkles:</i> No-Code Automation
 
-The following models have been replaced. If you pass these values, Gamma will automatically redirect to the replacement model.
+Zapier, Make, and n8n. Trigger generation from forms, CRMs, spreadsheets — no code required.
 
-| Deprecated Model | Replacement |
-| --- | --- |
-| `flux-1-quick` | `flux-2-klein` |
-| `flux-1-pro` | `flux-2-pro` |
-| `flux-1-ultra` | `flux-2-max` |
-| `flux-kontext-max` | `flux-2-flex` |
-| `playground-3` | `flux-2-pro` |
-| `imagen-3-pro` | `imagen-4-pro` |
+* [Zapier, Make, and n8n setup](overview/connectors-and-integrations.md)
+{% endcolumn %}
+
+{% column %}
+### <i class="fa-key">:key:</i> Get Access
+
+Available on Pro, Ultra, Teams, and Business plans.
+
+* [Access and pricing](overview/access-and-pricing.md)
+* [Get help](overview/get-help.md)
+{% endcolumn %}
+{% endcolumns %}
