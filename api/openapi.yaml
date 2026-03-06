@@ -7,7 +7,8 @@ paths:
       summary: Create async generation
       description: >-
         Creates an asynchronous generation job from provided text input. Returns
-        a generation ID that can be used to poll for status.
+        a generation ID that can be used to poll for status. See the
+        [Quickstart](/) for a complete example.
       parameters: []
       requestBody:
         required: true
@@ -47,7 +48,9 @@ paths:
       summary: Get generation status
       description: >-
         Retrieves the current status of a generation job. Poll this endpoint
-        until status is "completed" or "failed".
+        until status is "completed" or "failed". See [Async Patterns and
+        Polling](/overview/async-patterns-and-polling) for full polling
+        implementations.
       parameters:
         - name: id
           required: true
@@ -78,7 +81,8 @@ paths:
       summary: List themes
       description: >-
         Lists all themes available to the workspace, including standard themes
-        and custom workspace themes.
+        and custom workspace themes. See [Themes and Folders
+        APIs](/overview/list-themes-and-list-folders-apis-explained).
       parameters:
         - name: query
           required: false
@@ -123,7 +127,8 @@ paths:
       summary: List folders
       description: >-
         Lists all folders the authenticated user is a member of within the
-        workspace.
+        workspace. See [Themes and Folders
+        APIs](/overview/list-themes-and-list-folders-apis-explained).
       parameters:
         - name: query
           required: false
@@ -205,7 +210,8 @@ paths:
       summary: Create generation from template
       description: >-
         Creates an asynchronous generation job from a template Gamma with
-        variable substitution.
+        variable substitution. See [Create from Template
+        Parameters](/overview/create-from-template-api-parameters-explained).
       parameters: []
       requestBody:
         required: true
@@ -399,7 +405,10 @@ components:
       properties:
         model:
           type: string
-          description: AI model for image generation. Available models depend on your plan.
+          description: >-
+            AI model for image generation. Available models depend on your plan.
+            See [Image model accepted values](/accepted-values/image-model-accepted-values)
+            for all models with plan requirements and credits.
           example: flux-kontext-fast
           enum:
             - dall-e-3
@@ -458,7 +467,9 @@ components:
             - flux-2-klein
         style:
           type: string
-          description: Style description for AI-generated images
+          description: >-
+            Style description for AI-generated images. See
+            [Image URL Best Practices](/overview/image-url-best-practices).
           example: photorealistic, professional
           minLength: 0
           maxLength: 500
@@ -563,7 +574,10 @@ components:
           example: 16x9
           $ref: '#/components/schemas/CardDimensions'
         headerFooter:
-          description: Header and footer configuration
+          description: >-
+            Header and footer configuration. See
+            [Header and Footer Formatting](/overview/header-and-footer-formatting)
+            for layout examples.
           allOf:
             - $ref: '#/components/schemas/HeaderFooter'
     WorkspacePermission:
@@ -632,7 +646,10 @@ components:
       properties:
         inputText:
           type: string
-          description: Input text for generation (topic, outline, or content)
+          description: >-
+            Input text for generation (topic, outline, or content). See
+            [Generate API Parameters](/overview/generate-api-parameters-explained)
+            for input strategies.
           example: Quarterly sales report for Q3 2024
           minLength: 1
           maxLength: 400000
@@ -650,7 +667,9 @@ components:
           $ref: '#/components/schemas/DocFormat'
         numCards:
           type: number
-          description: Target number of cards to generate
+          description: >-
+            Target number of cards to generate. Limits vary by plan — see
+            [Access and Pricing](/overview/access-and-pricing).
           example: 10
           minimum: 1
         cardSplit:
@@ -658,26 +677,42 @@ components:
           $ref: '#/components/schemas/CardSplit'
         themeId:
           type: string
-          description: Theme ID from the /themes endpoint
+          description: >-
+            Theme ID to apply. Get IDs from
+            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
           example: theme_abc123
         textOptions:
-          description: Text generation options
+          description: >-
+            Text generation options. See
+            [Generate API Parameters](/overview/generate-api-parameters-explained)
+            for tone, audience, and language guidance.
           allOf:
             - $ref: '#/components/schemas/TextOptions'
         imageOptions:
-          description: Image generation and selection options
+          description: >-
+            Image generation and selection options. See
+            [Image model accepted values](/accepted-values/image-model-accepted-values)
+            for all models with plan requirements and credits.
           allOf:
             - $ref: '#/components/schemas/ImageOptions'
         cardOptions:
-          description: Card dimensions and layout options
+          description: >-
+            Card dimensions and layout options. See
+            [Header and Footer Formatting](/overview/header-and-footer-formatting)
+            for layout examples.
           allOf:
             - $ref: '#/components/schemas/CardOptions'
         sharingOptions:
-          description: Sharing and permissions options
+          description: >-
+            Sharing and permissions options. See
+            [Generate API Parameters](/overview/generate-api-parameters-explained)
+            for permission examples.
           allOf:
             - $ref: '#/components/schemas/SharingOptions'
         folderIds:
-          description: Folders to add the generated Gamma to
+          description: >-
+            Folders to add the generated Gamma to. Get IDs from
+            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
           example:
             - folder_abc
           maxItems: 10
@@ -685,6 +720,10 @@ components:
           items:
             type: string
         exportAs:
+          description: >-
+            Auto-export format. See
+            [Async Patterns and Polling](/overview/async-patterns-and-polling)
+            for downloading exports.
           example: pdf
           $ref: '#/components/schemas/ExportFormat'
       required:
@@ -954,28 +993,40 @@ components:
       properties:
         prompt:
           type: string
-          description: Text prompt describing the content to generate
+          description: >-
+            Text prompt describing the content to generate. See
+            [Create from Template Parameters](/overview/create-from-template-api-parameters-explained).
           example: Q3 financial summary for investors
           minLength: 1
           maxLength: 400000
         gammaId:
           type: string
-          description: File ID of the template Gamma (must have exactly one Page)
+          description: >-
+            File ID of the template Gamma (must have exactly one Page). See
+            [Create from Template Parameters](/overview/create-from-template-api-parameters-explained)
+            for how to find your template ID.
           example: gamma_abc123
         themeId:
           type: string
-          description: Theme ID to apply to generated content
+          description: >-
+            Theme ID to apply. Get IDs from
+            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
           example: theme_xyz789
         imageOptions:
           description: Image generation options
           allOf:
             - $ref: '#/components/schemas/FromTemplateImageOptions'
         sharingOptions:
-          description: Sharing and permissions options
+          description: >-
+            Sharing and permissions options. See
+            [Generate API Parameters](/overview/generate-api-parameters-explained)
+            for permission examples.
           allOf:
             - $ref: '#/components/schemas/SharingOptions'
         folderIds:
-          description: Folders to add the generated Gamma to
+          description: >-
+            Folders to add the generated Gamma to. Get IDs from
+            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
           example:
             - folder_abc
           maxItems: 10
@@ -983,6 +1034,10 @@ components:
           items:
             type: string
         exportAs:
+          description: >-
+            Auto-export format. See
+            [Async Patterns and Polling](/overview/async-patterns-and-polling)
+            for downloading exports.
           example: pdf
           $ref: '#/components/schemas/ExportFormat'
       x-stability: stable
