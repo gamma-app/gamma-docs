@@ -144,5 +144,5 @@ Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization:
 * [Generate from text](overview/generate-api-parameters-explained.md) — choose format, themes, images, headers/footers, and sharing
 * [Generate from a template](overview/create-from-template-api-parameters-explained.md) — design once, generate variations
 * [Gamma MCP Server](overview/gamma-mcp-server.md) — connect AI tools to Gamma via MCP
-* [Connectors and Integrations](overview/connectors-and-integrations.md) — Claude, Zapier, Make, n8n
+* [Connectors and Integrations](overview/connectors-and-integrations.md) — ChatGPT, Claude, Zapier, Make, n8n
 * [Contact sales](https://gamma.app/contact-sales) — enterprise plans and custom integrations

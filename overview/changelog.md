@@ -7,6 +7,15 @@ icon: clock-rotate-left
 
 {% updates format="full" %}
 {% update date="2026-03-06" %}
+## ChatGPT App live
+
+Gamma is now available as an app in ChatGPT. Create presentations, documents, and social posts directly from ChatGPT conversations — just @mention Gamma. Available alongside the existing Claude Connector.
+
+[Set up the ChatGPT App →](connectors-and-integrations.md)
+
+{% endupdate %}
+
+{% update date="2026-03-06" %}
 ## OpenAPI spec and image model metadata
 
 * Published **OpenAPI spec** (`openapi.yaml`) with clean schema names, standalone `ImageModel` enum, and per-model plan/credit metadata

@@ -46,6 +46,44 @@ Once connected, you can ask Claude to create presentations, documents, and more 
 {% endhint %}
 {% endtab %}
 
+{% tab title="ChatGPT" %}
+## ChatGPT App
+
+Create gammas directly from ChatGPT conversations using the Gamma app.
+
+{% stepper %}
+{% step %}
+### Open ChatGPT
+
+Go to [ChatGPT](https://chatgpt.com) (web or desktop app).
+{% endstep %}
+
+{% step %}
+### Find Apps
+
+Click the **Apps** icon in the sidebar or go to [chatgpt.com/apps](https://chatgpt.com/apps).
+{% endstep %}
+
+{% step %}
+### Add Gamma
+
+Search for "Gamma" and click to add it.
+{% endstep %}
+
+{% step %}
+### Connect
+
+Click **Connect**, then click **Allow** to grant access to your Gamma account. Choose the right workspace if applicable.
+{% endstep %}
+{% endstepper %}
+
+Once connected, you can mention @Gamma in any ChatGPT conversation to create presentations, documents, and more — all generated in Gamma.
+
+{% hint style="info" %}
+**Example prompt:** "@Gamma Create a 10-slide sales enablement deck covering our Q3 product launches, competitive positioning, and customer success stories. Use a professional theme."
+{% endhint %}
+{% endtab %}
+
 {% tab title="Zapier" %}
 ## Zapier Integration
 
@@ -164,7 +202,7 @@ See the [Generate API parameters guide](generate-api-parameters-explained.md) fo
 
 | You want to... | Use |
 | --- | --- |
-| Create gammas through conversation with an AI assistant | [Claude Connector](#claude-connector) |
+| Create gammas through conversation with an AI assistant | [Claude Connector](#claude-connector) or [ChatGPT App](#chatgpt-app) |
 | Automate Gamma as part of a no-code workflow | [Zapier](#zapier-integration), [Make](#make-integration), or [n8n](#n8n-integration) |
 | Build a custom integration with an AI tool via MCP | [Gamma MCP Server](gamma-mcp-server.md) |
 | Build a custom app with full programmatic control | [Gamma API](generate-api-parameters-explained.md) |
