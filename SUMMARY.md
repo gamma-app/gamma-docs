@@ -10,11 +10,11 @@
 * [Generate API Parameters](overview/generate-api-parameters-explained.md)
 * [Create from Template Parameters](overview/create-from-template-api-parameters-explained.md)
 * [Async Patterns and Polling](overview/async-patterns-and-polling.md)
+* [Themes and Folders APIs](overview/list-themes-and-list-folders-apis-explained.md)
 
 ## Customize Output
 
 * [Header and Footer Formatting](overview/header-and-footer-formatting.md)
-* [Themes and Folders APIs](overview/list-themes-and-list-folders-apis-explained.md)
 * [Image URL Best Practices](overview/image-url-best-practices.md)
 * [Charts and Structured Content](overview/charts-and-structured-content.md)
 
