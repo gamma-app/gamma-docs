@@ -6,6 +6,34 @@ icon: clock-rotate-left
 # Changelog
 
 {% updates format="full" %}
+{% update date="2026-03-06" %}
+## OpenAPI spec and image model metadata
+
+* Published **OpenAPI spec** (`openapi.yaml`) with clean schema names, standalone `ImageModel` enum, and per-model plan/credit metadata
+* OpenAPI spec is now auto-generated from the codebase — no manual maintenance required
+
+{% endupdate %}
+
+{% update date="2026-02-27" %}
+## Create from Template GA, new models, and more
+
+* **Create from Template** is now generally available — no longer gated by a feature flag
+* New `imageOptions.stylePreset` parameter — choose from `photorealistic`, `illustration`, `abstract`, `3D`, `lineArt`, or `custom`
+* **Export as PNG** — `exportAs` now accepts `png` in addition to `pptx` and `pdf`
+* `GET /v1.0/generations/{id}` now returns `gammaId` (the file ID) for completed generations
+* **Card margin images** — `<top-left type="image" src="..." />` supported in head-tag XML for create-from-template
+* New image models: `recraft-v4`, `recraft-v4-svg`, `recraft-v4-pro`, `gemini-3.1-flash-image-mini`, `gemini-3.1-flash-image`, `gemini-3.1-flash-image-hd`, `flux-2-max`, `flux-2-klein`
+
+{% endupdate %}
+
+{% update date="2026-01-16" %}
+## v0.2 API removed
+
+* v0.2 synchronous endpoints (`POST /v0.2/generations`, `POST /v0.2/generations/sync`) have been disabled
+* All integrations must use the v1.0 async flow (`POST /v1.0/generations` + polling)
+
+{% endupdate %}
+
 {% update date="2025-11-05" %}
 ## Generate API GA, Create from Template, and more
 
