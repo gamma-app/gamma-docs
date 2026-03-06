@@ -114,6 +114,18 @@ Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `c
 Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization: Bearer`. See [Error codes](errors-and-warnings/error-codes.md) for other common issues.
 {% endhint %}
 
+### Example output
+
+{% columns %}
+{% column %}
+<figure><img src=".gitbook/assets/example-internal-advantages.png" alt=""><figcaption></figcaption></figure>
+{% endcolumn %}
+
+{% column %}
+<figure><img src=".gitbook/assets/example-internal-challenges.png" alt=""><figcaption></figcaption></figure>
+{% endcolumn %}
+{% endcolumns %}
+
 ### Next steps
 
 * [All generation parameters](overview/generate-api-parameters-explained.md) — format, themes, images, headers/footers, sharing
