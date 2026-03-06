@@ -33,12 +33,11 @@ One API call. Polished presentations, documents, websites, and social posts — 
 
 Authenticate with your API key via the `X-API-KEY` header. API access requires a Pro, Ultra, Teams, or Business plan.
 
-### 1. Create a generation
-
 {% tabs %}
 {% tab title="cURL" %}
 ```bash
-curl -X POST https://public-api.gamma.app/v1.0/generations \
+# 1. Create a generation
+RESPONSE=$(curl -s -X POST https://public-api.gamma.app/v1.0/generations \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: $GAMMA_API_KEY" \
   -d '{
@@ -47,73 +46,98 @@ curl -X POST https://public-api.gamma.app/v1.0/generations \
     "format": "presentation",
     "numCards": 10,
     "exportAs": "pdf"
-  }'
+  }')
+
+GENERATION_ID=$(echo $RESPONSE | jq -r '.generationId')
+
+# 2. Poll until complete (every 5 seconds)
+while true; do
+  STATUS=$(curl -s https://public-api.gamma.app/v1.0/generations/$GENERATION_ID \
+    -H "X-API-KEY: $GAMMA_API_KEY")
+
+  echo $STATUS | jq '.status'
+
+  if echo $STATUS | jq -e '.status == "completed"' > /dev/null; then
+    echo $STATUS | jq '{gammaUrl, exportUrl}'
+    break
+  fi
+  sleep 5
+done
 ```
 {% endtab %}
 
 {% tab title="Python" %}
 ```python
-import requests, os
+import requests, os, time
 
-response = requests.post(
-    "https://public-api.gamma.app/v1.0/generations",
-    headers={
-        "X-API-KEY": os.environ["GAMMA_API_KEY"],
-        "Content-Type": "application/json",
-    },
-    json={
-        "inputText": "Q3 product launch strategy",
-        "textMode": "generate",
-        "format": "presentation",
-        "numCards": 10,
-        "exportAs": "pdf",
-    },
-)
+API_KEY = os.environ["GAMMA_API_KEY"]
+BASE = "https://public-api.gamma.app/v1.0"
+HEADERS = {"X-API-KEY": API_KEY, "Content-Type": "application/json"}
+
+# 1. Create a generation
+response = requests.post(f"{BASE}/generations", headers=HEADERS, json={
+    "inputText": "Q3 product launch strategy",
+    "textMode": "generate",
+    "format": "presentation",
+    "numCards": 10,
+    "exportAs": "pdf",
+})
 response.raise_for_status()
 generation_id = response.json()["generationId"]
+
+# 2. Poll until complete (every 5 seconds)
+for _ in range(60):
+    status = requests.get(f"{BASE}/generations/{generation_id}", headers=HEADERS).json()
+    if status["status"] == "completed":
+        print(f"View: {status['gammaUrl']}")
+        print(f"PDF:  {status['exportUrl']}")
+        break
+    if status["status"] == "failed":
+        print(f"Error: {status['error']['message']}")
+        break
+    time.sleep(5)
 ```
 {% endtab %}
 
 {% tab title="JavaScript" %}
 ```javascript
-const response = await fetch(
-  "https://public-api.gamma.app/v1.0/generations",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-API-KEY": process.env.GAMMA_API_KEY,
-    },
-    body: JSON.stringify({
-      inputText: "Q3 product launch strategy",
-      textMode: "generate",
-      format: "presentation",
-      numCards: 10,
-      exportAs: "pdf",
-    }),
+const API_KEY = process.env.GAMMA_API_KEY;
+const BASE = "https://public-api.gamma.app/v1.0";
+const headers = { "X-API-KEY": API_KEY, "Content-Type": "application/json" };
+
+// 1. Create a generation
+const createRes = await fetch(`${BASE}/generations`, {
+  method: "POST",
+  headers,
+  body: JSON.stringify({
+    inputText: "Q3 product launch strategy",
+    textMode: "generate",
+    format: "presentation",
+    numCards: 10,
+    exportAs: "pdf",
+  }),
+});
+const { generationId } = await createRes.json();
+
+// 2. Poll until complete (every 5 seconds)
+for (let i = 0; i < 60; i++) {
+  const pollRes = await fetch(`${BASE}/generations/${generationId}`, { headers });
+  const data = await pollRes.json();
+
+  if (data.status === "completed") {
+    console.log(`View: ${data.gammaUrl}`);
+    console.log(`PDF:  ${data.exportUrl}`);
+    break;
   }
-);
-const { generationId } = await response.json();
+  if (data.status === "failed") {
+    console.error(data.error?.message);
+    break;
+  }
+  await new Promise((r) => setTimeout(r, 5000));
+}
 ```
 {% endtab %}
 {% endtabs %}
-
-Response:
-
-```json
-{
-  "generationId": "abc123xyz"
-}
-```
-
-### 2. Poll for results
-
-Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`.
-
-```bash
-curl https://public-api.gamma.app/v1.0/generations/abc123xyz \
-  -H "X-API-KEY: $GAMMA_API_KEY"
-```
 
 Completed response:
 
@@ -126,8 +150,6 @@ Completed response:
   "credits": { "deducted": 15, "remaining": 485 }
 }
 ```
-
-That's it — your presentation is live at `gammaUrl` and the PDF is ready at `exportUrl`.
 
 {% hint style="info" %}
 Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization: Bearer`. See [Error codes](errors-and-warnings/error-codes.md) for other common issues.
