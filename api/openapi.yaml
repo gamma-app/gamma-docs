@@ -462,8 +462,6 @@ components:
           example: photorealistic, professional
           minLength: 0
           maxLength: 500
-        stylePreset:
-          type: string
         source:
           example: aiGenerated
           $ref: '#/components/schemas/ImageSource'
@@ -950,7 +948,7 @@ components:
           example: photorealistic
           minLength: 0
           maxLength: 500
-      x-stability: beta
+      x-stability: stable
     FromTemplateGenerationDto:
       type: object
       properties:
@@ -1002,6 +1000,6 @@ components:
           type: string
           description: Warnings about request processing
           example: Some template variables were not found
-      x-stability: beta
+      x-stability: stable
       required:
         - generationId
