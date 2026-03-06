@@ -25,7 +25,7 @@ One API call. Polished presentations, documents, websites, and social posts — 
 {% endcolumn %}
 
 {% column %}
-<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/landscape-developer-clouds.png" alt="" width="375"><figcaption></figcaption></figure>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -110,33 +110,23 @@ Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `c
 }
 ```
 
+{% columns %}
+{% column valign="middle" %}
+Your presentation is live at `gammaUrl` and the PDF is ready at `exportUrl`.
+{% endcolumn %}
+
+{% column %}
+<div data-with-frame="true"><figure><img src=".gitbook/assets/example-campaign-report.png" alt="Example API-generated presentation"><figcaption></figcaption></figure></div>
+{% endcolumn %}
+{% endcolumns %}
+
 {% hint style="info" %}
 Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization: Bearer`. See [Error codes](errors-and-warnings/error-codes.md) for other common issues.
 {% endhint %}
-
-### Example output
-
-{% columns %}
-{% column %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/example-internal-advantages.png" alt=""><figcaption></figcaption></figure></div>
-{% endcolumn %}
-
-{% column %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/example-campaign-report.png" alt=""><figcaption></figcaption></figure></div>
-{% endcolumn %}
-{% endcolumns %}
-
-{% columns %}
-{% column %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/example-internal-challenges.png" alt=""><figcaption></figcaption></figure></div>
-{% endcolumn %}
-
-{% column %}
-{% endcolumn %}
-{% endcolumns %}
 
 ### Next steps
 
 * [All generation parameters](overview/generate-api-parameters-explained.md) — format, themes, images, headers/footers, sharing
 * [Template-based generation](overview/create-from-template-api-parameters-explained.md) — design once, generate variations
 * [Connectors and Integrations](overview/connectors-and-integrations.md) — Claude, Zapier, Make, n8n
+* [Contact sales](https://gamma.app/contact-sales) — enterprise plans and custom integrations

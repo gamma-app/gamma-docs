@@ -60,6 +60,16 @@ Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`.
 | `cardOptions.headerFooter` | Logo, page numbers, text | 6 positions per card — see [Header and Footer Formatting](header-and-footer-formatting.md) |
 | `sharingOptions` | Permissions on the generated gamma | Workspace, external link, and email access levels |
 
+{% columns %}
+{% column %}
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-advantages.png" alt="Example: themed presentation with branded layout"><figcaption></figcaption></figure></div>
+{% endcolumn %}
+
+{% column %}
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-challenges.png" alt="Example: AI-generated infographics and data visualization"><figcaption></figcaption></figure></div>
+{% endcolumn %}
+{% endcolumns %}
+
 ## Supporting endpoints
 
 | Endpoint | Purpose |
