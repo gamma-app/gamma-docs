@@ -1,21 +1,17 @@
 ---
 description: >-
-  How the the Generate API parameters influence your gamma. Read this before
-  heading to the API Reference page.
+  When to use the Generate endpoint and how to choose the parameters that shape
+  the output.
 icon: sliders
 ---
 
-# Generate API parameters explained
+# Generate from text
 
-The sample API requests below shows all required and optional API parameters, as well as sample responses.
+Use this page when you already know you want `POST /v1.0/generations` and need help deciding how each parameter affects the output.
 
-{% openapi-operation spec="gamma-public-api-v1" path="/v1.0/generations" method="post" %}
-[OpenAPI gamma-public-api-v1](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/64e5670ce8c5ac46f8236700d6e5e8826c5ae2cc7a1dbfb2c3ebf44c91189ea3.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20260225%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260225T011459Z&X-Amz-Expires=172800&X-Amz-Signature=e00c73752081bed71ca024031eba465fb36e3b7e64f1150279167f11522eb2b8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
-{% endopenapi-operation %}
-
-{% openapi-operation spec="gamma-public-api-v1" path="/v1.0/generations/{id}" method="get" %}
-[OpenAPI gamma-public-api-v1](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/64e5670ce8c5ac46f8236700d6e5e8826c5ae2cc7a1dbfb2c3ebf44c91189ea3.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20260225%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260225T011459Z&X-Amz-Expires=172800&X-Amz-Signature=e00c73752081bed71ca024031eba465fb36e3b7e64f1150279167f11522eb2b8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
-{% endopenapi-operation %}
+{% hint style="info" %}
+This page explains when and why to use each parameter. For the exact request body, field types, and response schema, use the `POST /generations` and `GET /generations/{id}` pages in the API Reference tab.
+{% endhint %}
 
 ## Top level parameters
 

@@ -21,7 +21,7 @@ layout:
 {% column valign="middle" %}
 One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared.
 
-<a href="https://gamma.app/settings/api-keys" class="button primary">Get your API key</a><a href="overview/generate-api-parameters-explained.md" class="button secondary">API reference</a>
+<a href="https://gamma.app/settings/api-keys" class="button primary">Get your API key</a><a href="overview/understanding-the-api-options.md" class="button secondary">API overview</a>
 {% endcolumn %}
 
 {% column %}
@@ -126,7 +126,7 @@ Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization:
 
 ### Next steps
 
-* [All generation parameters](overview/generate-api-parameters-explained.md) — format, themes, images, headers/footers, sharing
-* [Template-based generation](overview/create-from-template-api-parameters-explained.md) — design once, generate variations
+* [Generate from text](overview/generate-api-parameters-explained.md) — choose format, themes, images, headers/footers, and sharing
+* [Generate from a template](overview/create-from-template-api-parameters-explained.md) — design once, generate variations
 * [Connectors and Integrations](overview/connectors-and-integrations.md) — Claude, Zapier, Make, n8n
 * [Contact sales](https://gamma.app/contact-sales) — enterprise plans and custom integrations

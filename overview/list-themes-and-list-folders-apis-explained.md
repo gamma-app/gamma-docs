@@ -1,29 +1,27 @@
 ---
 description: >-
-  List API methods support bulk fetching through cursor-based pagination. You
-  can list folders with GET /v1.0/folders and list themes with GET /v1.0/themes.
+  How to use the themes and folders endpoints to fetch the IDs you need for
+  generation requests.
 icon: palette
 ---
 
-# List Themes and List Folders APIs explained
+# Use themes and folders
 
-These endpoints share a common structure and accept the same pagination parameters.
+Use these endpoints when you need to look up IDs for a generation request:
 
-#### **All list endpoints accept the following parameters**
+* Call `GET /v1.0/themes` when you need a `themeId`
+* Call `GET /v1.0/folders` when you need one or more values for `folderIds`
 
-| Parameter | Type               | Description                                                                                   |
-| --------- | ------------------ | --------------------------------------------------------------------------------------------- |
-| `query`   | string (optional)  | Search by name (case-insensitive). Filters results to items matching the search term.         |
-| `limit`   | integer (optional) | Number of items to return per page. Maximum: 50.                                              |
-| `after`   | string (optional)  | Cursor token for fetching the next page. Use the nextCursor value from the previous response. |
+Both endpoints support the same pagination pattern:
 
-#### **List response format**
+* `query` filters by name
+* `limit` controls page size, up to 50
+* `after` accepts the previous `nextCursor`
+* responses include `data`, `hasMore`, and `nextCursor`
 
-| Field        | Type           | Description                                                                                                                            |
-| ------------ | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `data`       | array          | Array of folder or theme objects.                                                                                                      |
-| `hasMore`    | boolean        | Indicates whether more pages exist. When true, use nextCursor to fetch the next page.                                                  |
-| `nextCursor` | string or null | Opaque cursor token for the next page. Pass this value to the `after` parameter in your next request. Returns `null` on the last page. |
+{% hint style="info" %}
+This page focuses on how to use theme and folder IDs in your workflow. For the exact parameter and response schema for each endpoint, use the `GET /themes` and `GET /folders` pages in the API Reference tab.
+{% endhint %}
 
 ### List Themes
 

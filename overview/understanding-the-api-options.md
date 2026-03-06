@@ -7,6 +7,8 @@ icon: compass
 
 The Gamma API generates polished presentations, documents, websites, and social posts from text. Everything runs asynchronously: you create a generation, poll for status, and retrieve the result.
 
+Use this page to decide which workflow fits your use case. When you need the exact request schema, field types, or response contract, switch to the API Reference tab.
+
 ## How it works
 
 {% stepper %}

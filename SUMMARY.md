@@ -9,13 +9,13 @@
 
 ## Generate Content
 
-* [Generate API Parameters](overview/generate-api-parameters-explained.md)
-* [Create from Template Parameters](overview/create-from-template-api-parameters-explained.md)
+* [Generate from text](overview/generate-api-parameters-explained.md)
+* [Generate from template](overview/create-from-template-api-parameters-explained.md)
 * [Async Patterns and Polling](overview/async-patterns-and-polling.md)
 
 ## Customize Output
 
-* [Themes and Folders APIs](overview/list-themes-and-list-folders-apis-explained.md)
+* [Use themes and folders](overview/list-themes-and-list-folders-apis-explained.md)
 * [Header and Footer Formatting](overview/header-and-footer-formatting.md)
 * [Image URL Best Practices](overview/image-url-best-practices.md)
 * [Charts and Structured Content](overview/charts-and-structured-content.md)
@@ -25,7 +25,7 @@
 * [Connectors and Integrations](overview/connectors-and-integrations.md)
 * [Gamma MCP Server](overview/gamma-mcp-server.md)
 
-## Reference
+## Reference Data
 
 * [Image model accepted values](accepted-values/image-model-accepted-values.md)
 * [Output language accepted values](accepted-values/output-language-accepted-values.md)

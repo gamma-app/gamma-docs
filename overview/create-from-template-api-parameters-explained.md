@@ -1,21 +1,17 @@
 ---
 description: >-
-  What Create from Template API parameters represent and how they affect your
-  Gamma creation. Read this before heading to the API Reference page.
+  When to use the Create from Template endpoint and how to choose the
+  parameters that control the generated output.
 icon: copy
 ---
 
-# Create from Template API parameters explained
+# Generate from template
 
-The sample API requests below shows all required and optional API parameters, as well as sample responses.
+Use this page when you want `POST /v1.0/generations/from-template` and need help choosing the parameters that preserve layout while swapping in new content.
 
-{% openapi-operation spec="gamma-public-api-v1" path="/v1.0/generations/from-template" method="post" %}
-[OpenAPI gamma-public-api-v1](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/64e5670ce8c5ac46f8236700d6e5e8826c5ae2cc7a1dbfb2c3ebf44c91189ea3.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20260225%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260225T011459Z&X-Amz-Expires=172800&X-Amz-Signature=e00c73752081bed71ca024031eba465fb36e3b7e64f1150279167f11522eb2b8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
-{% endopenapi-operation %}
-
-{% openapi-operation spec="gamma-public-api-v1" path="/v1.0/generations/{id}" method="get" %}
-[OpenAPI gamma-public-api-v1](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/64e5670ce8c5ac46f8236700d6e5e8826c5ae2cc7a1dbfb2c3ebf44c91189ea3.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20260225%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260225T011459Z&X-Amz-Expires=172800&X-Amz-Signature=e00c73752081bed71ca024031eba465fb36e3b7e64f1150279167f11522eb2b8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
-{% endopenapi-operation %}
+{% hint style="info" %}
+This page is for workflow guidance and parameter tradeoffs. For the exact request body, field types, and polling response schema, use the `POST /generations/from-template` and `GET /generations/{id}` pages in the API Reference tab.
+{% endhint %}
 
 ## Top level parameters
 
