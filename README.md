@@ -139,6 +139,26 @@ Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization:
 **Building an AI integration?** The [Gamma MCP Server](overview/gamma-mcp-server.md) lets AI tools create gammas on behalf of users via OAuth with Dynamic Client Registration.
 {% endhint %}
 
+### What's new
+
+{% updates format="full" %}
+{% update date="2026-03-06" %}
+## Gamma is live on ChatGPT and Claude
+
+Create presentations, documents, and social posts directly from [ChatGPT](overview/connectors-and-integrations.md) and [Claude](overview/connectors-and-integrations.md) — just connect Gamma and start prompting.
+
+{% endupdate %}
+
+{% update date="2026-02-27" %}
+## Create from Template GA and new image models
+
+Create from Template is now generally available. Plus new image models including Recraft v4, Gemini 3.1 Flash, and Flux 2.
+
+[Full changelog →](overview/changelog.md)
+
+{% endupdate %}
+{% endupdates %}
+
 ### Next steps
 
 * [Generate from text](overview/generate-api-parameters-explained.md) — choose format, themes, images, headers/footers, and sharing
