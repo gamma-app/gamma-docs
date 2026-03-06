@@ -2,9 +2,6 @@
 description: >-
   Build with the Gamma API — generate presentations, documents, websites, and
   social posts programmatically.
-metaLinks:
-  alternates:
-    - https://app.gitbook.com/s/2AwfWOGBWBxQmyvHedqW/
 layout:
   width: wide
   title:
@@ -23,7 +20,7 @@ layout:
 
 One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared.
 
-<a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/understanding-the-api-options" class="button secondary">Read the docs</a>
+<a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="../overview/understanding-the-api-options.md" class="button secondary">Read the docs</a>
 
 ### Make your first request
 
@@ -107,9 +104,9 @@ Gamma API gives you full control over content generation — format, theme, layo
 
 Generate from text or templates, apply themes, configure headers/footers, set permissions, and auto-export.
 
-* [Generate API parameters](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained)
-* [Create from Template](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/create-from-template-api-parameters-explained)
-* [Async patterns and polling](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/async-patterns-and-polling)
+* [Generate API parameters](../overview/generate-api-parameters-explained.md)
+* [Create from Template](../overview/create-from-template-api-parameters-explained.md)
+* [Async patterns and polling](../overview/async-patterns-and-polling.md)
 {% endcolumn %}
 
 {% column %}
@@ -117,8 +114,8 @@ Generate from text or templates, apply themes, configure headers/footers, set pe
 
 Use Gamma from Claude and other AI assistants. Generate content through natural conversation.
 
-* [Connectors and Integrations](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
-* [Gamma MCP Server](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/gamma-mcp-server)
+* [Connectors and Integrations](../overview/connectors-and-integrations.md)
+* [Gamma MCP Server](../overview/gamma-mcp-server.md)
 {% endcolumn %}
 {% endcolumns %}
 
@@ -128,7 +125,7 @@ Use Gamma from Claude and other AI assistants. Generate content through natural 
 
 Zapier, Make, and n8n. Trigger generation from forms, CRMs, spreadsheets — no code required.
 
-* [Zapier, Make, and n8n setup](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
+* [Zapier, Make, and n8n setup](../overview/connectors-and-integrations.md)
 {% endcolumn %}
 
 {% column %}
@@ -136,14 +133,14 @@ Zapier, Make, and n8n. Trigger generation from forms, CRMs, spreadsheets — no 
 
 Available on Pro, Ultra, Teams, and Business plans.
 
-* [Access and pricing](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/access-and-pricing)
-* [Get help](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/get-help)
+* [Access and pricing](../overview/access-and-pricing.md)
+* [Get help](../overview/get-help.md)
 {% endcolumn %}
 {% endcolumns %}
 
 ## What you can build
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4><i class="fa-bolt">:bolt:</i> Generate from text</h4></td><td>Control format, tone, audience, card count, and language.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr><tr><td><h4><i class="fa-layer-group">:layer-group:</i> Generate from template</h4></td><td>Design a template in the app, generate new content into the same layout.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/create-from-template-api-parameters-explained">Create from Template</a></td></tr><tr><td><h4><i class="fa-palette">:palette:</i> Apply brand themes</h4></td><td>Lock every generation to your brand colors, fonts, and logo.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/list-themes-and-list-folders-apis-explained">Themes and Folders APIs</a></td></tr><tr><td><h4><i class="fa-file-export">:file-export:</i> Export to PDF, PPTX, PNG</h4></td><td>Auto-export on completion. Download from the export URL.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/async-patterns-and-polling">Async patterns and polling</a></td></tr><tr><td><h4><i class="fa-table-columns">:table-columns:</i> Custom headers & footers</h4></td><td>Logos, page numbers, and text in 6 positions per card.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/header-and-footer-formatting">Header and footer formatting</a></td></tr><tr><td><h4><i class="fa-share-nodes">:share-nodes:</i> Sharing & permissions</h4></td><td>Workspace access, external links, and email sharing in one call.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4><i class="fa-bolt">:bolt:</i> Generate from text</h4></td><td>Control format, tone, audience, card count, and language.</td><td><a href="../overview/generate-api-parameters-explained.md">Generate API parameters</a></td></tr><tr><td><h4><i class="fa-layer-group">:layer-group:</i> Generate from template</h4></td><td>Design a template in the app, generate new content into the same layout.</td><td><a href="../overview/create-from-template-api-parameters-explained.md">Create from Template</a></td></tr><tr><td><h4><i class="fa-palette">:palette:</i> Apply brand themes</h4></td><td>Lock every generation to your brand colors, fonts, and logo.</td><td><a href="../overview/list-themes-and-list-folders-apis-explained.md">Themes and Folders APIs</a></td></tr><tr><td><h4><i class="fa-file-export">:file-export:</i> Export to PDF, PPTX, PNG</h4></td><td>Auto-export on completion. Download from the export URL.</td><td><a href="../overview/async-patterns-and-polling.md">Async patterns and polling</a></td></tr><tr><td><h4><i class="fa-table-columns">:table-columns:</i> Custom headers & footers</h4></td><td>Logos, page numbers, and text in 6 positions per card.</td><td><a href="../overview/header-and-footer-formatting.md">Header and footer formatting</a></td></tr><tr><td><h4><i class="fa-share-nodes">:share-nodes:</i> Sharing & permissions</h4></td><td>Workspace access, external links, and email sharing in one call.</td><td><a href="../overview/generate-api-parameters-explained.md">Generate API parameters</a></td></tr></tbody></table>
 
 ## What's new
 
@@ -153,7 +150,7 @@ Available on Pro, Ultra, Teams, and Business plans.
 
 Create gammas directly from Claude conversations.
 
-[Set up the Claude Connector →](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
+[Set up the Claude Connector →](../overview/connectors-and-integrations.md)
 {% endupdate %}
 
 {% update date="2025-02-10" %}
@@ -161,7 +158,7 @@ Create gammas directly from Claude conversations.
 
 Give AI tools the ability to create gammas on your behalf via OAuth with Dynamic Client Registration.
 
-[Learn about Gamma MCP →](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/gamma-mcp-server)
+[Learn about Gamma MCP →](../overview/gamma-mcp-server.md)
 {% endupdate %}
 
 {% update date="2025-01-15" %}
@@ -169,7 +166,7 @@ Give AI tools the ability to create gammas on your behalf via OAuth with Dynamic
 
 Generate content, list themes and folders, and poll for results with a native Gamma node.
 
-[See the n8n integration →](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
+[See the n8n integration →](../overview/connectors-and-integrations.md)
 {% endupdate %}
 {% endupdates %}
 
