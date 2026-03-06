@@ -20,20 +20,6 @@
 * [Image URL Best Practices](overview/image-url-best-practices.md)
 * [Charts and Structured Content](overview/charts-and-structured-content.md)
 
-## Endpoints
-
-* ```yaml
-  type: builtin:openapi
-  props:
-    models: false
-    downloadLink: false
-  dependencies:
-    spec:
-      ref:
-        kind: openapi
-        spec: gamma-public-api-v1
-  ```
-
 ## Connectors & MCP
 
 * [Connectors and Integrations](overview/connectors-and-integrations.md)
