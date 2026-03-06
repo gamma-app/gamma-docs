@@ -1,5 +1,7 @@
 # Table of contents
 
+* [Gamma Developer Documentation](README.md)
+
 ## Get Started
 
 * [Understand the API Options](overview/understanding-the-api-options.md)
