@@ -1,16 +1,22 @@
 # Table of contents
 
-## Overview
+## Get Started
 
 * [Understand the API Options](overview/understanding-the-api-options.md)
+* [Access and Pricing](overview/access-and-pricing.md)
 
-## Gamma API
+## Generate Content
 
 * [Generate API Parameters](overview/generate-api-parameters-explained.md)
 * [Create from Template Parameters](overview/create-from-template-api-parameters-explained.md)
 * [Async Patterns and Polling](overview/async-patterns-and-polling.md)
+
+## Customize Output
+
 * [Header and Footer Formatting](overview/header-and-footer-formatting.md)
 * [Themes and Folders APIs](overview/list-themes-and-list-folders-apis-explained.md)
+* [Image URL Best Practices](overview/image-url-best-practices.md)
+* [Charts and Structured Content](overview/charts-and-structured-content.md)
 
 ## Endpoints
 
@@ -26,31 +32,16 @@
         spec: gamma-public-api-v1
   ```
 
-## Best Practices
-
-* [Image URL Best Practices](overview/image-url-best-practices.md)
-* [Charts and Structured Content](overview/charts-and-structured-content.md)
-
-## Common Questions
-
-* [Common Feature Requests](overview/common-feature-requests.md)
-
 ## Connectors & MCP
 
 * [Connectors and Integrations](overview/connectors-and-integrations.md)
 * [Gamma MCP Server](overview/gamma-mcp-server.md)
 
-## Accepted Values
+## Reference
 
 * [Image model accepted values](README.md)
 * [Output language accepted values](accepted-values/output-language-accepted-values.md)
-
-## Errors & Warnings
-
 * [Error codes](errors-and-warnings/error-codes.md)
 * [Warnings](errors-and-warnings/warnings.md)
-
-## Access and Support
-
-* [Access and Pricing](overview/access-and-pricing.md)
+* [API Scope and Capabilities](overview/common-feature-requests.md)
 * [Get Help](overview/get-help.md)

@@ -1,7 +1,7 @@
 ---
 description: >-
-  Gamma API lets you autogenerate presentations, documents, websites and social
-  media posts inside any workflow.
+  Build with the Gamma API — generate presentations, documents, websites, and
+  social posts programmatically.
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/2AwfWOGBWBxQmyvHedqW/
@@ -23,75 +23,163 @@ layout:
 
 {% columns %}
 {% column valign="middle" %}
-Gamma API lets you autogenerate presentations, documents, websites and social media posts inside any workflow.
+Generate polished presentations, documents, websites, and social posts from text — with full control over themes, layout, images, and export.
 
-<a href="https://gamma.app/signup" class="button primary">Get started</a><a href="https://app.gitbook.com/o/1xFv2gf06r2iQQzarEcy/s/upsTVd2JbSOFZRBjfqED/" class="button secondary">View documentation</a>
+<a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/understanding-the-api-options" class="button secondary">Read the docs</a>
 {% endcolumn %}
 
 {% column %}
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F57n2MOYF9Ry4UjKKOe3O%2Fuploads%2FC04771FzgaK0CaZNuZnu%2FGamma_API_4c3c8d2e.webm?alt=media&autoplay=1&loop=1&token=e78456fd-5ed6-4d9d-995d-e002e817efcc" %}
+{% tabs %}
+{% tab title="cURL" %}
+{% code title="Generate a presentation" %}
+```bash
+curl -X POST https://public-api.gamma.app/v1.0/generations \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: your-api-key" \
+  -d '{
+    "inputText": "Q3 product launch strategy",
+    "textMode": "generate",
+    "format": "presentation",
+    "numCards": 10,
+    "exportAs": "pdf"
+  }'
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="Python" %}
+{% code title="Generate a presentation" %}
+```python
+import requests
+
+response = requests.post(
+    "https://public-api.gamma.app/v1.0/generations",
+    headers={"X-API-KEY": "your-api-key"},
+    json={
+        "inputText": "Q3 product launch strategy",
+        "textMode": "generate",
+        "format": "presentation",
+        "numCards": 10,
+        "exportAs": "pdf",
+    },
+)
+generation_id = response.json()["generationId"]
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="JavaScript" %}
+{% code title="Generate a presentation" %}
+```javascript
+const response = await fetch(
+  "https://public-api.gamma.app/v1.0/generations",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-API-KEY": "your-api-key",
+    },
+    body: JSON.stringify({
+      inputText: "Q3 product launch strategy",
+      textMode: "generate",
+      format: "presentation",
+      numCards: 10,
+      exportAs: "pdf",
+    }),
+  }
+);
+const { generationId } = await response.json();
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 {% endcolumn %}
 {% endcolumns %}
 
-## How it works
+## Choose how you build
 
 {% columns %}
 {% column %}
-### <i class="fa-language">:language:</i> Any language
+### <i class="fa-code">:code:</i> Gamma API
 
-Generate decks, docs, websites, and carousels from text in 60+ languages.
+Full programmatic control. Generate from text or templates, apply themes, configure headers/footers, set sharing permissions, and auto-export — all in one request.
+
+* [Generate API parameters](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained)
+* [Create from Template](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/create-from-template-api-parameters-explained)
+* [Async patterns and polling](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/async-patterns-and-polling)
 {% endcolumn %}
 
 {% column %}
-### <i class="fa-paintbrush">:paintbrush:</i> Branding simplified
+### <i class="fa-robot">:robot:</i> Connectors & MCP
 
-Gamma handles layout, visuals, and polish like magic.
-{% endcolumn %}
+Use Gamma from AI assistants. The Claude Connector and Gamma MCP Server let you generate content through natural conversation.
 
-{% column %}
-### <i class="fa-file-export">:file-export:</i> Flexible Export
-
-Export to PDF/PPTX. Plug into tools like Zapier, Make, and n8n.
+* [Connectors and Integrations](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
+* [Gamma MCP Server](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/gamma-mcp-server)
 {% endcolumn %}
 {% endcolumns %}
 
 {% columns %}
 {% column %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure></div>
+### <i class="fa-wand-magic-sparkles">:wand-magic-sparkles:</i> No-Code Automation
+
+Connect Gamma to Zapier, Make, or n8n. Trigger content generation from forms, CRMs, spreadsheets, and hundreds of other apps — no code required.
+
+* [Zapier, Make, and n8n setup](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
 {% endcolumn %}
 
-{% column valign="middle" %}
-### Seamless integrations
+{% column %}
+### <i class="fa-key">:key:</i> Get Access
 
-Connect Gamma to your favorite tools. Trigger workflows from forms, CRMs, databases, and more. No code required.
-{% endcolumn %}
-{% endcolumns %}
+API access is available on Pro, Ultra, Teams, and Business plans. Generate your API key and start building.
 
-{% columns %}
-{% column valign="middle" %}
-### Versatile content creation
-
-Autogenerate decks, reports, websites, and social assets. Polished, on-brand output in seconds.
-{% endcolumn %}
-
-{% column valign="middle" %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/API_assets__1_.avif" alt=""><figcaption></figcaption></figure></div>
+* [Access and pricing](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/access-and-pricing)
+* [Get help](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/get-help)
 {% endcolumn %}
 {% endcolumns %}
+
+## What you can build
+
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Generate from text</strong></td><td>Send text, get a polished gamma. Control format, tone, audience, card count, and language.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr><tr><td><strong>Generate from template</strong></td><td>Design a template in the app, then generate new content into the same layout via API.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/create-from-template-api-parameters-explained">Create from Template</a></td></tr><tr><td><strong>Apply brand themes</strong></td><td>List workspace themes and lock every generation to your brand colors, fonts, and logo.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/list-themes-and-list-folders-apis-explained">Themes and Folders APIs</a></td></tr><tr><td><strong>Export to PDF, PPTX, PNG</strong></td><td>Auto-export on generation complete. Download the file from the export URL in the status response.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/async-patterns-and-polling">Async patterns and polling</a></td></tr><tr><td><strong>Custom headers & footers</strong></td><td>Place logos, page numbers, and text in 6 positions per card. Use your theme logo or a custom image URL.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/header-and-footer-formatting">Header and footer formatting</a></td></tr><tr><td><strong>Set sharing & permissions</strong></td><td>Control workspace access, external link permissions, and email directly to recipients — all in the same API call.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters</a></td></tr></tbody></table>
+
+## What's new
+
+{% updates format="full" %}
+{% update date="2025-02-18" %}
+## Claude Connector
+
+Create gammas directly from Claude conversations. The Gamma Connector is available in Claude's connector library — connect your account and generate presentations, documents, and more through natural language.
+
+[Set up the Claude Connector →](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
+{% endupdate %}
+
+{% update date="2025-02-10" %}
+## Gamma MCP Server
+
+Gamma MCP gives AI tools the ability to create gammas on your behalf. It powers the Claude Connector and is available for custom integrations via OAuth with Dynamic Client Registration.
+
+[Learn about Gamma MCP →](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/gamma-mcp-server)
+{% endupdate %}
+
+{% update date="2025-01-15" %}
+## n8n Native Node
+
+The official Gamma node for n8n is live. Generate content, list themes and folders, and poll for results — all with a native node instead of raw HTTP requests.
+
+[See the n8n integration →](https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations)
+{% endupdate %}
+{% endupdates %}
+
+## Resources
 
 {% columns %}
 {% column %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/API_code_snippet_2.avif" alt=""><figcaption></figcaption></figure></div>
+**[API Slack Channel](https://join.slack.com/t/gambassadors/shared_invite/zt-39mcf05ys-419f~BVFyEtsCsDb9Ij3ow)**
+Questions, debugging help, and community.
 {% endcolumn %}
 
-{% column valign="middle" %}
-### Developer-first flexibility
-
-Use Gamma API directly in your apps or backend logic. Effortlessly build your own production-ready visualization layer.
+{% column %}
+**[Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSeRHjChH8DS6YC4WS23LlOb1SC1Fw2HvuPFZ3HFM4rYj16oCg/viewform?usp=header)**
+Share broader feedback about the API.
 {% endcolumn %}
 {% endcolumns %}
-
-## Popular Articles
-
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h3><i class="fa-rocket-launch">:rocket-launch:</i></h3></td><td><h4>Getting Started</h4></td><td>Quick introduction to the Gamma API and how to make your first request.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/readme">Introduction to Gamma's API offerings</a></td></tr><tr><td><h3><i class="fa-sliders">:sliders:</i></h3></td><td><h4>API Parameters Explained</h4></td><td>Deep dive into all available parameters for the generation endpoint.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/generate-api-parameters-explained">Generate API parameters explained</a></td></tr><tr><td><h3><i class="fa-compass">:compass:</i></h3></td><td><h4>Connectors & Integrations</h4></td><td>Connect Gamma to Claude, Zapier, Make, n8n, and more.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/connectors-and-integrations">Connectors and Integrations</a></td></tr><tr><td><h3><i class="fa-key">:key:</i></h3></td><td><h4>Get Access</h4></td><td>How to obtain your API key and set up authentication.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/access-and-pricing">Access and Pricing</a></td></tr><tr><td><h3><i class="fa-palette">:palette:</i></h3></td><td><h4>Themes & Folders APIs</h4></td><td>Manage themes and organize your gammas with the folder endpoints.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/list-themes-and-list-folders-apis-explained">List Themes and List Folders APIs explained</a></td></tr><tr><td><h3><i class="fa-life-ring">:life-ring:</i></h3></td><td><h4>Get Help</h4></td><td>Find support resources and connect with the Gamma community.</td><td><a href="https://app.gitbook.com/s/upsTVd2JbSOFZRBjfqED/overview/get-help">Get Help</a></td></tr></tbody></table>
-
