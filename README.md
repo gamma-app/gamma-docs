@@ -118,11 +118,20 @@ Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization:
 
 {% columns %}
 {% column %}
-<figure><img src=".gitbook/assets/example-internal-advantages.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src=".gitbook/assets/example-internal-advantages.png" alt=""><figcaption></figcaption></figure></div>
 {% endcolumn %}
 
 {% column %}
-<figure><img src=".gitbook/assets/example-internal-challenges.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src=".gitbook/assets/example-campaign-report.png" alt=""><figcaption></figcaption></figure></div>
+{% endcolumn %}
+{% endcolumns %}
+
+{% columns %}
+{% column %}
+<div data-with-frame="true"><figure><img src=".gitbook/assets/example-internal-challenges.png" alt=""><figcaption></figcaption></figure></div>
+{% endcolumn %}
+
+{% column %}
 {% endcolumn %}
 {% endcolumns %}
 
