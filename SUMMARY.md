@@ -28,6 +28,18 @@
 
 * [Gamma MCP Server](overview/gamma-mcp-server.md)
 
+## API Reference
+
+* [Generations](endpoints/generations.md)
+    * [POST /generations](endpoints/create-generation.md)
+    * [GET /generations/{id}](endpoints/get-generation-status.md)
+    * [POST /generations/from-template](endpoints/create-from-template.md)
+* [Workspace](endpoints/workspace.md)
+    * [GET /themes](endpoints/list-themes.md)
+    * [GET /folders](endpoints/list-folders.md)
+* [Management](endpoints/management.md)
+    * [POST /gammas/{gammaId}/archive](endpoints/archive-gamma.md)
+
 ## Reference Data
 
 * [Image model accepted values](accepted-values/image-model-accepted-values.md)

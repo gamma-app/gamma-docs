@@ -124,6 +124,17 @@ Your presentation is live at `gammaUrl` and the PDF is ready at `exportUrl`.
 Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization: Bearer`. See [Error codes](errors-and-warnings/error-codes.md) for other common issues.
 {% endhint %}
 
+### Endpoints
+
+| Endpoint | Method | Description |
+| --- | --- | --- |
+| [/generations](endpoints/create-generation.md) | POST | Generate from text |
+| [/generations/{id}](endpoints/get-generation-status.md) | GET | Poll generation status |
+| [/generations/from-template](endpoints/create-from-template.md) | POST | Generate from template |
+| [/themes](endpoints/list-themes.md) | GET | List workspace themes |
+| [/folders](endpoints/list-folders.md) | GET | List workspace folders |
+| [/gammas/{gammaId}/archive](endpoints/archive-gamma.md) | POST | Archive a Gamma |
+
 ### Next steps
 
 * [Generate from text](overview/generate-api-parameters-explained.md) — choose format, themes, images, headers/footers, and sharing

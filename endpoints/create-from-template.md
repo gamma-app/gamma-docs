@@ -1,0 +1,14 @@
+---
+description: Generate content from an existing Gamma template with variable substitution.
+icon: copy
+---
+
+# POST /generations/from-template
+
+{% openapi-operation spec="gamma-public-api-v1" path="/v1.0/generations/from-template" method="post" %}
+[OpenAPI gamma-public-api-v1](https://openapi.gitbook.com/o/1xFv2gf06r2iQQzarEcy/openapi/gamma-public-api-v1)
+{% endopenapi-operation %}
+
+{% hint style="info" %}
+For template workflow guidance, see [Generate from template](../overview/create-from-template-api-parameters-explained.md).
+{% endhint %}
