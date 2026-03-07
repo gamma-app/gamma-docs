@@ -33,6 +33,8 @@ One API call. Polished presentations, documents, websites, and social posts — 
 
 Authenticate with your API key via the `X-API-KEY` header. API key access requires a Pro, Ultra, Teams, or Business plan. [ChatGPT and Claude connectors](overview/connectors-and-integrations.md) work on all plans.
 
+### 1. Start a generation
+
 {% tabs %}
 {% tab title="cURL" %}
 ```bash
@@ -95,20 +97,34 @@ const { generationId } = await response.json();
 {% endtab %}
 {% endtabs %}
 
-```json
-{ "generationId": "abc123xyz" }
-```
-
-Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`. Full polling examples in [Async Patterns and Polling](overview/async-patterns-and-polling.md).
+Response:
 
 ```json
 {
+  "generationId": "abc123xyz"
+}
+```
+
+### 2. Poll for the result
+
+Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`. Full polling examples in [Async Patterns and Polling](overview/async-patterns-and-polling.md).
+
+Response when complete:
+
+```json
+{
+  "generationId": "abc123xyz",
   "status": "completed",
   "gammaUrl": "https://gamma.app/docs/abc123",
   "exportUrl": "https://gamma.app/export/abc123.pdf",
-  "credits": { "deducted": 15, "remaining": 485 }
+  "credits": {
+    "deducted": 15,
+    "remaining": 485
+  }
 }
 ```
+
+### 3. Use your Gamma
 
 {% columns %}
 {% column valign="middle" %}
