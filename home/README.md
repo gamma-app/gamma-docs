@@ -24,6 +24,8 @@ One API call. Polished presentations, documents, websites, and social posts — 
 
 ### Make your first request
 
+#### 1. Start a generation
+
 {% tabs %}
 {% tab title="cURL" %}
 ```bash
@@ -85,6 +87,75 @@ const { generationId } = await response.json();
 ```
 {% endtab %}
 {% endtabs %}
+
+Response:
+
+```json
+{
+  "generationId": "abc123xyz"
+}
+```
+
+#### 2. Poll for the result
+
+Generation is async. Use the `generationId` from step 1 to poll until `status` is `completed` or `failed`.
+
+{% tabs %}
+{% tab title="cURL" %}
+```bash
+curl https://public-api.gamma.app/v1.0/generations/YOUR_GENERATION_ID \
+  -H "X-API-KEY: your-api-key"
+```
+{% endtab %}
+
+{% tab title="Python" %}
+```python
+import time
+
+while True:
+    status = requests.get(
+        f"https://public-api.gamma.app/v1.0/generations/{generation_id}",
+        headers={"X-API-KEY": "your-api-key"},
+    ).json()
+    if status["status"] in ("completed", "failed"):
+        break
+    time.sleep(3)
+```
+{% endtab %}
+
+{% tab title="JavaScript" %}
+```javascript
+let status;
+do {
+  await new Promise((r) => setTimeout(r, 3000));
+  const res = await fetch(
+    `https://public-api.gamma.app/v1.0/generations/${generationId}`,
+    { headers: { "X-API-KEY": "your-api-key" } }
+  );
+  status = await res.json();
+} while (status.status !== "completed" && status.status !== "failed");
+```
+{% endtab %}
+{% endtabs %}
+
+Response when complete:
+
+```json
+{
+  "generationId": "abc123xyz",
+  "status": "completed",
+  "gammaUrl": "https://gamma.app/docs/abc123",
+  "exportUrl": "https://gamma.app/export/abc123.pdf",
+  "credits": {
+    "deducted": 10,
+    "remaining": 490
+  }
+}
+```
+
+#### 3. Use your Gamma
+
+Open `gammaUrl` to view it, or download `exportUrl` for the PDF, PPTX, or PNG.
 
 {% columns %}
 {% column valign="middle" %}

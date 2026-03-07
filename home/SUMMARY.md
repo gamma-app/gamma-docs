@@ -1,3 +1,3 @@
 # Table of contents
 
-* [Gamma Developer Documentation](README.md)
+* [Gamma Developer Docs](README.md)
