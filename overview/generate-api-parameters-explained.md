@@ -89,7 +89,9 @@ Determines the artifact Gamma will create for you.
 
 Defines which theme from Gamma will be used for the output. Themes determine the look and feel of the gamma, including colors and fonts.
 
-* Use [`GET /v1.0/themes`](../endpoints/list-themes.md) to list themes from your workspace, or copy the theme ID from the Gamma app (open a theme and copy the ID from the URL or theme settings).
+* Use [`GET /v1.0/themes`](../endpoints/list-themes.md) to list themes from your workspace, or copy the theme ID directly from the app.
+
+<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Theme ID location in Gamma" width="300"><figcaption><p>Copy the theme ID from the app</p></figcaption></figure>
 
 {% code title="Example" %}
 ```json
@@ -161,8 +163,10 @@ The more specific you are, the better the results!
 
 Defines which folder(s) your gamma is stored in.
 
-* Use [`GET /v1.0/folders`](../endpoints/list-folders.md) to list folders, or copy the folder ID from the app (open a folder and copy the ID from the URL).
+* Use [`GET /v1.0/folders`](../endpoints/list-folders.md) to list folders, or copy the folder ID directly from the app.
 * You must be a member of a folder to add gammas to it.
+
+<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Folder ID location in Gamma" width="300"><figcaption><p>Copy the folder ID from the app</p></figcaption></figure>
 
 ```json
 "folderIds": ["123abc456def", "456123abcdef"]

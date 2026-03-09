@@ -18,6 +18,8 @@ icon: key
 
 API key access is available on Pro, Ultra, Teams, and Business plans. Generate an API key from [Settings > API Keys](https://gamma.app/settings/api-keys). View [pricing plans here](https://gamma.app/pricing).
 
+<figure><img src="../.gitbook/assets/api-key-settings.png" alt="API key settings in Gamma" width="300"><figcaption><p>Settings > API Keys</p></figcaption></figure>
+
 ### Connectors (ChatGPT, Claude)
 
 Connectors are available on all plans, including Free and Plus. No API key required — connect directly from [ChatGPT or Claude](connectors-and-integrations.md) and authenticate with your Gamma account. Generations via connectors charge credits the same way as API calls.
@@ -26,6 +28,8 @@ Connectors are available on all plans, including Free and Plus. No API key requi
 
 * API billing uses a credit-based system. Higher tier subscribers receive more monthly credits.
 * If you run out of credits, you can upgrade to a higher subscription tier, purchase credits ad hoc, or enable auto-recharge (_recommended_) at [Settings > Billing](https://gamma.app/settings/billing).
+
+<figure><img src="../.gitbook/assets/billing-credits.png" alt="Credit management in Gamma" width="300"><figcaption><p>Settings > Billing</p></figcaption></figure>
 
 ## How credits work
 

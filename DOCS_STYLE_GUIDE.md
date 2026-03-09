@@ -86,9 +86,23 @@ All images must have an explicit `width` attribute. Do not let images render at 
 
 Do not use decorative hero images on landing pages or guide pages. They push the quickstart and code examples below the fold. Leading API docs sites (Anthropic, OpenAI, Stripe) use zero decorative images above the fold.
 
-### When to use screenshots vs inline text
+### Inline screenshots
 
-Prefer inline text directions over screenshots. Screenshots break when the UI changes and add visual weight without proportional information value. Use a screenshot only when the UI element is genuinely hard to describe in words (e.g., a multi-step template setup flow). For simple "where to find the ID" instructions, a parenthetical like "(open the theme and copy the ID from the URL)" is sufficient.
+Use small inline screenshots (width 300px) to give visual context for UI elements without dominating the page. GitBook renders these as clickable, so users can zoom in for detail. Keep captions short -- just the location or action.
+
+| Context | Width | Example |
+| --- | --- | --- |
+| Inline instructional screenshot | `width="300"` | Theme ID location, folder ID, billing settings |
+| Side-by-side screenshots in columns | `width="375"` | Template setup steps |
+
+```html
+<figure>
+  <img src="../.gitbook/assets/example.png"
+       alt="Theme ID location in Gamma"
+       width="300">
+  <figcaption><p>Copy the theme ID from the app</p></figcaption>
+</figure>
+```
 
 ## GitBook blocks
 
