@@ -17,9 +17,17 @@ layout:
 
 # Gamma Developer Documentation
 
+{% columns %}
+{% column valign="middle" %}
 One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared.
 
 <a href="https://gamma.app/settings/api-keys" class="button primary">Get your API key</a><a href="overview/understanding-the-api-options.md" class="button secondary">API overview</a>
+{% endcolumn %}
+
+{% column %}
+<figure><img src=".gitbook/assets/landscape-developer-clouds.png" alt="" width="300"></figure>
+{% endcolumn %}
+{% endcolumns %}
 
 ## Authentication
 
