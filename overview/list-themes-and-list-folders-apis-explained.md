@@ -7,36 +7,31 @@ icon: palette
 
 # Use themes and folders
 
-Use these endpoints when you need to look up IDs for a generation request:
+Use these endpoints when you need to look up IDs for a generation request.
 
-* Call `GET /v1.0/themes` when you need a `themeId`
-* Call `GET /v1.0/folders` when you need one or more values for `folderIds`
+## Quick reference
 
-Both endpoints support the same pagination pattern:
-
-* `query` filters by name
-* `limit` controls page size, up to 50
-* `after` accepts the previous `nextCursor`
-* responses include `data`, `hasMore`, and `nextCursor`
+- Call `GET /v1.0/themes` to get a `themeId`.
+- Call `GET /v1.0/folders` to get values for `folderIds`.
+- Both endpoints use cursor-based pagination with `query`, `limit`, `after`, `hasMore`, and `nextCursor`.
+- Theme objects include `type` (`standard` or `custom`), `colorKeywords`, and `toneKeywords`.
 
 {% hint style="info" %}
-This page focuses on how to use theme and folder IDs in your workflow. For the exact parameter and response schema for each endpoint, use the `GET /themes` and `GET /folders` pages in the API Reference tab.
+This page focuses on how to use theme and folder IDs in your workflow. For the exact parameter and response schema, use the `GET /themes` and `GET /folders` pages in the API Reference tab.
 {% endhint %}
 
-### List Themes
+## List themes
 
-Returns a paginated list of the themes in the your workspace. This endpoint returns both workspace-specific and global themes in a single response, filterable via the `type` field.
+Returns a paginated list of themes in your workspace, including both workspace-specific and global themes.
 
-{% code title="GET Themes" %}
+{% code title="Request" %}
 ```bash
 curl -X GET https://public-api.gamma.app/v1.0/themes \
 -H "X-API-KEY: sk-gamma-xxxxxxxx"
 ```
 {% endcode %}
 
-#### **Themes response**
-
-Each theme object in the `data` array contains:
+**Response fields** -- each theme object in the `data` array contains:
 
 {% code title="Sample response" %}
 ```json
@@ -50,25 +45,20 @@ Each theme object in the `data` array contains:
 ```
 {% endcode %}
 
-The `type` field distinguishes between:
+The `type` field distinguishes between `standard` (global themes available to all workspaces) and `custom` (workspace-specific themes).
 
-* `standard`: Global themes available to all workspaces
-* `custom`: Workspace-specific themes
+## List folders
 
-### List Folders
+Returns a paginated list of folders in your workspace.
 
-Returns a paginated list of the folders in your workspace.
-
-{% code title="GET Folders" %}
-```http
+{% code title="Request" %}
+```bash
 curl -X GET https://public-api.gamma.app/v1.0/folders \
 -H "X-API-KEY: sk-gamma-xxxxxxxx"
 ```
 {% endcode %}
 
-#### **Folders response**
-
-Each folder object in the `data` array contains:
+**Response fields** -- each folder object in the `data` array contains:
 
 {% code title="Sample response" %}
 ```json
@@ -79,19 +69,19 @@ Each folder object in the `data` array contains:
 ```
 {% endcode %}
 
-### Pagination Example: Fetch all folders
+## Pagination
 
-The example below is for fetching folders but also applies to listing themes.
+Both endpoints use the same cursor-based pagination. The example below uses folders, but the pattern is identical for themes.
 
-#### **Get first page of folders**
+**First page:**
 
-{% code title="Request 1" %}
-```http
+{% code title="Request" %}
+```text
 GET /v1.0/folders?limit=50
 ```
 {% endcode %}
 
-{% code title="Response 1" %}
+{% code title="Response" %}
 ```json
 {
   "data": [
@@ -104,18 +94,15 @@ GET /v1.0/folders?limit=50
 ```
 {% endcode %}
 
-#### **Get additional folders**
+**Next page** -- pass the previous `nextCursor` as `after`. When `hasMore` is `false` and `nextCursor` is `null`, you've reached the end.
 
-* The `after` parameter accepts a cursor string from a previous response to fetch the next page of results. Cursors are always forward-only—you cannot paginate backward through results.
-* When `hasMore` is `false` and `nextCursor` is `null`, you've reached the end of the results.
-
-{% code title="Request 2" %}
-```http
+{% code title="Request" %}
+```text
 GET /v1.0/folders?limit=50&after=abc123def456ghi789
 ```
 {% endcode %}
 
-{% code title="Response 2" %}
+{% code title="Response" %}
 ```json
 {
   "data": [
@@ -123,19 +110,17 @@ GET /v1.0/folders?limit=50&after=abc123def456ghi789
     { "id": "qrstuv", "name": "Product" }
   ],
   "hasMore": false,
-  "nextCursor": "null"
+  "nextCursor": null
 }
 ```
 {% endcode %}
 
-### Query Example: Search for a theme
+## Searching by name
 
-The example below shows how to search for a theme by name, and also applies to searching for folders.
-
-#### **Search for themes with "dark" in the name**
+Use the `query` parameter to filter results by name. Works on both themes and folders.
 
 {% code title="Request" %}
-```http
+```text
 GET /v1.0/themes?query=dark&limit=50
 ```
 {% endcode %}
@@ -150,19 +135,19 @@ GET /v1.0/themes?query=dark&limit=50
       "type": "standard",
       "colorKeywords": ["black", "gray", "accent"],
       "toneKeywords": ["sophisticated", "modern"]
-    },
-    {
-      "id": "123abc456def",
-      "name": "Dark Gradient",
-      "type": "custom",
-      "colorKeywords": ["purple", "black", "navy"],
-      "toneKeywords": ["dramatic", "elegant"]
     }
   ],
   "hasMore": false,
-  "nextCursor": "null"
+  "nextCursor": null
 }
 ```
 {% endcode %}
 
-The returned `id` can be used in the `themeId` parameter in the Generate and Create from Template APIs.
+The returned `id` can be used as `themeId` in the Generate and Create from Template APIs.
+
+## Related
+
+- [Generate from text](generate-api-parameters-explained.md) for where `themeId` and `folderIds` fit in the request
+- [Generate from template](create-from-template-api-parameters-explained.md) for using theme and folder IDs with templates
+- [GET /themes](../endpoints/list-themes.md) for the full API reference
+- [GET /folders](../endpoints/list-folders.md) for the full API reference

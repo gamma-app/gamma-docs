@@ -6,11 +6,15 @@ icon: clipboard-question
 
 # API scope and capabilities
 
-The Gamma API focuses on **content generation and workspace management**. This page clarifies what falls within the current API scope and how to handle common use cases that sit outside it.
+The Gamma API focuses on content generation and workspace management. This page clarifies what falls within the current API scope and how to handle common use cases that sit outside it.
 
-{% hint style="info" %}
-Have a suggestion? Submit or upvote requests on our [Canny board](https://gamma.canny.io).
-{% endhint %}
+## Quick reference
+
+- The API creates gammas but does not edit existing ones.
+- Generation is asynchronous: create, then poll until complete.
+- Export URLs are temporary -- download files promptly.
+- Image URLs can be included in `inputText` but must be publicly accessible.
+- Submit feature requests on our [Canny board](https://gamma.canny.io).
 
 ## What the API covers
 
@@ -44,3 +48,10 @@ You can include image URLs directly in your `inputText`. Gamma fetches and re-ho
 ### Generating charts and structured content
 
 Charts, tables, and infographics can be prompted for through your input text. Results vary across runs — for more predictable layouts, use the template-based generation endpoint. See [Charts and structured content](charts-and-structured-content.md).
+
+## Related
+
+- [Generate from text](generate-api-parameters-explained.md) for the full parameter reference
+- [Async Patterns and Polling](async-patterns-and-polling.md) for the polling workflow
+- [Image URL best practices](image-url-best-practices.md) for including your own images
+- [Get Help](get-help.md) for support channels

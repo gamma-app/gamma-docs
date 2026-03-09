@@ -9,6 +9,13 @@ icon: chart-bar
 
 The Gamma API can generate charts, tables, and infographics as part of your output. Generation is non-deterministic — results may vary across runs, even with identical inputs. There are no API parameters to directly control chart type, styling, or data formatting, but you can steer the output through your prompts.
 
+## Quick reference
+
+- Charts are prompted through `inputText` and `additionalInstructions`, not through dedicated API parameters.
+- Provide explicit data values and chart type for best results.
+- Use the Create from Template API for consistent chart layouts across repeated generations.
+- Output varies between runs -- test a few generations to calibrate your prompts.
+
 ## How to prompt for charts
 
 You influence chart output through `inputText` and `additionalInstructions`. The more specific you are, the better the results.
@@ -53,3 +60,9 @@ The same prompting principles apply:
 * Provide structured data (rows, columns, key-value pairs) in your input for best table results
 * Infographics such as timelines and process flows can be prompted for, but the AI determines the final layout
 * Your theme controls styling for all structured content
+
+## Related
+
+- [Generate from text](generate-api-parameters-explained.md) for `inputText` and `additionalInstructions` usage
+- [Generate from template](create-from-template-api-parameters-explained.md) for consistent chart layouts
+- [Image URL best practices](image-url-best-practices.md) if you want to include your own chart images

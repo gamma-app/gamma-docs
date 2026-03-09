@@ -5,6 +5,13 @@ icon: clock-rotate-left
 
 # Changelog
 
+## Quick reference
+
+- The API launched in beta July 2025 and reached GA in November 2025.
+- Create from Template became generally available in February 2026.
+- ChatGPT and Claude connectors launched March 2026.
+- The v0.2 synchronous API was removed in January 2026.
+
 {% updates format="full" %}
 {% update date="2026-03-06" %}
 ## ChatGPT App live
@@ -113,3 +120,9 @@ Generate content, list themes and folders, and poll for results with a native Ga
 
 {% endupdate %}
 {% endupdates %}
+
+## Related
+
+- [API Overview](understanding-the-api-options.md) for the current API capabilities
+- [Connectors and Integrations](connectors-and-integrations.md) for ChatGPT, Claude, Zapier, Make, and n8n setup
+- [Get Help](get-help.md) if you need support

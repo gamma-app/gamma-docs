@@ -9,6 +9,13 @@ icon: image
 
 You can include your own images in API-generated gammas by placing image URLs directly in your `inputText` (Generate API) or `prompt` (Create from Template API). This page covers the technical requirements and common pitfalls.
 
+## Quick reference
+
+- URLs must be HTTPS, end with a recognized image extension, and be publicly accessible.
+- Set `imageOptions.source` to `noImages` if you want only your provided images.
+- Gamma fetches and re-hosts images during generation, so URLs only need to be live at generation time.
+- Test URLs in an incognito window -- if you can see the image without logging in, Gamma can access it.
+
 ## How it works
 
 When Gamma encounters an image URL in your input, it:
@@ -113,3 +120,9 @@ Check that your URLs meet all three requirements (HTTPS, recognized extension, p
 ### Some images work, others don't
 
 Each URL is fetched independently. A mix of working and broken images usually means some URLs have access restrictions or don't end with a recognized extension. Test each URL individually in an incognito window.
+
+## Related
+
+- [Generate from text](generate-api-parameters-explained.md) for where image URLs fit in `inputText`
+- [Generate from template](create-from-template-api-parameters-explained.md) for using image URLs in the `prompt` field
+- [Async Patterns and Polling](async-patterns-and-polling.md) for the generation workflow after submitting your request

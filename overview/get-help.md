@@ -5,6 +5,12 @@ icon: life-ring
 
 # Get Help
 
+## Quick reference
+
+- For quick questions and debugging: join the API Slack channel and include your `x-request-id`.
+- For broader feedback: use the feedback form.
+- For account or billing issues: contact the support team.
+
 ## Questions, quick feedback, and debugging
 
 Join the [Gamma API Slack channel](https://join.slack.com/t/gambassadors/shared_invite/zt-39mcf05ys-419f~BVFyEtsCsDb9Ij3ow). For debugging help, include the x-request-id header from your API response.
