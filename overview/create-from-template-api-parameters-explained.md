@@ -13,7 +13,14 @@ Use this page when you want `POST /v1.0/generations/from-template` and need help
 This page is for workflow guidance and parameter tradeoffs. For the exact request body, field types, and polling response schema, use the `POST /generations/from-template` and `GET /generations/{id}` pages in the API Reference tab.
 {% endhint %}
 
-## Top level parameters
+## Quick reference
+
+- `gammaId` and `prompt` are required.
+- The template Gamma must contain exactly one page.
+- Use `themeId`, `folderIds`, `exportAs`, and `sharingOptions` the same way you would in the standard generation flow.
+- Poll `GET /v1.0/generations/{generationId}` to retrieve `gammaUrl`, `exportUrl`, and credit usage.
+
+## Top-level parameters
 
 ### `gammaId` _(required)_
 
@@ -21,11 +28,11 @@ Identifies the template you want to modify. You can find and copy the gammaId fo
 
 {% columns %}
 {% column %}
-<figure><img src="../.gitbook/assets/template-gamma-id.png" alt="Finding the gamma ID for a template"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/template-gamma-id.png" alt="Finding the gamma ID for a template"><figcaption><p>Copy the template Gamma ID from the app before you make the request.</p></figcaption></figure>
 {% endcolumn %}
 
 {% column %}
-<figure><img src="../.gitbook/assets/template-one-page.png" alt="Template must have exactly one page"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/template-one-page.png" alt="Template must have exactly one page"><figcaption><p>Create from Template works best when the source Gamma has exactly one page.</p></figcaption></figure>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -33,15 +40,15 @@ Identifies the template you want to modify. You can find and copy the gammaId fo
 
 Use this parameter to send text content, image URLs, as well as instructions for how to use this content in relation to the template gamma.
 
-#### **Add images to the input**
+**Add images to the input**
 
 You can provide URLs for specific images you want to include. Simply insert the URLs into your content where you want each image to appear (see example below). You can also add instructions for how to display the images, eg, "Group the last 10 images into a gallery to showcase them together."
 
-#### **Token limits**
+**Token limits**
 
 The total token limit is 100,000, which is approximately 400,000 characters, but because part of your input is the gamma template, in practice, the token limit for your prompt becomes shorter. We highly recommend keeping your prompt well below 100,000 tokens and testing out a variety of inputs to get a good sense of what works for your use case.
 
-#### **Other tips**
+**Other tips**
 
 * Text can be as little as a few words that describe the topic of the content you want to generate.
 * You can also input longer text -- pages of messy notes or highly structured, detailed text.
@@ -77,7 +84,7 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 
 Defines which folder(s) your gamma is stored in.
 
-*   You can use the [`GET /v1.0/folders`](../endpoints/list-folders.md) endpoint to pull a list of folders. Or you can copy over the folderIds from the app directly.
+* You can use the [`GET /v1.0/folders`](../endpoints/list-folders.md) endpoint to pull a list of folders. Or you can copy over the folderIds from the app directly.
 
 <figure><img src="../.gitbook/assets/folder-id-location.png" alt="Finding the folder ID in the Gamma app"><figcaption><p>Copy the folder ID directly from the Gamma app</p></figcaption></figure>
 * You must be a member of a folder to be able to add gammas to that folder.
@@ -118,7 +125,7 @@ For templates with AI-generated images, you can override the default AI image se
 ```
 {% endcode %}
 
-#### `imageOptions.model` _(optional)_
+**`imageOptions.model`** _(optional)_
 
 This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The `imageOptions.model` parameter determines which model is used to generate images.
 
@@ -133,7 +140,7 @@ This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The
 ```
 {% endcode %}
 
-#### `imageOptions.style` _(optional)_
+**`imageOptions.style`** _(optional)_
 
 This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The `imageOptions.style` parameter influences the artistic style of the images generated. While this is an optional field, we highly recommend adding some direction here to create images in a cohesive style.
 
@@ -151,7 +158,7 @@ This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The
 
 ### sharingOptions
 
-#### `sharingOptions.workspaceAccess` _(optional, defaults to workspace share settings)_
+**`sharingOptions.workspaceAccess`** _(optional, defaults to workspace share settings)_
 
 Determines level of access members in your workspace will have to your generated gamma.
 
@@ -164,7 +171,7 @@ Determines level of access members in your workspace will have to your generated
 }
 ```
 
-#### `sharingOptions.externalAccess` _(optional, defaults to workspace share settings)_
+**`sharingOptions.externalAccess`** _(optional, defaults to workspace share settings)_
 
 Determines level of access members **outside your workspace** will have to your generated gamma.
 
@@ -178,7 +185,7 @@ Determines level of access members **outside your workspace** will have to your 
 ```
 {% endcode %}
 
-#### `sharingOptions.emailOptions` _(optional)_
+**`sharingOptions.emailOptions`** _(optional)_
 
 Allows you to share your gamma with specific recipients via their email address.
 
@@ -191,7 +198,7 @@ Allows you to share your gamma with specific recipients via their email address.
 ```
 {% endcode %}
 
-#### `sharingOptions.emailOptions.access` _(optional)_
+**`sharingOptions.emailOptions.access`** _(optional)_
 
 Determines level of access those specified in `sharingOptions.emailOptions.recipients` have to your generated gamma. Only workspace members can have `fullAccess`
 
@@ -205,3 +212,9 @@ Determines level of access those specified in `sharingOptions.emailOptions.recip
 }
 ```
 {% endcode %}
+
+## Related
+
+- [Generate from text](generate-api-parameters-explained.md) if you want Gamma to determine the layout from scratch
+- [Async Patterns and Polling](async-patterns-and-polling.md) for the polling flow after template generation starts
+- [API Overview](understanding-the-api-options.md) for a side-by-side comparison of generation workflows

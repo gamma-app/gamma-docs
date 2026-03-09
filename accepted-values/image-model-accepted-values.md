@@ -7,17 +7,12 @@ icon: image
 
 # Image model accepted values
 
-* In the `imageOptions.source` parameter, use `aiGenerated` as the value.
-* In the `imageOptions.model` parameter, use one of the strings below.
-* Conversely, if you're not sure which image model you'd like to use, you can leave the `imageOptions.model` parameter blank and Gamma will select a model for you.
+## Quick reference
 
-{% hint style="info" %}
-**Polling tip:** Some models — particularly Ultra-tier, HD, and video models — take longer to generate than standard models. If using these via the API, we recommend increasing your polling timeout to 10 minutes with 30-second intervals to avoid premature timeouts.
-{% endhint %}
-
-{% hint style="warning" %}
-**Plan Requirements:** Some models require a specific Gamma plan (Plus, Pro, or Ultra). Models are grouped by minimum plan tier below. These tiers apply to both API and connector usage. API key access requires Pro or higher — see [Access and Pricing](../overview/access-and-pricing.md).
-{% endhint %}
+- Set `imageOptions.source` to `aiGenerated` when using any of the model strings below.
+- If `imageOptions.model` is omitted, Gamma selects a model automatically.
+- Higher-tier, HD, and video models usually take longer to complete, so longer polling windows may be helpful.
+- Models are grouped below by minimum plan tier. API key access still requires Pro or higher. See [Access and Pricing](../overview/access-and-pricing.md).
 
 ## Free (All Plans)
 
@@ -103,3 +98,9 @@ The following models have been replaced. If you pass these values, Gamma will au
 | `flux-kontext-max` | `flux-2-flex` |
 | `playground-3` | `flux-2-pro` |
 | `imagen-3-pro` | `imagen-4-pro` |
+
+## Related
+
+- [Generate from text](../overview/generate-api-parameters-explained.md) for `imageOptions` guidance
+- [Async Patterns and Polling](../overview/async-patterns-and-polling.md) if you need longer polling windows for slower models
+- [Access and Pricing](../overview/access-and-pricing.md) for plan and credit details

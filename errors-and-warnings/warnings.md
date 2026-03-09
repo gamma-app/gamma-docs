@@ -13,7 +13,13 @@ For example, if you specified `preserve` in `textMode` and at the same time used
 Warnings are informational and do not prevent the generation from completing. Your Gamma will still be created, but some parameters may have been ignored or adjusted.
 {% endhint %}
 
-## Common Warning Scenarios
+## Quick reference
+
+- Warnings do not stop generation.
+- A warning usually means Gamma ignored a conflicting or incompatible parameter.
+- The warning string is returned alongside `generationId` in the creation response.
+
+## Common warning scenarios
 
 ### Conflicting format and dimensions
 
@@ -101,6 +107,15 @@ When using `textMode: "preserve"`, text generation options like `amount`, `tone`
 }
 ```
 
-## Best Practices
+## Best practices
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><h3><i class="fa-bug">:bug:</i></h3></td><td><h4>Check warnings in development</h4></td><td>Always log and review warnings during development to ensure your API calls are configured correctly.</td></tr><tr><td><h3><i class="fa-ruler">:ruler:</i></h3></td><td><h4>Match format to dimensions</h4></td><td>Use dimensions that are valid for your chosen format to avoid unexpected defaults.</td></tr><tr><td><h3><i class="fa-wand-magic-sparkles">:wand-magic-sparkles:</i></h3></td><td><h4>Use aiGenerated for models</h4></td><td>Only specify <code>imageOptions.model</code> when <code>imageOptions.source</code> is set to <code>aiGenerated</code>.</td></tr><tr><td><h3><i class="fa-text">:text:</i></h3></td><td><h4>Understand textMode behavior</h4></td><td><code>preserve</code> keeps your text as-is, <code>condense</code> summarizes, <code>generate</code> creates new content from your prompt.</td></tr></tbody></table>
+- Log and review warnings during development so ignored parameters are easy to spot.
+- Match `format` and `cardOptions.dimensions` to avoid unexpected defaults.
+- Only specify `imageOptions.model` when `imageOptions.source` is `aiGenerated`.
+- Treat `textMode: "preserve"` as higher priority than text-generation settings like `amount`, `tone`, or `audience`.
+
+## Related
+
+- [Error codes](error-codes.md) for fatal API errors
+- [Generate from text](../overview/generate-api-parameters-explained.md) for parameter interactions that commonly produce warnings
+- [Generate from template](../overview/create-from-template-api-parameters-explained.md) for the template-specific workflow

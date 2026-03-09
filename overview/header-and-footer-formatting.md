@@ -3,11 +3,11 @@ description: Detailed guide to customizing headers and footers in Gamma presenta
 icon: table-columns
 ---
 
-# Header & Footer Formatting
+# Header and footer formatting
 
 Headers and footers let you add consistent branding elements, page numbers, and custom text across all cards in your presentation.
 
-## Quick Reference
+## Quick reference
 
 | Position       | Description                       |
 | -------------- | --------------------------------- |
@@ -24,7 +24,7 @@ Headers and footers let you add consistent branding elements, page numbers, and 
 | `image`      | Logo from theme or custom URL     |
 | `cardNumber` | Slide/page numbers                |
 
-## Basic Structure
+## Basic structure
 
 The `headerFooter` object goes inside `cardOptions`:
 
@@ -45,9 +45,9 @@ The `headerFooter` object goes inside `cardOptions`:
 }
 ```
 
-## Element Types
+## Element types
 
-### Text Elements
+### Text elements
 
 Add custom text like company names, copyright notices, or taglines.
 
@@ -68,11 +68,9 @@ Add custom text like company names, copyright notices, or taglines.
 }
 ```
 
-{% hint style="info" %}
-The `value` field is **required** for text elements. Keep text short — headers and footers have limited space.
-{% endhint %}
+The `value` field is required for text elements. Keep text short because headers and footers have limited space.
 
-### Image Elements (Theme Logo)
+### Image elements (theme logo)
 
 Use the logo from your selected theme:
 
@@ -97,7 +95,7 @@ Use the logo from your selected theme:
 | `lg` | Large logo (prominent)            |
 | `xl` | Extra large logo (very prominent) |
 
-### Image Elements (Custom URL)
+### Image elements (custom URL)
 
 Use your own logo image:
 
@@ -116,11 +114,9 @@ Use your own logo image:
 }
 ```
 
-{% hint style="warning" %}
-When using `source: "custom"`, the \`src\` field is **required** and must be a valid, publicly accessible URL to an image file (PNG, JPG, SVG).
-{% endhint %}
+When using `source: "custom"`, the `src` field is required and must be a valid, publicly accessible URL to an image file.
 
-### Card Numbers
+### Card numbers
 
 Add automatic page/slide numbers:
 
@@ -136,11 +132,9 @@ Add automatic page/slide numbers:
 }
 ```
 
-{% hint style="info" %}
-Card numbers have no additional configuration — just specify the position and type.
-{% endhint %}
+Card numbers have no additional configuration. Just specify the position and type.
 
-## Hiding from First/Last Cards
+## Hiding from first and last cards
 
 You often want to hide headers/footers from title cards or closing cards. Add these properties **at the `headerFooter` level** (they apply to all positions):
 
@@ -167,9 +161,9 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 | `hideFromFirstCard` | `false` | Set `true` to hide from title/intro card       |
 | `hideFromLastCard`  | `false` | Set `true` to hide from closing/thank you card |
 
-### Complete Examples
+## Complete examples
 
-#### Professional Presentation (Logo + Page Numbers)
+### Professional presentation (logo and page numbers)
 
 ```json
 {
@@ -200,7 +194,7 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 }
 ```
 
-#### Social Media Carousel (Minimal Branding)
+### Social media carousel (minimal branding)
 
 ```json
 {
@@ -220,7 +214,7 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 }
 ```
 
-#### Document with Theme Logo
+### Document with theme logo
 
 ```json
 {
@@ -248,10 +242,9 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 }
 ```
 
-### Common Mistakes
+## Common mistakes
 
-{% hint style="warning" %}
-**Missing \`value\` for text type**
+### Missing `value` for text elements
 
 ```json
 // ❌ Wrong - missing value
@@ -260,10 +253,8 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 // ✅ Correct
 { "type": "text", "value": "My Text" }
 ```
-{% endhint %}
 
-{% hint style="warning" %}
-**Missing `src` for custom images**
+### Missing `src` for custom images
 
 ```json
 // ❌ Wrong - missing src
@@ -272,10 +263,8 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 // ✅ Correct  
 { "type": "image", "source": "custom", "src": "https://..." }
 ```
-{% endhint %}
 
-{% hint style="warning" %}
-**Boolean values as strings**
+### Boolean values as strings
 
 ```json
 // ❌ Wrong - string instead of boolean
@@ -284,7 +273,6 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 // ✅ Correct
 { "hideFromFirstCard": true }
 ```
-{% endhint %}
 
 ## Limitations
 
@@ -294,4 +282,6 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 
 ## Related
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h2><i class="fa-sliders">:sliders:</i></h2></td><td><strong>Generate API Parameters</strong></td><td>Complete parameter reference</td><td><a href="generate-api-parameters-explained.md">generate-api-parameters-explained.md</a></td></tr><tr><td><h2><i class="fa-image">:image:</i></h2></td><td><strong>Image Model Options</strong></td><td>Available AI image models</td><td><a href="../accepted-values/image-model-accepted-values.md">Image model accepted values</a></td></tr></tbody></table>
+* [Generate from text](generate-api-parameters-explained.md) for the full `cardOptions` and `sharingOptions` context
+* [Image model accepted values](../accepted-values/image-model-accepted-values.md) if you are pairing branding with AI-generated images
+* [API Overview](understanding-the-api-options.md) for the broader generation workflow

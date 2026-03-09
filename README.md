@@ -25,7 +25,7 @@ One API call. Polished presentations, documents, websites, and social posts — 
 {% endcolumn %}
 
 {% column %}
-<figure><img src=".gitbook/assets/landscape-developer-clouds.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/landscape-developer-clouds.png" alt="" width="375"></figure>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -132,7 +132,7 @@ Your presentation is live at `gammaUrl` and the PDF is ready at `exportUrl`.
 {% endcolumn %}
 
 {% column %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/example-campaign-report.png" alt="Example API-generated presentation"><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src=".gitbook/assets/example-campaign-report.png" alt="Example API-generated presentation"><figcaption><p>Example Gamma output after generation completes.</p></figcaption></figure></div>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -140,7 +140,7 @@ Your presentation is live at `gammaUrl` and the PDF is ready at `exportUrl`.
 Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization: Bearer`. See [Error codes](errors-and-warnings/error-codes.md) for other common issues.
 {% endhint %}
 
-### Endpoints
+## Endpoints
 
 | Endpoint | Method | Description |
 | --- | --- | --- |
@@ -155,7 +155,7 @@ Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization:
 **Building an AI integration?** The [Gamma MCP Server](overview/gamma-mcp-server.md) lets AI tools create gammas on behalf of users via OAuth with Dynamic Client Registration.
 {% endhint %}
 
-### What's new
+## What's new
 
 {% updates format="full" %}
 {% update date="2026-03-06" %}
@@ -175,7 +175,7 @@ Create from Template is now generally available. Plus new image models including
 {% endupdate %}
 {% endupdates %}
 
-### Next steps
+## Next steps
 
 * [Generate from text](overview/generate-api-parameters-explained.md) — choose format, themes, images, headers/footers, and sharing
 * [Generate from a template](overview/create-from-template-api-parameters-explained.md) — design once, generate variations

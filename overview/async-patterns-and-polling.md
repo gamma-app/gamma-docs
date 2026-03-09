@@ -5,24 +5,18 @@ icon: arrows-rotate
 
 # Async Patterns & Polling
 
-{% hint style="info" %}
-**Why is polling needed?**
+Gamma generation is asynchronous. You start a generation, receive a `generationId` immediately, then poll the status endpoint until the result is ready.
 
-Gamma generates content using AI, which can take 30 seconds to several minutes depending on complexity. Rather than keeping your connection open (which would timeout), Gamma uses an **async pattern**: you submit a request, get an ID back immediately, then check back periodically until it’s done.
-{% endhint %}
+## Quick reference
 
-{% hint style="warning" %}
-**Polling is how you get your URLs**
+- `POST /v1.0/generations` returns `generationId` only.
+- Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`.
+- `gammaUrl` and `exportUrl` are only available from the completed status response.
+- Export URLs are temporary signed URLs, so download exported files promptly.
 
-The initial `POST /generations` request **`only returns a generationId`** — it does NOT return the presentation URL or export files. You MUST poll the status endpoint to receive:
+## The basic flow
 
-* `gammaUrl` - The URL to view/share your presentation
-* `exportUrl` - Download URL for the exported file (if you requested an export via `exportAs`)
-{% endhint %}
-
-## The Basic Flow
-
-```
+```text
 POST /generations      →  Returns { generationId: "abc123" }
 Wait ~5 seconds
 GET /generations/abc123  →  Returns { status: "pending" }
@@ -30,7 +24,7 @@ Wait ~5 seconds
 GET /generations/abc123  →  Returns { status: "completed", gammaUrl: "...", exportUrl: "..." }
 ```
 
-## What You Get Back
+## What you get back
 
 When status is `completed`, the response includes:
 
@@ -39,11 +33,7 @@ When status is `completed`, the response includes:
 | `gammaUrl`  | Direct link to view/share the presentation in Gamma                 |
 | `exportUrl` | Download URL for the exported file (if `exportAs` was specified)    |
 
-{% hint style="success" %}
-Export URLs are **temporary signed URLs** that expire after some time. If you need to store the files, download them promptly after generation completes.
-{% endhint %}
-
-## Generation States
+## Generation states
 
 | Status      | Meaning              | What to Do                                    |
 | ----------- | -------------------- | --------------------------------------------- |
@@ -51,7 +41,7 @@ Export URLs are **temporary signed URLs** that expire after some time. If you ne
 | `completed` | Done!                | Stop polling — use `gammaUrl` and export URLs |
 | `failed`    | Something went wrong | Stop polling, check the `error` object        |
 
-## Code Examples
+## Code examples
 
 {% tabs %}
 {% tab title="Python" %}
@@ -223,9 +213,7 @@ Use the **Delay** action between your HTTP Request steps:
 4. Use **Paths** or **Filter** to check if `status` equals `completed`
 5. If still pending, use **Looping by Zapier** to repeat steps 2-4
 
-{% hint style="success" %}
 Zapier's "Delay for" action pauses your Zap for a specified time (minimum 1 minute). For most Gamma generations, a single 60-second delay followed by a status check works well.
-{% endhint %}
 
 ### Make (formerly Integromat)
 
@@ -247,45 +235,16 @@ Use the **Wait** node with time interval:
 4. **IF** node → Check `status === "completed"`
 5. Loop back to Wait node if still pending
 
-{% hint style="info" %}
 n8n's Wait node offloads execution data to the database during longer waits, so your workflow won't timeout even for complex generations.
-{% endhint %}
 
-### Best Practices
+## Best practices
 
-<details>
+- Use 5-second polling intervals. Polling more frequently will not speed up the generation and may increase the chance of rate limiting.
+- Set a maximum timeout. Most generations complete within 2-3 minutes, so a 5-minute ceiling is a good default for automation.
+- Handle all three states: `pending`, `completed`, and `failed`.
+- Use exponential backoff if you receive a 429 response.
 
-<summary>Use 5-second polling intervals</summary>
-
-Polling more frequently than every 5 seconds won’t make generation faster and may hit rate limits. 5 seconds is the sweet spot.
-
-</details>
-
-<details>
-
-<summary>Set a maximum timeout</summary>
-
-Most generations complete within 2-3 minutes. Set a maximum of 5 minutes (60 attempts × 5 seconds) to avoid infinite loops.
-
-</details>
-
-<details>
-
-<summary>Handle all three states</summary>
-
-Always check for `pending`, `completed`, AND `failed`. Don’t assume success - check the actual status value.
-
-</details>
-
-<details>
-
-<summary>Use exponential backoff for retries</summary>
-
-If you get rate limited (429), wait longer before retrying. Double your wait time with each retry: 5s → 10s → 20s → 40s.
-
-</details>
-
-## Working with Charts and Data Visualizations
+## Working with charts and data visualizations
 
 The Generate API can create charts and infographics through prompting, but output varies based on how you structure your request. Here's how to get the most consistent results.
 
@@ -299,11 +258,9 @@ The Generate API can create charts and infographics through prompting, but outpu
 
 **Keep chart instructions explicit.** Specify data types (label vs numeric), chart orientation, and axis formatting directly in your prompt or `additionalInstructions` to reduce ambiguity.
 
-{% hint style="info" %}
-Charts and infographics work best when your prompt includes the exact data values and explicit formatting preferences. General instructions like "make a chart" may produce inconsistent layouts.
-{% endhint %}
+Charts and infographics work best when your prompt includes exact data values and formatting preferences. General instructions like "make a chart" may produce inconsistent layouts.
 
-## Image Styling Tips
+## Image styling tips
 
 Getting cohesive, high-quality images across your generated content takes a bit of configuration. Here are the key levers.
 
@@ -330,42 +287,38 @@ If no model is specified, Gamma selects one automatically. Explicitly setting a 
 
 **Using your own images.** To use only images you provide (no AI-generated ones), set `imageOptions.source` to `"noImages"` and place your image URLs directly in `inputText`. Requirements:
 
-* URLs must be **HTTPS** (not HTTP)
-* URLs must end with a recognized extension: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`, `.heic`, `.heif`, or `.avif`
-* URLs should be on their own line, clearly standalone
-* URLs must be **publicly accessible** (no authentication required)
+- URLs must be **HTTPS** (not HTTP)
+- URLs must end with a recognized extension: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`, `.heic`, `.heif`, or `.avif`
+- URLs should be on their own line, clearly standalone
+- URLs must be **publicly accessible** (no authentication required)
 
 ```json
 "inputText": "Quarterly sales highlights\n\nhttps://example.com/assets/q3-chart.png\n\n---\n\nRegional breakdown\n\nhttps://example.com/assets/regions-map.png",
 "imageOptions": { "source": "noImages" }
 ```
 
-{% hint style="info" %}
-**Generation speed with images:** A 6-slide deck with AI-generated images typically takes 1-2 minutes. Using `flux-1-quick` or setting `"asyncImageGeneration": true` can reduce wait times.
-{% endhint %}
+A 6-slide deck with AI-generated images typically takes 1-2 minutes. Faster image models can reduce wait times.
 
-## Common Issues
+## Common issues
 
-{% hint style="warning" %}
-**"My generation is stuck on pending forever"**
+### `status` stays `pending` for too long
 
-Generations typically complete in 1-3 minutes. If you're waiting longer than 5 minutes:
+Generations typically complete in 1-3 minutes. If you are waiting longer than 5 minutes:
 
-* Check that you're polling the correct `generationId`
-* Verify your API key has sufficient credits
-* Try generating with fewer cards (`numCards`) to test
-{% endhint %}
+- Check that you're polling the correct `generationId`
+- Verify your API key has sufficient credits
+- Try generating with fewer cards (`numCards`) to test
 
-{% hint style="warning" %}
-**"I'm getting rate limited"**
+### You receive a 429 rate-limit response
 
 If you receive a 429 error:
 
-* You're polling too frequently (use 5+ second intervals)
-* Check the `Retry-After` header for guidance
-* If you're using an integration platform (Zapier, Make, n8n), the rate limit may be on their side rather than Gamma's
-{% endhint %}
+- Use 5+ second polling intervals
+- Check the `Retry-After` header for guidance
+- If you're using Zapier, Make, or n8n, the rate limit may be on the platform side rather than Gamma's
 
 ## Related
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h2><i class="fa-circle-exclamation">:circle-exclamation:</i></h2></td><td><strong>Error Codes</strong></td><td>Full list of error codes and troubleshooting tips</td><td><a href="../errors-and-warnings/error-codes.md">Error codes</a></td></tr><tr><td><h2><i class="fa-rocket">:rocket:</i></h2></td><td><strong>Getting started</strong></td><td>Quick start guide with your first API request</td><td><a href="../">..</a></td></tr></tbody></table>
+- [Error codes](../errors-and-warnings/error-codes.md) for the full list of API errors and troubleshooting guidance
+- [Generate from text](generate-api-parameters-explained.md) for parameter-level guidance on `POST /v1.0/generations`
+- [API Overview](understanding-the-api-options.md) for a broader workflow comparison

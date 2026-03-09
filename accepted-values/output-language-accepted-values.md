@@ -7,11 +7,11 @@ icon: language
 
 You can create gammas in different languages. To specify the output language of your gamma, use the appropriate string in the `textOptions.language` parameter. If nothing is specified in this parameter, Gamma creates your output in `en`, ie English (US).
 
-{% hint style="info" %}
-**One language per output.** Each generation request produces content in a single language. If you need the same content in multiple languages, make separate API calls for each language.
-{% endhint %}
+## Quick reference
 
-
+- Set `textOptions.language` to one of the keys below.
+- Each generation request produces output in a single language.
+- If you need multiple language variants, make separate generation requests.
 
 | Language                | Key      |
 | ----------------------- | -------- |
@@ -82,3 +82,8 @@ You can create gammas in different languages. To specify the output language of 
 | Vietnamese              | `vi`     |
 | Welsh                   | `cy`     |
 | Yoruba                  | `yo`     |
+
+## Related
+
+- [Generate from text](../overview/generate-api-parameters-explained.md) for where `textOptions.language` fits into the full request
+- [Create from template](../overview/create-from-template-api-parameters-explained.md) if you want to reuse a layout in multiple languages

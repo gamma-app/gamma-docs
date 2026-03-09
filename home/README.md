@@ -22,9 +22,9 @@ One API call. Polished presentations, documents, websites, and social posts — 
 
 <a href="https://gamma.app/settings" class="button primary">Get your API key</a><a href="../overview/understanding-the-api-options.md" class="button secondary">Read the docs</a>
 
-### Make your first request
+## Quickstart
 
-#### 1. Start a generation
+### 1. Start a generation
 
 {% tabs %}
 {% tab title="cURL" %}
@@ -96,7 +96,7 @@ Response:
 }
 ```
 
-#### 2. Poll for the result
+### 2. Poll for the result
 
 Generation is async. Use the `generationId` from step 1 to poll until `status` is `completed` or `failed`.
 
@@ -119,7 +119,7 @@ while True:
     ).json()
     if status["status"] in ("completed", "failed"):
         break
-    time.sleep(3)
+    time.sleep(5)
 ```
 {% endtab %}
 
@@ -127,7 +127,7 @@ while True:
 ```javascript
 let status;
 do {
-  await new Promise((r) => setTimeout(r, 3000));
+  await new Promise((r) => setTimeout(r, 5000));
   const res = await fetch(
     `https://public-api.gamma.app/v1.0/generations/${generationId}`,
     { headers: { "X-API-KEY": "your-api-key" } }
@@ -153,7 +153,7 @@ Response when complete:
 }
 ```
 
-#### 3. Use your Gamma
+### 3. Use your Gamma
 
 Open `gammaUrl` to view it, or download `exportUrl` for the PDF, PPTX, or PNG.
 
@@ -165,7 +165,7 @@ Gamma API gives you full control over content generation — format, theme, layo
 {% endcolumn %}
 
 {% column %}
-<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="375"></figure>
 {% endcolumn %}
 {% endcolumns %}
 

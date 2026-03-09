@@ -7,9 +7,14 @@ icon: plug
 
 Gamma integrates with popular AI assistants and automation platforms so you can create presentations, documents, webpages, and social posts from the tools you already use.
 
-{% hint style="info" %}
-**ChatGPT and Claude** work on all Gamma plans, including Free and Plus — no API key needed. **Zapier, Make, and n8n** require an API key (Pro, Ultra, Teams, or Business plan). See [Access and Pricing](access-and-pricing.md).
-{% endhint %}
+## Quick reference
+
+- ChatGPT and Claude work on all Gamma plans and do not require an API key.
+- Zapier, Make, n8n, and direct API integrations require an API key.
+- Use connectors when you want Gamma inside an assistant.
+- Use the API or automation platforms when you want programmatic control over prompts, polling, and downstream workflows.
+
+See [Access and Pricing](access-and-pricing.md) for plan details.
 
 {% tabs %}
 {% tab title="Claude" %}
@@ -45,9 +50,7 @@ Click **Connect**, then click **Allow** to grant access to your Gamma account. C
 
 Once connected, you can ask Claude to create presentations, documents, and more — all generated in Gamma.
 
-{% hint style="info" %}
-**Example prompt:** "Create a 10-slide marketing strategy presentation covering target audience, campaign channels, budget breakdown, and success metrics. Use a professional theme."
-{% endhint %}
+Example prompt: "Create a 10-slide marketing strategy presentation covering target audience, campaign channels, budget breakdown, and success metrics. Use a professional theme."
 {% endtab %}
 
 {% tab title="ChatGPT" %}
@@ -80,9 +83,7 @@ Once connected, invoke Gamma in any conversation by:
 * **@mention**: type `@Gamma` in your prompt
 * **App menu**: click **+** then **More** and select Gamma
 
-{% hint style="info" %}
-**Example prompt:** "@Gamma Create a 10-slide sales enablement deck covering our Q3 product launches, competitive positioning, and customer success stories. Use a professional theme."
-{% endhint %}
+Example prompt: "@Gamma Create a 10-slide sales enablement deck covering our Q3 product launches, competitive positioning, and customer success stories. Use a professional theme."
 {% endtab %}
 
 {% tab title="Zapier" %}
@@ -105,9 +106,7 @@ Automate Gamma content creation as part of your Zapier workflows.
 3. Authenticate with your Gamma API key.
 4. Map your trigger data to the Gamma generation parameters.
 
-{% hint style="info" %}
 Your Gamma API key is required. Generate one from your [account settings](https://gamma.app/settings).
-{% endhint %}
 {% endtab %}
 
 {% tab title="Make" %}
@@ -130,9 +129,7 @@ Build visual automation workflows that include Gamma content creation.
 3. Connect your Gamma account using your API key.
 4. Configure the module with your desired parameters.
 
-{% hint style="info" %}
 Your Gamma API key is required. Generate one from your [account settings](https://gamma.app/settings).
-{% endhint %}
 {% endtab %}
 
 {% tab title="n8n" %}
@@ -168,9 +165,7 @@ Use Gamma in your self-hosted or cloud n8n automation workflows with the officia
 4. Configure your generation parameters (input text, text mode, format, theme, etc.).
 5. To poll for results, add a second Gamma node with the **Get Status** operation and map the generation ID from the previous step.
 
-{% hint style="info" %}
 Your Gamma API key is required. Generate one from your [account settings](https://gamma.app/settings).
-{% endhint %}
 {% endtab %}
 
 {% tab title="Other Platforms" %}
@@ -207,3 +202,9 @@ See the [Generate API parameters guide](generate-api-parameters-explained.md) fo
 | Automate with no-code workflows | [Zapier](#zapier-integration), [Make](#make-integration), or [n8n](#n8n-integration) | Pro+ (API key) |
 | Build a custom MCP integration | [Gamma MCP Server](gamma-mcp-server.md) | Any plan |
 | Build a custom app with full programmatic control | [Gamma API](generate-api-parameters-explained.md) | Pro+ (API key) |
+
+## Related
+
+- [Access and Pricing](access-and-pricing.md) for plan and API key requirements
+- [Gamma MCP Server](gamma-mcp-server.md) if you want an AI-tool-friendly integration layer
+- [Generate from text](generate-api-parameters-explained.md) for the full API parameter guide

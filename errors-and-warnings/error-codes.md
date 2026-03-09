@@ -7,7 +7,15 @@ icon: circle-exclamation
 
 Below are detailed descriptions of error codes returned by the Gamma API.
 
-## Example Error Response
+## Quick reference
+
+- `400` means the request shape or values are invalid.
+- `401` usually means the API key is missing or invalid.
+- `402` means the workspace is out of credits.
+- `404` on generation polling usually means the `generationId` is wrong or unavailable.
+- `429` means you should slow down and retry later.
+
+## Example error response
 
 ```json
 {
@@ -42,6 +50,12 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 * Check that `numCards` is within your plan’s limits
 
 </details>
+
+## Related
+
+- [Warnings](warnings.md) for non-fatal response warnings
+- [Async Patterns and Polling](../overview/async-patterns-and-polling.md) if your error happens during generation status checks
+- [Get Help](../overview/get-help.md) if you need support escalation
 
 <details>
 

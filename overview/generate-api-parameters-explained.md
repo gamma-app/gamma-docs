@@ -13,13 +13,20 @@ Use this page when you already know you want `POST /v1.0/generations` and need h
 This page explains when and why to use each parameter. For the exact request body, field types, and response schema, use the `POST /generations` and `GET /generations/{id}` pages in the API Reference tab.
 {% endhint %}
 
-## Top level parameters
+## Quick reference
+
+- `inputText` is always required.
+- `textMode` controls whether Gamma expands, condenses, or preserves your source text.
+- `format`, `themeId`, `imageOptions`, and `cardOptions` shape the look and output type.
+- Poll `GET /v1.0/generations/{generationId}` to retrieve `gammaUrl`, `exportUrl`, and credit usage after creation.
+
+## Top-level parameters
 
 ### `inputText` _(required)_
 
 Content used to generate your gamma, including text and image URLs.
 
-#### **Add images to the input**
+**Add images to the input**
 
 You can provide URLs for specific images you want to include. Simply insert the URLs into your content where you want each image to appear (see example below). You can also add instructions for how to display the images in `additionalInstructions`, eg, "Group the last 10 images into a gallery to showcase them together."
 
@@ -27,11 +34,11 @@ You can provide URLs for specific images you want to include. Simply insert the 
 **Note:** If you want your gamma to use _only_ the images you provide (and not generate additional ones), set `imageOptions.source` to `noImages`.
 {% endhint %}
 
-#### **Token limits**
+**Token limits**
 
 The token limit is 100,000, which is approximately 400,000 characters. However, in some cases, the token limit may be lower, especially if your use case requires extra reasoning from our AI models. We highly recommend keeping inputText below 100,000 tokens and testing out a variety of inputs to get a good sense of what works for your use case.
 
-#### **Other tips**
+**Other tips**
 
 * Text can be as little as a few words that describe the topic of the content you want to generate.
 * You can also input longer text -- pages of messy notes or highly structured, detailed text.
@@ -185,7 +192,7 @@ Indicates if you'd like to return the generated gamma as an exported file as wel
 
 ### textOptions
 
-#### `textOptions.amount` _(optional, defaults to`medium`)_
+**`textOptions.amount`** _(optional, defaults to `medium`)_
 
 Influences how much text each card contains. Relevant only if `textMode` is set to `generate` or `condense`.
 
@@ -199,7 +206,7 @@ Influences how much text each card contains. Relevant only if `textMode` is set 
 ```
 {% endcode %}
 
-#### `textOptions.tone` _(optional)_
+**`textOptions.tone`** _(optional)_
 
 Defines the mood or voice of the output. Relevant only if `textMode` is set to `generate`.
 
@@ -222,7 +229,7 @@ Defines the mood or voice of the output. Relevant only if `textMode` is set to `
 ```
 {% endcode %}
 
-#### `textOptions.audience` _(optional)_
+**`textOptions.audience`** _(optional)_
 
 Describes who will be reading/viewing the gamma, which allows Gamma to cater the output to the intended group. Relevant only if `textMode` is set to `generate`.
 
@@ -245,7 +252,7 @@ Describes who will be reading/viewing the gamma, which allows Gamma to cater the
 ```
 {% endcode %}
 
-#### `textOptions.language` _(optional, defaults to`en`)_
+**`textOptions.language`** _(optional, defaults to `en`)_
 
 Determines the language in which your gamma is generated, regardless of the language of the `inputText`.
 
@@ -261,7 +268,7 @@ Determines the language in which your gamma is generated, regardless of the lang
 
 ### imageOptions
 
-#### `imageOptions.source` _(optional, defaults to`aiGenerated`)_
+**`imageOptions.source`** _(optional, defaults to `aiGenerated`)_
 
 Determines where the images for the gamma are sourced from. You can choose from the options below. If you are providing your own image URLs in `inputText` and want only those to be used, set `imageOptions.source` to `noImages` to indicate that Gamma should not generate additional images.
 
@@ -286,7 +293,7 @@ Determines where the images for the gamma are sourced from. You can choose from 
 ```
 {% endcode %}
 
-#### `imageOptions.model` _(optional)_
+**`imageOptions.model`** _(optional)_
 
 This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The `imageOptions.model` parameter determines which model is used to generate images.
 
@@ -301,7 +308,7 @@ This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The
 ```
 {% endcode %}
 
-#### `imageOptions.style` _(optional)_
+**`imageOptions.style`** _(optional)_
 
 This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The `imageOptions.style` parameter influences the artistic style of the images generated. While this is an optional field, we highly recommend adding some direction here to create images in a cohesive style.
 
@@ -317,7 +324,7 @@ This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The
 ```
 {% endcode %}
 
-#### What about Accent Images?
+**What about accent images?**
 
 {% hint style="info" %}
 **Accent images are automatically placed by Gamma** - they cannot be directly controlled via the API.
@@ -331,7 +338,7 @@ Accent images are large, decorative images that enhance the visual appeal of car
 The placement works best with fixed-dimension formats like `16x9` presentations. If you need more control over images, consider providing specific image URLs directly in your `inputText`.
 {% endhint %}
 
-#### Providing Your Own Image URLs
+**Providing your own image URLs**
 
 When including image URLs in your `inputText`, follow these best practices to avoid broken images:
 
@@ -368,7 +375,7 @@ Gamma stores references to your image URLs. If the URL expires or becomes inacce
 
 ### cardOptions
 
-#### `cardOptions.dimensions` _(optional)_
+**`cardOptions.dimensions`** _(optional)_
 
 Determines the aspect ratio of the cards to be generated. Fluid cards expand with your content. Not applicable if `format` is `webpage`.
 
@@ -384,7 +391,7 @@ Determines the aspect ratio of the cards to be generated. Fluid cards expand wit
 ```
 {% endcode %}
 
-#### `cardOptions.headerFooter` _(optional)_
+**`cardOptions.headerFooter`** _(optional)_
 
 Allows you to specify elements in the header and footer of the cards. Not applicable if `format` is `webpage`.
 
@@ -442,7 +449,7 @@ Allows you to specify elements in the header and footer of the cards. Not applic
 
 ### sharingOptions
 
-#### `sharingOptions.workspaceAccess` _(optional, defaults to workspace share settings)_
+**`sharingOptions.workspaceAccess`** _(optional, defaults to workspace share settings)_
 
 Determines level of access members in your workspace will have to your generated gamma.
 
@@ -455,7 +462,7 @@ Determines level of access members in your workspace will have to your generated
 }
 ```
 
-#### `sharingOptions.externalAccess` _(optional, defaults to workspace share settings)_
+**`sharingOptions.externalAccess`** _(optional, defaults to workspace share settings)_
 
 Determines level of access members **outside your workspace** will have to your generated gamma.
 
@@ -469,7 +476,7 @@ Determines level of access members **outside your workspace** will have to your 
 ```
 {% endcode %}
 
-#### `sharingOptions.emailOptions` _(optional)_
+**`sharingOptions.emailOptions`** _(optional)_
 
 Allows you to share your gamma with specific recipients via their email address.
 
@@ -482,7 +489,7 @@ Allows you to share your gamma with specific recipients via their email address.
 ```
 {% endcode %}
 
-#### `sharingOptions.emailOptions.access` _(optional)_
+**`sharingOptions.emailOptions.access`** _(optional)_
 
 Determines level of access those specified in `sharingOptions.emailOptions.recipients` have to your generated gamma. Only workspace members can have `fullAccess`
 
@@ -496,3 +503,9 @@ Determines level of access those specified in `sharingOptions.emailOptions.recip
 }
 ```
 {% endcode %}
+
+## Related
+
+- [Generate from a template](create-from-template-api-parameters-explained.md) if you want to preserve an existing layout
+- [Async Patterns and Polling](async-patterns-and-polling.md) for the post-request workflow
+- [Header and Footer Formatting](header-and-footer-formatting.md) for deeper guidance on `cardOptions.headerFooter`

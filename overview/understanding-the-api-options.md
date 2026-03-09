@@ -33,6 +33,13 @@ The completed response includes `gammaUrl` (view it in Gamma) and `exportUrl` (d
 
 See [Async Patterns and Polling](async-patterns-and-polling.md) for full implementation examples in Python, JavaScript, and cURL.
 
+## Quick reference
+
+- Use `POST /v1.0/generations` when you want Gamma to create the layout from your prompt and parameters.
+- Use `POST /v1.0/generations/from-template` when you already have a Gamma template and want repeated outputs in the same structure.
+- Poll `GET /v1.0/generations/{generationId}` until `status` is `completed` or `failed`.
+- Use `GET /v1.0/themes` and `GET /v1.0/folders` to look up IDs before generation.
+
 ## Two ways to generate
 
 | | Generate API | Create from Template API |
@@ -44,8 +51,8 @@ See [Async Patterns and Polling](async-patterns-and-polling.md) for full impleme
 
 Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`. See the full parameter reference for each:
 
-* [Generate API Parameters](generate-api-parameters-explained.md)
-* [Create from Template Parameters](create-from-template-api-parameters-explained.md)
+- [Generate API Parameters](generate-api-parameters-explained.md)
+- [Create from Template Parameters](create-from-template-api-parameters-explained.md)
 
 ## Key parameters at a glance
 
@@ -64,11 +71,11 @@ Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`.
 
 {% columns %}
 {% column %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-advantages.png" alt="Example: themed presentation with branded layout"><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-advantages.png" alt="Example: themed presentation with branded layout"><figcaption><p>Theme and layout choices can shape a generation without changing the underlying workflow.</p></figcaption></figure></div>
 {% endcolumn %}
 
 {% column %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-challenges.png" alt="Example: AI-generated infographics and data visualization"><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-challenges.png" alt="Example: AI-generated infographics and data visualization"><figcaption><p>Prompting, image settings, and export choices affect the final output you receive.</p></figcaption></figure></div>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -96,3 +103,9 @@ API access requires a Pro, Ultra, Teams, or Business plan. See [Access and Prici
 {% hint style="info" %}
 **Not a developer?** You can also use Gamma through [Connectors and Integrations](connectors-and-integrations.md) — Claude, Zapier, Make, and n8n. No code required.
 {% endhint %}
+
+## Related
+
+- [Generate from text](generate-api-parameters-explained.md) for a parameter-by-parameter walkthrough of `POST /v1.0/generations`
+- [Generate from a template](create-from-template-api-parameters-explained.md) for the fixed-layout workflow
+- [Async Patterns and Polling](async-patterns-and-polling.md) for complete polling implementations
