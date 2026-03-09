@@ -17,21 +17,22 @@ layout:
 
 # Gamma Developer Documentation
 
-{% columns %}
-{% column valign="middle" %}
 One API call. Polished presentations, documents, websites, and social posts — branded, exported, and shared.
 
 <a href="https://gamma.app/settings/api-keys" class="button primary">Get your API key</a><a href="overview/understanding-the-api-options.md" class="button secondary">API overview</a>
-{% endcolumn %}
 
-{% column %}
-<figure><img src=".gitbook/assets/landscape-developer-clouds.png" alt="" width="563"></figure>
-{% endcolumn %}
-{% endcolumns %}
+## Authentication
+
+All requests require an API key in the `X-API-KEY` header. Generate a key from [Account Settings > API Keys](https://gamma.app/settings/api-keys).
+
+| Header | Value | Required |
+| --- | --- | --- |
+| `X-API-KEY` | Your API key | Yes |
+| `Content-Type` | `application/json` | Yes |
+
+API key access requires a Pro, Ultra, Teams, or Business plan. [ChatGPT and Claude connectors](overview/connectors-and-integrations.md) work on all plans and do not require an API key.
 
 ## Quickstart
-
-Authenticate with your API key via the `X-API-KEY` header. API key access requires a Pro, Ultra, Teams, or Business plan. [ChatGPT and Claude connectors](overview/connectors-and-integrations.md) work on all plans.
 
 ### 1. Start a generation
 
@@ -97,20 +98,19 @@ const { generationId } = await response.json();
 {% endtab %}
 {% endtabs %}
 
-Response:
-
+{% code title="Response" %}
 ```json
 {
   "generationId": "abc123xyz"
 }
 ```
+{% endcode %}
 
 ### 2. Poll for the result
 
 Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`. Full polling examples in [Async Patterns and Polling](overview/async-patterns-and-polling.md).
 
-Response when complete:
-
+{% code title="Response (completed)" %}
 ```json
 {
   "generationId": "abc123xyz",
@@ -123,18 +123,11 @@ Response when complete:
   }
 }
 ```
+{% endcode %}
 
 ### 3. Use your Gamma
 
-{% columns %}
-{% column valign="middle" %}
-Your presentation is live at `gammaUrl` and the PDF is ready at `exportUrl`.
-{% endcolumn %}
-
-{% column %}
-<div data-with-frame="true"><figure><img src=".gitbook/assets/example-campaign-report.png" alt="Example API-generated presentation"><figcaption><p>Example Gamma output after generation completes.</p></figcaption></figure></div>
-{% endcolumn %}
-{% endcolumns %}
+Your presentation is live at `gammaUrl`. If you specified `exportAs`, the file is ready at `exportUrl`.
 
 {% hint style="info" %}
 Getting a 401? Gamma uses `X-API-KEY` as a custom header — not `Authorization: Bearer`. See [Error codes](errors-and-warnings/error-codes.md) for other common issues.
@@ -177,8 +170,4 @@ Create from Template is now generally available. Plus new image models including
 
 ## Next steps
 
-* [Generate from text](overview/generate-api-parameters-explained.md) — choose format, themes, images, headers/footers, and sharing
-* [Generate from a template](overview/create-from-template-api-parameters-explained.md) — design once, generate variations
-* [Gamma MCP Server](overview/gamma-mcp-server.md) — connect AI tools to Gamma via MCP
-* [Connectors and Integrations](overview/connectors-and-integrations.md) — ChatGPT, Claude, Zapier, Make, n8n
-* [Contact sales](https://gamma.app/contact-sales) — enterprise plans and custom integrations
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Generate from text</strong></td><td>Control format, themes, images, headers/footers, and sharing.</td><td><a href="overview/generate-api-parameters-explained.md">Generate from text</a></td></tr><tr><td><strong>Generate from a template</strong></td><td>Design a template once, then generate variations programmatically.</td><td><a href="overview/create-from-template-api-parameters-explained.md">Generate from template</a></td></tr><tr><td><strong>Connectors and Integrations</strong></td><td>ChatGPT, Claude, Zapier, Make, and n8n — no API key needed for connectors.</td><td><a href="overview/connectors-and-integrations.md">Connectors</a></td></tr><tr><td><strong>Gamma MCP Server</strong></td><td>Let AI tools create gammas on behalf of users via OAuth.</td><td><a href="overview/gamma-mcp-server.md">MCP Server</a></td></tr></tbody></table>

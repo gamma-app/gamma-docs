@@ -18,11 +18,14 @@ Every page must include the sections marked "required" for its type. Optional se
 
 | Order | Section | Required |
 | --- | --- | --- |
-| 1 | Short hero intro + CTA buttons | yes |
-| 2 | `## Quickstart` | yes |
-| 3 | `## Endpoints` or equivalent discovery section | yes |
-| 4 | `## What's new` | optional |
-| 5 | `## Next steps` or `## Resources` | yes |
+| 1 | Short text intro + CTA buttons (no hero image) | yes |
+| 2 | `## Authentication` (header table + key link) | yes |
+| 3 | `## Quickstart` | yes |
+| 4 | `## Endpoints` or equivalent discovery section | yes |
+| 5 | `## What's new` | optional |
+| 6 | `## Next steps` as a card table (not a bullet list) | yes |
+
+Do not use decorative hero images on landing pages. Lead with text, auth, and code -- matching the Anthropic and OpenAI pattern where the quickstart is above the fold.
 
 ### Guide pages
 
@@ -81,15 +84,11 @@ All images must have an explicit `width` attribute. Do not let images render at 
 
 ### Decorative / hero images
 
-- No caption needed.
-- Empty `alt=""` is acceptable.
-- Use only on landing pages.
+Do not use decorative hero images on landing pages or guide pages. They push the quickstart and code examples below the fold. Leading API docs sites (Anthropic, OpenAI, Stripe) use zero decorative images above the fold.
 
-```html
-<figure>
-  <img src=".gitbook/assets/hero.png" alt="" width="563">
-</figure>
-```
+### When to use screenshots vs inline text
+
+Prefer inline text directions over screenshots. Screenshots break when the UI changes and add visual weight without proportional information value. Use a screenshot only when the UI element is genuinely hard to describe in words (e.g., a multi-step template setup flow). For simple "where to find the ID" instructions, a parenthetical like "(open the theme and copy the ID from the URL)" is sufficient.
 
 ## GitBook blocks
 
@@ -115,12 +114,16 @@ Do not use `hint` for ordinary examples, filler emphasis, or content that works 
 
 ### `columns`
 
-Use for side-by-side image comparisons or hero layouts. Always set image widths inside columns explicitly.
+Use sparingly. Columns are appropriate for side-by-side code comparisons or template setup screenshots. Do not use columns for hero image layouts.
+
+### `{% code title="..." %}`
+
+Use to label response examples inline with their request. Wrap response JSON in `{% code title="Response" %}` so it reads as part of the same interaction, not a separate section. Do not use standalone "Response:" labels as prose between code blocks.
 
 ## Tables, cards, and surfaced content
 
 - Use markdown tables for compact reference data.
-- Use GitBook card tables only for navigation or discovery blocks.
+- Use GitBook card tables for navigation and discovery blocks (e.g., "Next steps" on landing pages).
 - Do not use card tables for ordinary best-practice bullets.
 - End every guide page with a simple `## Related` bullet list.
 
@@ -146,8 +149,12 @@ Use this checklist before merging any docs change:
 - [ ] All sections use `##` or `###` only (no `####`)
 - [ ] `## Quick reference` is present (guide and reference pages)
 - [ ] `## Related` is present with 2-4 links
-- [ ] All images have an explicit `width` attribute
-- [ ] All instructional screenshots have meaningful `alt` and a caption
+- [ ] No decorative hero images on landing or guide pages
+- [ ] Landing page has `## Authentication` before `## Quickstart`
+- [ ] Response JSON uses `{% code title="Response" %}`, not standalone prose labels
+- [ ] "Next steps" uses a card table, not a bullet list (landing pages)
+- [ ] Screenshots are used only where inline text cannot describe the UI element
+- [ ] All remaining images have an explicit `width` attribute
 - [ ] No back-to-back `hint` blocks unless one is a true warning
 - [ ] Polling interval is consistently 5 seconds across all examples
 - [ ] Headings use sentence case

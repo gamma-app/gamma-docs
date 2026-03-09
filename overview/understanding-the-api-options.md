@@ -69,16 +69,6 @@ Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`.
 | `cardOptions.headerFooter` | Logo, page numbers, text | 6 positions per card — see [Header and Footer Formatting](header-and-footer-formatting.md) |
 | `sharingOptions` | Permissions on the generated gamma | Workspace, external link, and email access levels |
 
-{% columns %}
-{% column %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-advantages.png" alt="Example: themed presentation with branded layout" width="375"><figcaption><p>Theme and layout choices can shape a generation without changing the underlying workflow.</p></figcaption></figure></div>
-{% endcolumn %}
-
-{% column %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-challenges.png" alt="Example: AI-generated infographics and data visualization" width="375"><figcaption><p>Prompting, image settings, and export choices affect the final output you receive.</p></figcaption></figure></div>
-{% endcolumn %}
-{% endcolumns %}
-
 ## Supporting endpoints
 
 | Endpoint | Purpose |
