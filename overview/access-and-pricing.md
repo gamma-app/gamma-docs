@@ -18,7 +18,7 @@ icon: key
 
 API key access is available on Pro, Ultra, Teams, and Business plans. Generate an API key from your [account settings](https://gamma.app/settings). View [pricing plans here](https://gamma.app/pricing).
 
-<figure><img src="../.gitbook/assets/api-key-settings.png" alt="API key generation in Gamma account settings"><figcaption><p>Generate an API key from Settings → API keys</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/api-key-settings.png" alt="API key generation in Gamma account settings" width="563"><figcaption><p>Generate an API key from Settings → API keys</p></figcaption></figure>
 
 ### Connectors (ChatGPT, Claude)
 
@@ -29,7 +29,7 @@ Connectors are available on all plans, including Free and Plus. No API key requi
 * API billing uses a credit-based system. Higher tier subscribers receive more monthly credits.
 * If you run out of credits, you can upgrade to a higher subscription tier, purchase credits ad hoc, or enable auto-recharge (_recommended_) at [gamma.app/settings/billing](https://gamma.app/settings/billing).
 
-<figure><img src="../.gitbook/assets/billing-credits.png" alt="Credit management and auto-recharge in billing settings"><figcaption><p>Manage credits and enable auto-recharge from Settings → Billing</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/billing-credits.png" alt="Credit management and auto-recharge in billing settings" width="563"><figcaption><p>Manage credits and enable auto-recharge from Settings → Billing</p></figcaption></figure>
 
 ## How credits work
 

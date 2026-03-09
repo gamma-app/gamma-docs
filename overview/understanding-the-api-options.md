@@ -71,11 +71,11 @@ Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`.
 
 {% columns %}
 {% column %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-advantages.png" alt="Example: themed presentation with branded layout"><figcaption><p>Theme and layout choices can shape a generation without changing the underlying workflow.</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-advantages.png" alt="Example: themed presentation with branded layout" width="375"><figcaption><p>Theme and layout choices can shape a generation without changing the underlying workflow.</p></figcaption></figure></div>
 {% endcolumn %}
 
 {% column %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-challenges.png" alt="Example: AI-generated infographics and data visualization"><figcaption><p>Prompting, image settings, and export choices affect the final output you receive.</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/example-internal-challenges.png" alt="Example: AI-generated infographics and data visualization" width="375"><figcaption><p>Prompting, image settings, and export choices affect the final output you receive.</p></figcaption></figure></div>
 {% endcolumn %}
 {% endcolumns %}
 

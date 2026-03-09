@@ -91,7 +91,7 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 
 * You can use the [`GET /v1.0/themes`](../endpoints/list-themes.md) endpoint to pull a list of themes from your workspace. Or you can copy over the themeId from the app directly.
 
-<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Finding the theme ID in the Gamma app"><figcaption><p>Copy the theme ID directly from the Gamma app</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Finding the theme ID in the Gamma app" width="563"><figcaption><p>Copy the theme ID directly from the Gamma app</p></figcaption></figure>
 
 {% code title="Example" %}
 ```json
@@ -166,7 +166,7 @@ Defines which folder(s) your gamma is stored in.
 * You can use the [`GET /v1.0/folders`](../endpoints/list-folders.md) endpoint to pull a list of folders. Or you can copy over the folderIds from the app directly.
 * You must be a member of a folder to be able to add gammas to that folder.
 
-<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Finding the folder ID in the Gamma app"><figcaption><p>Copy the folder ID directly from the Gamma app</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Finding the folder ID in the Gamma app" width="563"><figcaption><p>Copy the folder ID directly from the Gamma app</p></figcaption></figure>
 
 ```json
 "folderIds": ["123abc456def", "456123abcdef"]

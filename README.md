@@ -25,7 +25,7 @@ One API call. Polished presentations, documents, websites, and social posts — 
 {% endcolumn %}
 
 {% column %}
-<figure><img src=".gitbook/assets/landscape-developer-clouds.png" alt="" width="375"></figure>
+<figure><img src=".gitbook/assets/landscape-developer-clouds.png" alt="" width="563"></figure>
 {% endcolumn %}
 {% endcolumns %}
 
