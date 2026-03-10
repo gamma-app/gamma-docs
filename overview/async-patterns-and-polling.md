@@ -244,61 +244,6 @@ n8n's Wait node offloads execution data to the database during longer waits, so 
 - Handle all three states: `pending`, `completed`, and `failed`.
 - Use exponential backoff if you receive a 429 response.
 
-## Working with charts and data visualizations
-
-The Generate API can create charts and infographics through prompting, but output varies based on how you structure your request. Here's how to get the most consistent results.
-
-**Include your exact data in the prompt.** Provide your data as a small table or bullet points along with the chart type you want (bar, line, pie), axes labels, and any specific formatting. The more detail you provide, the more reliable the output.
-
-```json
-"inputText": "Create a bar chart showing Q3 revenue by region:\n- North America: $4.2M\n- Europe: $2.8M\n- APAC: $1.5M\n\nUse a horizontal bar chart with region labels on the y-axis."
-```
-
-**Use templates for repeated chart formats.** If you generate the same type of chart regularly (e.g., weekly sales reports), create a template in the Gamma app with your preferred chart layout and use the [Create from Template API](create-from-template-api-parameters-explained.md). This gives you more control over chart structure than generating from scratch.
-
-**Keep chart instructions explicit.** Specify data types (label vs numeric), chart orientation, and axis formatting directly in your prompt or `additionalInstructions` to reduce ambiguity.
-
-Charts and infographics work best when your prompt includes exact data values and formatting preferences. General instructions like "make a chart" may produce inconsistent layouts.
-
-## Image styling tips
-
-Getting cohesive, high-quality images across your generated content takes a bit of configuration. Here are the key levers.
-
-**Always set `imageOptions.style`.** Even a simple one-word style like `"photorealistic"` or `"minimal illustration"` creates visual consistency across all generated images in a deck. Without it, each image may have a different artistic treatment.
-
-```json
-"imageOptions": {
-  "source": "aiGenerated",
-  "model": "flux-kontext-fast",
-  "style": "photorealistic, professional, clean lighting"
-}
-```
-
-**Choose your model intentionally.** Different models have different speed, quality, and credit tradeoffs:
-
-| Speed | Model | Credits/Image | Notes |
-| --- | --- | --- | --- |
-| Fastest | `flux-1-quick` | 2 | Best for drafts and high-volume generation |
-| Fast | `flux-kontext-fast` | 2 | Good balance of speed and quality |
-| High quality | `flux-1-pro` | 8 | Better detail and composition |
-| Premium | `imagen-4-pro` | 8 | Strong photorealism |
-
-If no model is specified, Gamma selects one automatically. Explicitly setting a model avoids unexpected defaults.
-
-**Using your own images.** To use only images you provide (no AI-generated ones), set `imageOptions.source` to `"noImages"` and place your image URLs directly in `inputText`. Requirements:
-
-- URLs must be **HTTPS** (not HTTP)
-- URLs must end with a recognized extension: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`, `.heic`, `.heif`, or `.avif`
-- URLs should be on their own line, clearly standalone
-- URLs must be **publicly accessible** (no authentication required)
-
-```json
-"inputText": "Quarterly sales highlights\n\nhttps://example.com/assets/q3-chart.png\n\n---\n\nRegional breakdown\n\nhttps://example.com/assets/regions-map.png",
-"imageOptions": { "source": "noImages" }
-```
-
-A 6-slide deck with AI-generated images typically takes 1-2 minutes. Faster image models can reduce wait times.
-
 ## Common issues
 
 ### `status` stays `pending` for too long
@@ -321,4 +266,6 @@ If you receive a 429 error:
 
 - [Error codes](../errors-and-warnings/error-codes.md) for the full list of API errors and troubleshooting guidance
 - [Generate from text](generate-api-parameters-explained.md) for parameter-level guidance on `POST /v1.0/generations`
+- [Charts and structured content](charts-and-structured-content.md) for prompting charts and infographics
+- [Image URL best practices](image-url-best-practices.md) for including your own images
 - [API Overview](understanding-the-api-options.md) for a broader workflow comparison
