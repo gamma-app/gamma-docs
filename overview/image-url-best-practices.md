@@ -29,11 +29,11 @@ If the fetch fails for any reason, the image is silently skipped — you won't g
 
 For Gamma to detect and use your image URLs, they must meet **all** of the following:
 
-| Requirement | Details |
+| **Requirement** | **Details** |
 | --- | --- |
-| **HTTPS only** | URLs must start with `https://`. HTTP URLs are ignored. |
-| **Recognized image extension** | Must end with one of: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`, `.heic`, `.heif`, `.avif` |
-| **Publicly accessible** | No authentication headers, login walls, or IP restrictions. Gamma's servers must be able to fetch the URL directly. |
+| HTTPS only | URLs must start with `https://`. HTTP URLs are ignored. |
+| Recognized image extension | Must end with one of: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`, `.heic`, `.heif`, `.avif` |
+| Publicly accessible | No authentication headers, login walls, or IP restrictions. Gamma's servers must be able to fetch the URL directly. |
 
 {% hint style="warning" %}
 **Query parameters are fine.** URLs like `https://cdn.example.com/photo.jpg?width=800&quality=90` will work — Gamma matches the extension before any `?` query string.
