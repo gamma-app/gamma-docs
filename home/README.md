@@ -165,7 +165,7 @@ Gamma API gives you full control over content generation — format, theme, layo
 {% endcolumn %}
 
 {% column %}
-<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="375"></figure>
+<figure><img src=".gitbook/assets/landscape-developer.png" alt="" width="50%"></figure>
 {% endcolumn %}
 {% endcolumns %}
 

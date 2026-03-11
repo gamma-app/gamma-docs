@@ -38,11 +38,11 @@ Identifies the template you want to modify. You can find and copy the gammaId fo
 
 {% columns %}
 {% column %}
-<figure><img src="../.gitbook/assets/template-gamma-id.png" alt="Finding the gamma ID for a template" width="375"><figcaption><p>Copy the template Gamma ID from the app before you make the request.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/template-gamma-id.png" alt="Finding the gamma ID for a template" width="50%"><figcaption><p>Copy the template Gamma ID from the app before you make the request.</p></figcaption></figure>
 {% endcolumn %}
 
 {% column %}
-<figure><img src="../.gitbook/assets/template-one-page.png" alt="Template must have exactly one page" width="375"><figcaption><p>Create from Template works best when the source Gamma has exactly one page.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/template-one-page.png" alt="Template must have exactly one page" width="50%"><figcaption><p>Create from Template works best when the source Gamma has exactly one page.</p></figcaption></figure>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -86,7 +86,7 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 
 * Use [`GET /v1.0/themes`](../endpoints/list-themes.md) to list themes from your workspace, or copy the theme ID directly from the app.
 
-<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Theme ID location in Gamma" width="563"><figcaption><p>Copy the theme ID from the app</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Theme ID location in Gamma" width="75%"><figcaption><p>Copy the theme ID from the app</p></figcaption></figure>
 
 {% code title="Example" %}
 ```json
@@ -103,7 +103,7 @@ Defines which folder(s) your gamma is stored in.
 * Use [`GET /v1.0/folders`](../endpoints/list-folders.md) to list folders, or copy the folder ID directly from the app.
 * You must be a member of a folder to add gammas to it.
 
-<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Folder ID location in Gamma" width="563"><figcaption><p>Copy the folder ID from the app</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Folder ID location in Gamma" width="75%"><figcaption><p>Copy the folder ID from the app</p></figcaption></figure>
 
 ```json
 "folderIds": ["123abc456def", "456123abcdef"]

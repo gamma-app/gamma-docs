@@ -61,10 +61,10 @@ All images must have an explicit `width` attribute. Do not let images render at 
 
 | Context | Width | Example |
 | --- | --- | --- |
-| Hero / decorative image in a column layout | `width="563"` | Homepage hero |
-| Instructional screenshot, standalone | `width="563"` | API key settings, billing credits |
-| Instructional screenshot in a two-column layout | `width="375"` | Template ID, example outputs |
-| Example output with `data-with-frame` in a column | `width="375"` | API Overview example cards |
+| Hero / decorative image in a column layout | `width="75%"` | Homepage hero |
+| Instructional screenshot, standalone | `width="75%"` | API key settings, billing credits |
+| Instructional screenshot in a two-column layout | `width="50%"` | Template ID, example outputs |
+| Example output with `data-with-frame` in a column | `width="50%"` | API Overview example cards |
 
 ### Instructional screenshots
 
@@ -77,7 +77,7 @@ All images must have an explicit `width` attribute. Do not let images render at 
 <figure>
   <img src="../.gitbook/assets/example.png"
        alt="Where to find the theme ID in Gamma"
-       width="563">
+       width="75%">
   <figcaption><p>Copy the theme ID from the Gamma app before making the request.</p></figcaption>
 </figure>
 ```
@@ -92,14 +92,14 @@ Use inline screenshots (width 450px) to give visual context for UI elements. Thi
 
 | Context | Width | Example |
 | --- | --- | --- |
-| Inline instructional screenshot | `width="450"` | Theme ID location, folder ID, billing settings |
-| Side-by-side screenshots in columns | `width="375"` | Template setup steps |
+| Inline instructional screenshot | `width="75%"` | Theme ID location, folder ID, billing settings |
+| Side-by-side screenshots in columns | `width="50%"` | Template setup steps |
 
 ```html
 <figure>
   <img src="../.gitbook/assets/example.png"
        alt="Theme ID location in Gamma"
-       width="450">
+       width="75%">
   <figcaption><p>Copy the theme ID from the app</p></figcaption>
 </figure>
 ```
