@@ -2,6 +2,17 @@
 description: >-
   When to use the Generate endpoint and how to choose the parameters that shape
   the output.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Generate from text

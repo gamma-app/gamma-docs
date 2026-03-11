@@ -1,5 +1,16 @@
 ---
 description: API access requirements, credit-based pricing, and plan details.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Review access and pricing

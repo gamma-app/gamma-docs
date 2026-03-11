@@ -1,5 +1,16 @@
 ---
 description: Gamma MCP powers Gamma Connectors and integrations in popular AI tools.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Set up the MCP server

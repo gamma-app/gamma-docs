@@ -2,6 +2,17 @@
 description: >-
   When to use the Create from Template endpoint and how to choose the
   parameters that control the generated output.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Generate from template

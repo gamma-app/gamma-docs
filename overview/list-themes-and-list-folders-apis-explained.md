@@ -2,6 +2,17 @@
 description: >-
   How to use the themes and folders endpoints to fetch the IDs you need for
   generation requests.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Use themes and folders

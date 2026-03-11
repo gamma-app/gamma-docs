@@ -2,6 +2,17 @@
 description: >-
   How to include your own images in API-generated gammas, and how to avoid
   common issues with broken or missing images.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Optimize image URLs

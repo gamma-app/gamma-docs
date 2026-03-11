@@ -1,5 +1,16 @@
 ---
 description: Detailed guide to customizing headers and footers in Gamma presentations.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Format headers and footers

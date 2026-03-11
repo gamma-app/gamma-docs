@@ -1,5 +1,16 @@
 ---
 description: Release history for the Gamma Public API, MCP Server, and integrations.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Changelog

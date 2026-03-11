@@ -2,6 +2,17 @@
 description: >-
   How to get the best chart, table, and structured visual results from the
   Gamma API.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Add charts and structured content

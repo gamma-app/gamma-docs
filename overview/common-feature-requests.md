@@ -1,6 +1,17 @@
 ---
 description: >-
   What the Gamma API covers today and how to work within its current scope.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # API scope and limits

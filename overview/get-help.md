@@ -1,5 +1,16 @@
 ---
 description: There are several ways to get in touch with us.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Get help

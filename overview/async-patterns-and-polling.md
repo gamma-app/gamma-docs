@@ -1,5 +1,16 @@
 ---
 description: Understanding how to work with Gamma’s asynchronous API and poll for results
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Poll for results

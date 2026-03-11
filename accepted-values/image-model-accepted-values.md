@@ -2,6 +2,17 @@
 description: >-
   When creating AI generated images in your gamma, you can specify which model
   to use.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Image models

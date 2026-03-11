@@ -1,5 +1,16 @@
 ---
 description: How the Gamma API works, what it can do, and which endpoint to use.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Explore the API

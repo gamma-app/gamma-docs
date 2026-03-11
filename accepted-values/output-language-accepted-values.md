@@ -1,5 +1,16 @@
 ---
 description: Specify the output language of your gamma.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Output languages
