@@ -63,7 +63,7 @@ layout:
 | Recraft V3 Vector | `recraft-v3-svg` | 40 |
 | Recraft V4 Vector | `recraft-v4-svg` | 40 |
 
-### Nano Banana 2
+### Nano Banana 2 (Pro Plan)
 
 | Model Name | String | Credits/Image | Resolution |
 | --- | --- | --- | --- |

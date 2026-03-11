@@ -35,13 +35,12 @@ The Gamma API focuses on content generation and workspace management. This page 
 | Poll generation status and get results | `GET /generations/{id}` |
 | List available themes | `GET /themes` |
 | List workspace folders | `GET /folders` |
-| Archive a gamma | `POST /gammas/{gammaId}/archive` |
 
 ### Working outside the current scope
 
 #### Updating content after generation
 
-The API creates gammas but does not modify existing ones. To update content, generate a new gamma with the revised input and archive the previous version using `POST /gammas/{gammaId}/archive`.
+The API creates gammas but does not modify existing ones. To update content, generate a new gamma with the revised input.
 
 #### Waiting for generation to complete
 

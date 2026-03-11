@@ -86,7 +86,7 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 
 * Use [`GET /v1.0/themes`](../endpoints/list-themes.md) to list themes from your workspace, or copy the theme ID directly from the app.
 
-<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Theme ID location in Gamma" width="300"><figcaption><p>Copy the theme ID from the app</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/theme-id-location.png" alt="Theme ID location in Gamma" width="450"><figcaption><p>Copy the theme ID from the app</p></figcaption></figure>
 
 {% code title="Example" %}
 ```json
@@ -103,7 +103,7 @@ Defines which folder(s) your gamma is stored in.
 * Use [`GET /v1.0/folders`](../endpoints/list-folders.md) to list folders, or copy the folder ID directly from the app.
 * You must be a member of a folder to add gammas to it.
 
-<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Folder ID location in Gamma" width="300"><figcaption><p>Copy the folder ID from the app</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/folder-id-location.png" alt="Folder ID location in Gamma" width="450"><figcaption><p>Copy the folder ID from the app</p></figcaption></figure>
 
 ```json
 "folderIds": ["123abc456def", "456123abcdef"]
@@ -216,6 +216,7 @@ Allows you to share your gamma with specific recipients via their email address.
 "sharingOptions": {
   "emailOptions": {
     "recipients": ["ceo@example.com", "cto@example.com"]
+  }
 }
 ```
 {% endcode %}
@@ -231,6 +232,7 @@ Determines level of access those specified in `sharingOptions.emailOptions.recip
 "sharingOptions": {
   "emailOptions": {
     "access": "comment"
+  }
 }
 ```
 {% endcode %}

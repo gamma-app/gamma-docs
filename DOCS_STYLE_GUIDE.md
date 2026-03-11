@@ -88,18 +88,18 @@ Do not use decorative hero images on landing pages or guide pages. They push the
 
 ### Inline screenshots
 
-Use small inline screenshots (width 300px) to give visual context for UI elements without dominating the page. GitBook renders these as clickable, so users can zoom in for detail. Keep captions short -- just the location or action.
+Use inline screenshots (width 450px) to give visual context for UI elements. This size is readable at default zoom without overwhelming the surrounding text. GitBook renders these as clickable, so users can still zoom in for detail. Keep captions short -- just the location or action.
 
 | Context | Width | Example |
 | --- | --- | --- |
-| Inline instructional screenshot | `width="300"` | Theme ID location, folder ID, billing settings |
+| Inline instructional screenshot | `width="450"` | Theme ID location, folder ID, billing settings |
 | Side-by-side screenshots in columns | `width="375"` | Template setup steps |
 
 ```html
 <figure>
   <img src="../.gitbook/assets/example.png"
        alt="Theme ID location in Gamma"
-       width="300">
+       width="450">
   <figcaption><p>Copy the theme ID from the app</p></figcaption>
 </figure>
 ```
