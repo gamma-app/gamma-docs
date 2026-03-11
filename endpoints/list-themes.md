@@ -1,6 +1,5 @@
 ---
 description: List all themes available in your workspace, including custom themes.
-icon: palette
 ---
 
 # GET /themes

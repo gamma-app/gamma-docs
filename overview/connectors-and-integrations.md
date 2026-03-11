@@ -1,13 +1,12 @@
 ---
 description: Connect Gamma to your favorite AI tools and automation platforms.
-icon: plug
 ---
 
-# Connectors and Integrations
+# Connect integrations
 
 Gamma integrates with popular AI assistants and automation platforms so you can create presentations, documents, webpages, and social posts from the tools you already use.
 
-## Quick reference
+### Quick reference
 
 - ChatGPT and Claude work on all Gamma plans and do not require an API key.
 - Zapier, Make, n8n, and direct API integrations require an API key.
@@ -18,31 +17,31 @@ See [Access and Pricing](access-and-pricing.md) for plan details.
 
 {% tabs %}
 {% tab title="Claude" %}
-## Claude Connector
+### Claude connector
 
 Create gammas directly from Claude conversations using the Gamma Connector.
 
 {% stepper %}
 {% step %}
-### Open Claude
+#### Open Claude
 
 Go to [Claude](https://claude.ai) (web or desktop app).
 {% endstep %}
 
 {% step %}
-### Find Connectors
+#### Find connectors
 
 Go to **Settings** → **Connectors**.
 {% endstep %}
 
 {% step %}
-### Add Gamma
+#### Add Gamma
 
 Click **Browse Connectors** and search for "Gamma."
 {% endstep %}
 
 {% step %}
-### Connect
+#### Connect
 
 Click **Connect**, then click **Allow** to grant access to your Gamma account. Choose the right workspace if applicable.
 {% endstep %}
@@ -54,25 +53,25 @@ Example prompt: "Create a 10-slide marketing strategy presentation covering targ
 {% endtab %}
 
 {% tab title="ChatGPT" %}
-## ChatGPT App
+### ChatGPT app
 
 Create gammas directly from ChatGPT conversations using the Gamma app.
 
 {% stepper %}
 {% step %}
-### Open the App Directory
+#### Open the app directory
 
 Go to **Settings** → **Apps**, or browse the [ChatGPT app directory](https://chatgpt.com/apps) directly.
 {% endstep %}
 
 {% step %}
-### Find Gamma
+#### Find Gamma
 
 Search for "Gamma" — it's listed as **Gamma: Create presentations and docs**.
 {% endstep %}
 
 {% step %}
-### Connect
+#### Connect
 
 Click **Connect** and complete the authorization flow to grant access to your Gamma account. Choose the right workspace if applicable.
 {% endstep %}
@@ -87,19 +86,19 @@ Example prompt: "@Gamma Create a 10-slide sales enablement deck covering our Q3 
 {% endtab %}
 
 {% tab title="Zapier" %}
-## Zapier Integration
+### Zapier integration
 
 Automate Gamma content creation as part of your Zapier workflows.
 
 * **Integration page**: [Gamma on Zapier](https://zapier.com/apps/gamma/integrations)
 
-### What you can do
+#### What you can do
 
 * Trigger a Gamma generation when a new row is added to Google Sheets
 * Create a presentation whenever a deal closes in your CRM
 * Generate reports from form submissions
 
-### Getting started
+#### Getting started
 
 1. In your Zapier workflow, search for **Gamma** in the app directory.
 2. Select the Gamma action you want to use (e.g., "Generate a Gamma").
@@ -110,19 +109,19 @@ Your Gamma API key is required. Generate one from your [account settings](https:
 {% endtab %}
 
 {% tab title="Make" %}
-## Make Integration
+### Make integration
 
 Build visual automation workflows that include Gamma content creation.
 
 * **Integration page**: [Gamma on Make](https://www.make.com/en/integrations/gamma-app)
 
-### What you can do
+#### What you can do
 
 * Generate branded presentations from CRM data
 * Create documents from email content or form responses
 * Build multi-step workflows combining Gamma with hundreds of other apps
 
-### Getting started
+#### Getting started
 
 1. In your Make scenario, add a new module and search for **Gamma**.
 2. Select the action you want (e.g., "Create a Generation").
@@ -133,20 +132,20 @@ Your Gamma API key is required. Generate one from your [account settings](https:
 {% endtab %}
 
 {% tab title="n8n" %}
-## n8n Integration
+### n8n Integration
 
 Use Gamma in your self-hosted or cloud n8n automation workflows with the official Gamma node.
 
 * **Integration page**: [Gamma on n8n](https://n8n.io/integrations/gamma/)
 
-### What you can do
+#### What you can do
 
 * Automate presentation creation from any of n8n's 400+ integrations
 * Generate content from CRM data, databases, and APIs using the native Gamma node
 * List your workspace themes and folders to dynamically configure generations
 * Build end-to-end pipelines: data ingestion → content generation → distribution
 
-### Available operations
+#### Available operations
 
 | Resource | Operation | Description |
 | --- | --- | --- |
@@ -157,7 +156,7 @@ Use Gamma in your self-hosted or cloud n8n automation workflows with the officia
 | Folder | **List** | Get workspace folders |
 | User | **Get Me** | Get authenticated user and workspace info |
 
-### Getting started
+#### Getting started
 
 1. In the n8n editor, click **+** and search for **Gamma**.
 2. Select the Gamma node and choose your operation (e.g., **Create** under Generation).
@@ -169,15 +168,15 @@ Your Gamma API key is required. Generate one from your [account settings](https:
 {% endtab %}
 
 {% tab title="Other Platforms" %}
-## Other Platforms
+### Other platforms
 
 Gamma's REST API works with any automation platform or custom application that can make HTTP requests.
 
-### Supported platforms include
+#### Supported platforms include
 
 * **Custom applications** — Any backend that can call REST APIs
 
-### Getting started
+#### Getting started
 
 All platforms follow the same pattern:
 
@@ -194,17 +193,17 @@ See the [Generate API parameters guide](generate-api-parameters-explained.md) fo
 {% endtab %}
 {% endtabs %}
 
-## Which integration method is right for you?
+### Which integration method is right for you?
 
 | You want to... | Use | Plan required |
 | --- | --- | --- |
 | Create gammas with an AI assistant | [ChatGPT](#chatgpt-app) or [Claude](#claude-connector) | Any plan |
 | Automate with no-code workflows | [Zapier](#zapier-integration), [Make](#make-integration), or [n8n](#n8n-integration) | Pro+ (API key) |
-| Build a custom MCP integration | [Gamma MCP Server](gamma-mcp-server.md) | Any plan |
+| Build a custom MCP integration | [MCP server](gamma-mcp-server.md) | Any plan |
 | Build a custom app with full programmatic control | [Gamma API](generate-api-parameters-explained.md) | Pro+ (API key) |
 
-## Related
+### Related
 
 - [Access and Pricing](access-and-pricing.md) for plan and API key requirements
-- [Gamma MCP Server](gamma-mcp-server.md) if you want an AI-tool-friendly integration layer
+- [MCP server](gamma-mcp-server.md) if you want an AI-tool-friendly integration layer
 - [Generate from text](generate-api-parameters-explained.md) for the full API parameter guide

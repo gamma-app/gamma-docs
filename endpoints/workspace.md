@@ -1,6 +1,5 @@
 ---
 description: Retrieve themes and folders from your workspace for use in generation requests.
-icon: grid-2
 ---
 
 # Workspace

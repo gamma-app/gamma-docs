@@ -1,6 +1,5 @@
 ---
 description: Generate a presentation, document, website, or social post from text.
-icon: plus
 ---
 
 # POST /generations

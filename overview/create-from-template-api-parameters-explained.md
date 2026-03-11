@@ -2,7 +2,6 @@
 description: >-
   When to use the Create from Template endpoint and how to choose the
   parameters that control the generated output.
-icon: copy
 ---
 
 # Generate from template
@@ -13,16 +12,16 @@ Use this page when you want `POST /v1.0/generations/from-template` and need help
 This page is for workflow guidance and parameter tradeoffs. For the exact request body, field types, and polling response schema, use the `POST /generations/from-template` and `GET /generations/{id}` pages in the API Reference tab.
 {% endhint %}
 
-## Quick reference
+### Quick reference
 
 - `gammaId` and `prompt` are required.
 - The template Gamma must contain exactly one page.
 - Use `themeId`, `folderIds`, `exportAs`, and `sharingOptions` the same way you would in the standard generation flow.
 - Poll `GET /v1.0/generations/{generationId}` to retrieve `gammaUrl`, `exportUrl`, and credit usage.
 
-## Top-level parameters
+### Top-level parameters
 
-### `gammaId` _(required)_
+#### `gammaId` _(required)_
 
 Identifies the template you want to modify. You can find and copy the gammaId for a template as shown in the screenshots below.
 
@@ -36,7 +35,9 @@ Identifies the template you want to modify. You can find and copy the gammaId fo
 {% endcolumn %}
 {% endcolumns %}
 
-### `prompt` _(required)_
+---
+
+#### `prompt` _(required)_
 
 Use this parameter to send text content, image URLs, as well as instructions for how to use this content in relation to the template gamma.
 
@@ -66,7 +67,9 @@ The total token limit is 100,000, which is approximately 400,000 characters, but
 ```
 {% endcode %}
 
-### `themeId` _(optional, defaults to workspace default theme)_
+---
+
+#### `themeId` _(optional, defaults to workspace default theme)_
 
 Defines which theme from Gamma will be used for the output. Themes determine the look and feel of the gamma, including colors and fonts.
 
@@ -80,7 +83,9 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 ```
 {% endcode %}
 
-### `folderIds` _(optional)_
+---
+
+#### `folderIds` _(optional)_
 
 Defines which folder(s) your gamma is stored in.
 
@@ -93,7 +98,9 @@ Defines which folder(s) your gamma is stored in.
 "folderIds": ["123abc456def", "456123abcdef"]
 ```
 
-### `exportAs` _(optional)_
+---
+
+#### `exportAs` _(optional)_
 
 Indicates if you'd like to return the generated gamma as an exported file as well as a Gamma URL.
 
@@ -111,7 +118,9 @@ Indicates if you'd like to return the generated gamma as an exported file as wel
 ```
 {% endcode %}
 
-### imageOptions
+---
+
+#### imageOptions
 
 When you create content from a Gamma template, new images automatically match the image source used in the original template. For example if you used Pictographic images to generate your original template, any new images will be sourced from Pictographic.
 
@@ -156,7 +165,9 @@ This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The
 ```
 {% endcode %}
 
-### sharingOptions
+---
+
+#### sharingOptions
 
 **`sharingOptions.workspaceAccess`** _(optional, defaults to workspace share settings)_
 
@@ -213,8 +224,8 @@ Determines level of access those specified in `sharingOptions.emailOptions.recip
 ```
 {% endcode %}
 
-## Related
+### Related
 
 - [Generate from text](generate-api-parameters-explained.md) if you want Gamma to determine the layout from scratch
-- [Async Patterns and Polling](async-patterns-and-polling.md) for the polling flow after template generation starts
+- [Poll for results](async-patterns-and-polling.md) for the polling flow after template generation starts
 - [API Overview](understanding-the-api-options.md) for a side-by-side comparison of generation workflows

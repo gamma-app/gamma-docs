@@ -1,6 +1,5 @@
 ---
 description: Understanding warning messages in API responses.
-icon: triangle-exclamation
 ---
 
 # Warnings
@@ -13,15 +12,15 @@ For example, if you specified `preserve` in `textMode` and at the same time used
 Warnings are informational and do not prevent the generation from completing. Your Gamma will still be created, but some parameters may have been ignored or adjusted.
 {% endhint %}
 
-## Quick reference
+### Quick reference
 
 - Warnings do not stop generation.
 - A warning usually means Gamma ignored a conflicting or incompatible parameter.
 - The warning string is returned alongside `generationId` in the creation response.
 
-## Common warning scenarios
+### Common warning scenarios
 
-### Conflicting format and dimensions
+#### Conflicting format and dimensions
 
 If you specify card dimensions that don't match your chosen format, Gamma will use a valid default.
 
@@ -46,7 +45,7 @@ If you specify card dimensions that don't match your chosen format, Gamma will u
 }
 ```
 
-### Valid Dimensions by Format
+#### Valid Dimensions by Format
 
 | Format         | Valid Dimensions                    |
 | -------------- | ----------------------------------- |
@@ -55,7 +54,7 @@ If you specify card dimensions that don't match your chosen format, Gamma will u
 | `social`       | `1x1`, `4x5`, `9x16`                |
 | `webpage`      | `fluid`                             |
 
-### Conflicting image source and model
+#### Conflicting image source and model
 
 If you specify an image model but the source is not `aiGenerated`, the model will be ignored.
 
@@ -81,7 +80,7 @@ If you specify an image model but the source is not `aiGenerated`, the model wil
 }
 ```
 
-### textMode preserve with textOptions
+#### textMode preserve with textOptions
 
 When using `textMode: "preserve"`, text generation options like `amount`, `tone`, and `audience` are ignored since your original text is being preserved.
 
@@ -107,14 +106,14 @@ When using `textMode: "preserve"`, text generation options like `amount`, `tone`
 }
 ```
 
-## Best practices
+### Best practices
 
 - Log and review warnings during development so ignored parameters are easy to spot.
 - Match `format` and `cardOptions.dimensions` to avoid unexpected defaults.
 - Only specify `imageOptions.model` when `imageOptions.source` is `aiGenerated`.
 - Treat `textMode: "preserve"` as higher priority than text-generation settings like `amount`, `tone`, or `audience`.
 
-## Related
+### Related
 
 - [Error codes](error-codes.md) for fatal API errors
 - [Generate from text](../overview/generate-api-parameters-explained.md) for parameter interactions that commonly produce warnings

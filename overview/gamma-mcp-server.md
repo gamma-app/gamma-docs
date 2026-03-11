@@ -1,20 +1,19 @@
 ---
 description: Gamma MCP powers Gamma Connectors and integrations in popular AI tools.
-icon: robot
 ---
 
-# Gamma MCP Server
+# Set up the MCP server
 
 Gamma MCP is a hosted server that gives AI tools the ability to create gammas on your behalf. Integrations like the Gamma connectors in Claude and ChatGPT are powered by this server.
 
-## Quick reference
+### Quick reference
 
 - Works with any AI tool that supports the Model Context Protocol.
 - Available on all Gamma plans. Generations charge credits.
 - Three capabilities: generate content, browse themes, organize to folders.
 - Uses OAuth with Dynamic Client Registration for custom integrations.
 
-## Capabilities
+### Capabilities
 
 **Generate content** -- create presentations, documents, webpages, or social posts with control over text density, tone, audience, language, images, themes, layout, headers/footers, export format, and sharing permissions.
 
@@ -22,11 +21,11 @@ Gamma MCP is a hosted server that gives AI tools the ability to create gammas on
 
 **Organize to folders** -- browse or search your Gamma folders and save generated content to specific locations.
 
-## Getting started
+### Getting started
 
-To use a Gamma Connector, you need an AI tool with a Gamma Connector in its library and a Gamma account on any plan. The setup process varies by platform -- see [Connectors and Integrations](connectors-and-integrations.md) for step-by-step instructions.
+To use a Gamma Connector, you need an AI tool with a Gamma Connector in its library and a Gamma account on any plan. The setup process varies by platform -- see [Connect integrations](connectors-and-integrations.md) for step-by-step instructions.
 
-## Tips for best results
+### Tips for best results
 
 - Be specific about structure: "create a 10-slide marketing strategy covering target audience, channels, budget, and metrics" works better than "make a presentation about marketing."
 - Describe your style upfront: "professional and minimal," "colorful and creative," "corporate and clean."
@@ -35,7 +34,7 @@ To use a Gamma Connector, you need an AI tool with a Gamma Connector in its libr
 - Mention folder names if you want content organized: "save to my Marketing folder."
 - Request exports when needed: "export as PowerPoint" or "generate a PDF."
 
-## Request custom MCP access
+### Request custom MCP access
 
 {% hint style="info" %}
 **Building your own integration?** The Gamma MCP server uses OAuth with Dynamic Client Registration (DCR). Your platform must support DCR to connect.
@@ -45,7 +44,7 @@ To use a Gamma Connector, you need an AI tool with a Gamma Connector in its libr
 
 The form asks for your name, email, company, use case description, OAuth redirect URIs, and a logo for the consent page (SVG, PNG, or JPEG, 256x256 px).
 
-## Troubleshooting
+### Troubleshooting
 
 <details>
 <summary>Authentication errors</summary>
@@ -71,7 +70,7 @@ Your account doesn't have enough credits. Purchase more at [Settings > Billing](
 Your AI assistant will typically retry with corrected values. If the issue persists, try rephrasing your request with simpler options.
 </details>
 
-## FAQ
+### FAQ
 
 <details>
 <summary>Connectors, MCP, and API -- which should I use?</summary>
@@ -99,8 +98,8 @@ The same capabilities as the Generate API. See the [Generate API parameters](gen
 Visit the [Model Context Protocol website](https://modelcontextprotocol.io/) for technical details.
 </details>
 
-## Related
+### Related
 
-- [Connectors and Integrations](connectors-and-integrations.md) for platform-specific setup instructions
+- [Connect integrations](connectors-and-integrations.md) for platform-specific setup instructions
 - [Generate from text](generate-api-parameters-explained.md) for the full parameter reference
 - [Access and Pricing](access-and-pricing.md) for credit costs and plan details

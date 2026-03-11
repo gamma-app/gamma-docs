@@ -1,13 +1,12 @@
 ---
 description: Detailed descriptions of API error codes.
-icon: circle-exclamation
 ---
 
 # Error codes
 
 Below are detailed descriptions of error codes returned by the Gamma API.
 
-## Quick reference
+### Quick reference
 
 - `400` means the request shape or values are invalid.
 - `401` usually means the API key is missing or invalid.
@@ -15,7 +14,7 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 - `404` on generation polling usually means the `generationId` is wrong or unavailable.
 - `429` means you should slow down and retry later.
 
-## Example error response
+### Example error response
 
 ```json
 {
@@ -24,7 +23,7 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 }
 ```
 
-## Error Code Reference
+### Error Code Reference
 
 | Status Code | Message                                                   | Description                                                                                                                             |
 | ----------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,7 +37,7 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 | 500         | An error occurred while generating the gamma.             | An unexpected error occurred while generating the gamma. Contact support with the `x-request-id` header for troubleshooting assistance. |
 | 502         | Bad gateway                                               | The request could not be processed due to a temporary gateway issue. Try again.                                                         |
 
-## Troubleshooting Tips
+### Troubleshooting Tips
 
 <details>
 
@@ -51,10 +50,10 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 
 </details>
 
-## Related
+### Related
 
 - [Warnings](warnings.md) for non-fatal response warnings
-- [Async Patterns and Polling](../overview/async-patterns-and-polling.md) if your error happens during generation status checks
+- [Poll for results](../overview/async-patterns-and-polling.md) if your error happens during generation status checks
 - [Get Help](../overview/get-help.md) if you need support escalation
 
 <details>

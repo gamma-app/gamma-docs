@@ -1,6 +1,5 @@
 ---
 description: Poll this endpoint until status is completed or failed.
-icon: clock
 ---
 
 # GET /generations/{id}
@@ -12,10 +11,10 @@ Use this endpoint to poll an existing generation until it reaches `completed` or
 {% endopenapi-operation %}
 
 {% hint style="info" %}
-For usage patterns, see [Async Patterns and Polling](../overview/async-patterns-and-polling.md).
+For usage patterns, see [Poll for results](../overview/async-patterns-and-polling.md).
 {% endhint %}
 
 ## Related
 
-- [Async Patterns and Polling](../overview/async-patterns-and-polling.md) for complete polling implementations
+- [Poll for results](../overview/async-patterns-and-polling.md) for complete polling implementations
 - [POST /generations](create-generation.md) if you need to start a new generation first

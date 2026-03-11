@@ -1,6 +1,5 @@
 ---
 description: Generate content from an existing Gamma template with variable substitution.
-icon: copy
 ---
 
 # POST /generations/from-template

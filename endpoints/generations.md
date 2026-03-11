@@ -1,6 +1,5 @@
 ---
 description: Create content from text or templates, and poll for completion.
-icon: sparkles
 ---
 
 # Generations

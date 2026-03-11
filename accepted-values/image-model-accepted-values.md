@@ -2,19 +2,18 @@
 description: >-
   When creating AI generated images in your gamma, you can specify which model
   to use.
-icon: image
 ---
 
-# Image model accepted values
+# Image models
 
-## Quick reference
+### Quick reference
 
 - Set `imageOptions.source` to `aiGenerated` when using any of the model strings below.
 - If `imageOptions.model` is omitted, Gamma selects a model automatically.
 - Higher-tier, HD, and video models usually take longer to complete, so longer polling windows may be helpful.
 - Models are grouped below by minimum plan tier. API key access still requires Pro or higher. See [Access and Pricing](../overview/access-and-pricing.md).
 
-## Free (All Plans)
+### Free (All Plans)
 
 | Model Name | String | Credits/Image |
 | --- | --- | --- |
@@ -25,7 +24,7 @@ icon: image
 | Ideogram 3 Turbo | `ideogram-v3-turbo` | 10 |
 | Qwen Image Fast | `qwen-image-fast` | 3 |
 
-## Plus Plan
+### Plus Plan
 
 | Model Name | String | Credits/Image |
 | --- | --- | --- |
@@ -37,7 +36,7 @@ icon: image
 | Nano Banana Flash (Gemini 2.5 Flash) | `gemini-2.5-flash-image` | 20 |
 | Qwen Image | `qwen-image` | 3 |
 
-## Pro Plan
+### Pro Plan
 
 | Model Name | String | Credits/Image |
 | --- | --- | --- |
@@ -53,7 +52,7 @@ icon: image
 | Recraft V3 Vector | `recraft-v3-svg` | 40 |
 | Recraft V4 Vector | `recraft-v4-svg` | 40 |
 
-## Nano Banana 2
+### Nano Banana 2
 
 | Model Name | String | Credits/Image | Resolution |
 | --- | --- | --- | --- |
@@ -61,7 +60,7 @@ icon: image
 | Nano Banana 2 | `gemini-3.1-flash-image` | 50 | 2K |
 | Nano Banana 2 HD | `gemini-3.1-flash-image-hd` | 75 | 4K |
 
-## Ultra Plan
+### Ultra Plan
 
 | Model Name | String | Credits/Image |
 | --- | --- | --- |
@@ -71,7 +70,7 @@ icon: image
 | GPT Image Detailed | `gpt-image-1-high` | 120 |
 | Recraft V4 Pro | `recraft-v4-pro` | 125 |
 
-## Video Models (Ultra Plan)
+### Video Models (Ultra Plan)
 
 {% hint style="info" %}
 Video models may take significantly longer to generate (up to several minutes). If using these via the API, we recommend polling for up to 10 minutes with 30-second intervals.
@@ -86,7 +85,7 @@ Video models may take significantly longer to generate (up to several minutes). 
 | Luma Ray 2 | `luma-ray-2` | 350 |
 | Veo 3.1 | `veo-3.1` | 800 |
 
-## Deprecated Models
+### Deprecated Models
 
 The following models have been replaced. If you pass these values, Gamma will automatically redirect to the replacement model.
 
@@ -99,8 +98,8 @@ The following models have been replaced. If you pass these values, Gamma will au
 | `playground-3` | `flux-2-pro` |
 | `imagen-3-pro` | `imagen-4-pro` |
 
-## Related
+### Related
 
 - [Generate from text](../overview/generate-api-parameters-explained.md) for `imageOptions` guidance
-- [Async Patterns and Polling](../overview/async-patterns-and-polling.md) if you need longer polling windows for slower models
+- [Poll for results](../overview/async-patterns-and-polling.md) if you need longer polling windows for slower models
 - [Access and Pricing](../overview/access-and-pricing.md) for plan and credit details

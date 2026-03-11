@@ -1,6 +1,5 @@
 ---
 description: Archive a Gamma document. Idempotent — archiving an already archived Gamma succeeds.
-icon: box-archive
 ---
 
 # POST /gammas/{gammaId}/archive

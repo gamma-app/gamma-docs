@@ -1,6 +1,5 @@
 ---
 description: Manage existing Gamma documents.
-icon: gear
 ---
 
 # Management

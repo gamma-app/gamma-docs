@@ -1,11 +1,10 @@
 ---
 description: Release history for the Gamma Public API, MCP Server, and integrations.
-icon: clock-rotate-left
 ---
 
 # Changelog
 
-## Quick reference
+### Quick reference
 
 - The API launched in beta July 2025 and reached GA in November 2025.
 - Create from Template became generally available in February 2026.
@@ -14,7 +13,7 @@ icon: clock-rotate-left
 
 {% updates format="full" %}
 {% update date="2026-03-06" %}
-## ChatGPT App live
+### ChatGPT App live
 
 Gamma is now available as an app in ChatGPT. Create presentations, documents, and social posts directly from ChatGPT conversations — just @mention Gamma. Available alongside the existing Claude Connector.
 
@@ -23,7 +22,7 @@ Gamma is now available as an app in ChatGPT. Create presentations, documents, an
 {% endupdate %}
 
 {% update date="2026-03-06" %}
-## OpenAPI spec and image model metadata
+### OpenAPI spec and image model metadata
 
 * Published **OpenAPI spec** (`openapi.yaml`) with clean schema names, standalone `ImageModel` enum, and per-model plan/credit metadata
 * OpenAPI spec is now auto-generated from the codebase — no manual maintenance required
@@ -31,7 +30,7 @@ Gamma is now available as an app in ChatGPT. Create presentations, documents, an
 {% endupdate %}
 
 {% update date="2026-02-27" %}
-## Create from Template GA, new models, and more
+### Create from template GA, new models, and more
 
 * **Create from Template** is now generally available — no longer gated by a feature flag
 * New `imageOptions.stylePreset` parameter — choose from `photorealistic`, `illustration`, `abstract`, `3D`, `lineArt`, or `custom`
@@ -43,7 +42,7 @@ Gamma is now available as an app in ChatGPT. Create presentations, documents, an
 {% endupdate %}
 
 {% update date="2026-01-16" %}
-## v0.2 API removed
+### v0.2 API removed
 
 * v0.2 synchronous endpoints (`POST /v0.2/generations`, `POST /v0.2/generations/sync`) have been disabled
 * All integrations must use the v1.0 async flow (`POST /v1.0/generations` + polling)
@@ -51,7 +50,7 @@ Gamma is now available as an app in ChatGPT. Create presentations, documents, an
 {% endupdate %}
 
 {% update date="2025-11-05" %}
-## Generate API GA, Create from Template, and more
+### Generate API GA, create from template, and more
 
 The Generate API moves from beta to v1.0. Existing v0.2 integrations should migrate to the new endpoints.
 
@@ -67,7 +66,7 @@ The Generate API moves from beta to v1.0. Existing v0.2 integrations should migr
 {% endupdate %}
 
 {% update date="2025-10-01" %}
-## Higher usage and credit recharges
+### Higher usage and credit recharges
 
 * Generation cap increased from 50/day to **50/hour**
 * Credits can now be purchased on demand or via **auto-recharge**
@@ -76,7 +75,7 @@ The Generate API moves from beta to v1.0. Existing v0.2 integrations should migr
 {% endupdate %}
 
 {% update date="2025-09-15" %}
-## Credits-based pricing and new models
+### Credits-based pricing and new models
 
 * Usage cap: **50 generations per user per day**
 * **Ultra** tier unlocks more powerful image models and up to **75 cards** per gamma
@@ -86,7 +85,7 @@ The Generate API moves from beta to v1.0. Existing v0.2 integrations should migr
 {% endupdate %}
 
 {% update date="2025-07-28" %}
-## Beta release
+### Beta release
 
 * `POST /v1.0/generations` and `GET /v1.0/generations/{id}` endpoints launched in beta
 * Generate presentations and documents programmatically for the first time
@@ -94,7 +93,7 @@ The Generate API moves from beta to v1.0. Existing v0.2 integrations should migr
 {% endupdate %}
 
 {% update date="2025-02-18" %}
-## Claude Connector
+### Claude connector
 
 Create gammas directly from Claude conversations using the Gamma Connector.
 
@@ -103,7 +102,7 @@ Create gammas directly from Claude conversations using the Gamma Connector.
 {% endupdate %}
 
 {% update date="2025-02-10" %}
-## Gamma MCP Server
+### Gamma MCP server
 
 Give AI tools the ability to create gammas on your behalf via OAuth with Dynamic Client Registration.
 
@@ -112,7 +111,7 @@ Give AI tools the ability to create gammas on your behalf via OAuth with Dynamic
 {% endupdate %}
 
 {% update date="2025-01-15" %}
-## n8n Native Node
+### n8n native node
 
 Generate content, list themes and folders, and poll for results with a native Gamma node in n8n.
 
@@ -121,8 +120,8 @@ Generate content, list themes and folders, and poll for results with a native Ga
 {% endupdate %}
 {% endupdates %}
 
-## Related
+### Related
 
 - [API Overview](understanding-the-api-options.md) for the current API capabilities
-- [Connectors and Integrations](connectors-and-integrations.md) for ChatGPT, Claude, Zapier, Make, and n8n setup
+- [Connect integrations](connectors-and-integrations.md) for ChatGPT, Claude, Zapier, Make, and n8n setup
 - [Get Help](get-help.md) if you need support

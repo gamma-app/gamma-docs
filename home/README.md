@@ -185,8 +185,8 @@ Generate from text or templates, apply themes, configure headers/footers, set pe
 
 Use Gamma from Claude and other AI assistants. Generate content through natural conversation.
 
-* [Connectors and Integrations](../overview/connectors-and-integrations.md)
-* [Gamma MCP Server](../overview/gamma-mcp-server.md)
+* [Connect integrations](../overview/connectors-and-integrations.md)
+* [MCP server](../overview/gamma-mcp-server.md)
 {% endcolumn %}
 {% endcolumns %}
 

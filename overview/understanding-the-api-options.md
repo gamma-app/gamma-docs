@@ -1,46 +1,45 @@
 ---
 description: How the Gamma API works, what it can do, and which endpoint to use.
-icon: compass
 ---
 
-# API Overview
+# Explore the API
 
 The Gamma API generates polished presentations, documents, websites, and social posts from text. Everything runs asynchronously: you create a generation, poll for status, and retrieve the result.
 
 Use this page to decide which workflow fits your use case. When you need the exact request schema, field types, or response contract, switch to the API Reference tab.
 
-## How it works
+### How it works
 
 {% stepper %}
 {% step %}
-### Create a generation
+#### Create a generation
 
 `POST /v1.0/generations` with your content and parameters. You get back a `generationId`.
 {% endstep %}
 
 {% step %}
-### Poll for status
+#### Poll for status
 
 `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`.
 {% endstep %}
 
 {% step %}
-### Get your result
+#### Get your result
 
 The completed response includes `gammaUrl` (view it in Gamma) and `exportUrl` (download as PDF, PPTX, or PNG).
 {% endstep %}
 {% endstepper %}
 
-See [Async Patterns and Polling](async-patterns-and-polling.md) for full implementation examples in Python, JavaScript, and cURL.
+See [Poll for results](async-patterns-and-polling.md) for full implementation examples in Python, JavaScript, and cURL.
 
-## Quick reference
+### Quick reference
 
 - Use `POST /v1.0/generations` when you want Gamma to create the layout from your prompt and parameters.
 - Use `POST /v1.0/generations/from-template` when you already have a Gamma template and want repeated outputs in the same structure.
 - Poll `GET /v1.0/generations/{generationId}` until `status` is `completed` or `failed`.
 - Use `GET /v1.0/themes` and `GET /v1.0/folders` to look up IDs before generation.
 
-## Two ways to generate
+### Two ways to generate
 
 | | Generate API | Create from Template API |
 | --- | --- | --- |
@@ -54,7 +53,7 @@ Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`.
 - [Generate API Parameters](generate-api-parameters-explained.md)
 - [Create from Template Parameters](create-from-template-api-parameters-explained.md)
 
-## Key parameters at a glance
+### Key parameters at a glance
 
 | Parameter | What it controls | Example values |
 | --- | --- | --- |
@@ -69,17 +68,16 @@ Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`.
 | `cardOptions.headerFooter` | Logo, page numbers, text | 6 positions per card — see [Header and Footer Formatting](header-and-footer-formatting.md) |
 | `sharingOptions` | Permissions on the generated gamma | Workspace, external link, and email access levels |
 
-## Supporting endpoints
+### Supporting endpoints
 
 | Endpoint | Purpose |
 | --- | --- |
 | `GET /v1.0/themes` | List available themes (standard + custom workspace themes). Use the `id` as `themeId`. |
 | `GET /v1.0/folders` | List workspace folders. Use folder `id` values in `folderIds`. |
-| `POST /v1.0/gammas/{gammaId}/archive` | Archive a gamma. Idempotent — archiving an already archived gamma succeeds. |
 
 Both list endpoints use cursor-based pagination: check `hasMore`, pass `nextCursor` as the `after` query param.
 
-## Authentication
+### Authentication
 
 All requests require an API key in the `X-API-KEY` header. Generate your key from [Account Settings > API Keys](https://gamma.app/settings/api-keys).
 
@@ -91,11 +89,11 @@ curl https://public-api.gamma.app/v1.0/themes \
 API access requires a Pro, Ultra, Teams, or Business plan. See [Access and Pricing](access-and-pricing.md) for credit costs and plan details.
 
 {% hint style="info" %}
-**Not a developer?** You can also use Gamma through [Connectors and Integrations](connectors-and-integrations.md) — Claude, Zapier, Make, and n8n. No code required.
+**Not a developer?** You can also use Gamma through [connectors and integrations](connectors-and-integrations.md) — no code required.
 {% endhint %}
 
-## Related
+### Related
 
 - [Generate from text](generate-api-parameters-explained.md) for a parameter-by-parameter walkthrough of `POST /v1.0/generations`
 - [Generate from a template](create-from-template-api-parameters-explained.md) for the fixed-layout workflow
-- [Async Patterns and Polling](async-patterns-and-polling.md) for complete polling implementations
+- [Poll for results](async-patterns-and-polling.md) for complete polling implementations

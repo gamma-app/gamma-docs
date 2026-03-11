@@ -1,13 +1,12 @@
 ---
-description: Detailed guide to customizing headers and footers in Gamma presentations
-icon: table-columns
+description: Detailed guide to customizing headers and footers in Gamma presentations.
 ---
 
-# Header and footer formatting
+# Format headers and footers
 
 Headers and footers let you add consistent branding elements, page numbers, and custom text across all cards in your presentation.
 
-## Quick reference
+### Quick reference
 
 | Position       | Description                       |
 | -------------- | --------------------------------- |
@@ -24,7 +23,7 @@ Headers and footers let you add consistent branding elements, page numbers, and 
 | `image`      | Logo from theme or custom URL     |
 | `cardNumber` | Slide/page numbers                |
 
-## Basic structure
+### Basic structure
 
 The `headerFooter` object goes inside `cardOptions`:
 
@@ -45,9 +44,9 @@ The `headerFooter` object goes inside `cardOptions`:
 }
 ```
 
-## Element types
+### Element types
 
-### Text elements
+#### Text elements
 
 Add custom text like company names, copyright notices, or taglines.
 
@@ -70,7 +69,7 @@ Add custom text like company names, copyright notices, or taglines.
 
 The `value` field is required for text elements. Keep text short because headers and footers have limited space.
 
-### Image elements (theme logo)
+#### Image elements (theme logo)
 
 Use the logo from your selected theme:
 
@@ -95,7 +94,7 @@ Use the logo from your selected theme:
 | `lg` | Large logo (prominent)            |
 | `xl` | Extra large logo (very prominent) |
 
-### Image elements (custom URL)
+#### Image elements (custom URL)
 
 Use your own logo image:
 
@@ -116,7 +115,7 @@ Use your own logo image:
 
 When using `source: "custom"`, the `src` field is required and must be a valid, publicly accessible URL to an image file.
 
-### Card numbers
+#### Card numbers
 
 Add automatic page/slide numbers:
 
@@ -134,7 +133,7 @@ Add automatic page/slide numbers:
 
 Card numbers have no additional configuration. Just specify the position and type.
 
-## Hiding from first and last cards
+### Hiding from first and last cards
 
 You often want to hide headers/footers from title cards or closing cards. Add these properties **at the `headerFooter` level** (they apply to all positions):
 
@@ -161,9 +160,9 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 | `hideFromFirstCard` | `false` | Set `true` to hide from title/intro card       |
 | `hideFromLastCard`  | `false` | Set `true` to hide from closing/thank you card |
 
-## Complete examples
+### Complete examples
 
-### Professional presentation (logo and page numbers)
+#### Professional presentation (logo and page numbers)
 
 ```json
 {
@@ -194,7 +193,7 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 }
 ```
 
-### Social media carousel (minimal branding)
+#### Social media carousel (minimal branding)
 
 ```json
 {
@@ -214,7 +213,7 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 }
 ```
 
-### Document with theme logo
+#### Document with theme logo
 
 ```json
 {
@@ -242,9 +241,9 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 }
 ```
 
-## Common mistakes
+### Common mistakes
 
-### Missing `value` for text elements
+#### Missing `value` for text elements
 
 ```json
 // ❌ Wrong - missing value
@@ -254,7 +253,7 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 { "type": "text", "value": "My Text" }
 ```
 
-### Missing `src` for custom images
+#### Missing `src` for custom images
 
 ```json
 // ❌ Wrong - missing src
@@ -264,7 +263,7 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 { "type": "image", "source": "custom", "src": "https://..." }
 ```
 
-### Boolean values as strings
+#### Boolean values as strings
 
 ```json
 // ❌ Wrong - string instead of boolean
@@ -274,13 +273,13 @@ You often want to hide headers/footers from title cards or closing cards. Add th
 { "hideFromFirstCard": true }
 ```
 
-## Limitations
+### Limitations
 
 * **Not available for `webpage` format** — web pages don't have fixed headers/footers
 * **Six positions maximum** — you can only use the six defined positions
 * **One element per position** — each position can only hold one type of content
 
-## Related
+### Related
 
 * [Generate from text](generate-api-parameters-explained.md) for the full `cardOptions` and `sharingOptions` context
 * [Image model accepted values](../accepted-values/image-model-accepted-values.md) if you are pairing branding with AI-generated images

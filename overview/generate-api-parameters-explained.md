@@ -2,7 +2,6 @@
 description: >-
   When to use the Generate endpoint and how to choose the parameters that shape
   the output.
-icon: sliders
 ---
 
 # Generate from text
@@ -13,16 +12,16 @@ Use this page when you already know you want `POST /v1.0/generations` and need h
 This page explains when and why to use each parameter. For the exact request body, field types, and response schema, use the `POST /generations` and `GET /generations/{id}` pages in the API Reference tab.
 {% endhint %}
 
-## Quick reference
+### Quick reference
 
 - `inputText` is always required.
 - `textMode` controls whether Gamma expands, condenses, or preserves your source text.
 - `format`, `themeId`, `imageOptions`, and `cardOptions` shape the look and output type.
 - Poll `GET /v1.0/generations/{generationId}` to retrieve `gammaUrl`, `exportUrl`, and credit usage after creation.
 
-## Top-level parameters
+### Top-level parameters
 
-### `inputText` _(required)_
+#### `inputText` _(required)_
 
 Content used to generate your gamma, including text and image URLs.
 
@@ -57,7 +56,9 @@ The token limit is 100,000, which is approximately 400,000 characters. However, 
 ```
 {% endcode %}
 
-### `textMode` _(required)_
+---
+
+#### `textMode` _(required)_
 
 Determines how your `inputText` is modified, if at all.
 
@@ -72,7 +73,9 @@ Determines how your `inputText` is modified, if at all.
 ```
 {% endcode %}
 
-### `format` _(optional, defaults to`presentation`)_
+---
+
+#### `format` _(optional, defaults to`presentation`)_
 
 Determines the artifact Gamma will create for you.
 
@@ -85,7 +88,9 @@ Determines the artifact Gamma will create for you.
 ```
 {% endcode %}
 
-### `themeId` _(optional, defaults to workspace default theme)_
+---
+
+#### `themeId` _(optional, defaults to workspace default theme)_
 
 Defines which theme from Gamma will be used for the output. Themes determine the look and feel of the gamma, including colors and fonts.
 
@@ -99,7 +104,9 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 ```
 {% endcode %}
 
-### `numCards` _(optional, defaults to`10`)_
+---
+
+#### `numCards` _(optional, defaults to`10`)_
 
 Determines how many cards are created if `auto` is chosen in `cardSplit`
 
@@ -112,7 +119,9 @@ Determines how many cards are created if `auto` is chosen in `cardSplit`
 ```
 {% endcode %}
 
-### `cardSplit` _(optional, defaults to`auto`)_
+---
+
+#### `cardSplit` _(optional, defaults to`auto`)_
 
 Determines how your content will be divided into cards.
 
@@ -134,7 +143,9 @@ Determines how your content will be divided into cards.
 "cardSplit": "auto"
 ```
 
-### `additionalInstructions` _(optional)_
+---
+
+#### `additionalInstructions` _(optional)_
 
 Helps you add more specifications about your desired output.
 
@@ -159,7 +170,9 @@ This field is especially powerful for specific visual and stylistic guidance tha
 The more specific you are, the better the results!
 {% endhint %}
 
-### `folderIds` _(optional)_
+---
+
+#### `folderIds` _(optional)_
 
 Defines which folder(s) your gamma is stored in.
 
@@ -172,7 +185,9 @@ Defines which folder(s) your gamma is stored in.
 "folderIds": ["123abc456def", "456123abcdef"]
 ```
 
-### `exportAs` _(optional)_
+---
+
+#### `exportAs` _(optional)_
 
 Indicates if you'd like to return the generated gamma as an exported file as well as a Gamma URL.
 
@@ -190,7 +205,9 @@ Indicates if you'd like to return the generated gamma as an exported file as wel
 ```
 {% endcode %}
 
-### textOptions
+---
+
+#### textOptions
 
 **`textOptions.amount`** _(optional, defaults to `medium`)_
 
@@ -266,7 +283,9 @@ Determines the language in which your gamma is generated, regardless of the lang
 ```
 {% endcode %}
 
-### imageOptions
+---
+
+#### imageOptions
 
 **`imageOptions.source`** _(optional, defaults to `aiGenerated`)_
 
@@ -373,7 +392,9 @@ Gamma stores references to your image URLs. If the URL expires or becomes inacce
 **Testing your URLs**: Before submitting a generation request, open each image URL in an incognito browser window. If you can see the image without logging in, Gamma can access it too.
 {% endhint %}
 
-### cardOptions
+---
+
+#### cardOptions
 
 **`cardOptions.dimensions`** _(optional)_
 
@@ -447,7 +468,9 @@ Allows you to specify elements in the header and footer of the cards. Not applic
 ```
 {% endcode %}
 
-### sharingOptions
+---
+
+#### sharingOptions
 
 **`sharingOptions.workspaceAccess`** _(optional, defaults to workspace share settings)_
 
@@ -504,8 +527,8 @@ Determines level of access those specified in `sharingOptions.emailOptions.recip
 ```
 {% endcode %}
 
-## Related
+### Related
 
 - [Generate from a template](create-from-template-api-parameters-explained.md) if you want to preserve an existing layout
-- [Async Patterns and Polling](async-patterns-and-polling.md) for the post-request workflow
+- [Poll for results](async-patterns-and-polling.md) for the post-request workflow
 - [Header and Footer Formatting](header-and-footer-formatting.md) for deeper guidance on `cardOptions.headerFooter`

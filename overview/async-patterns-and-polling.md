@@ -1,20 +1,19 @@
 ---
 description: Understanding how to work with Gamma’s asynchronous API and poll for results
-icon: arrows-rotate
 ---
 
-# Async Patterns & Polling
+# Poll for results
 
 Gamma generation is asynchronous. You start a generation, receive a `generationId` immediately, then poll the status endpoint until the result is ready.
 
-## Quick reference
+### Quick reference
 
 - `POST /v1.0/generations` returns `generationId` only.
 - Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`.
 - `gammaUrl` and `exportUrl` are only available from the completed status response.
 - Export URLs are temporary signed URLs, so download exported files promptly.
 
-## The basic flow
+### The basic flow
 
 ```text
 POST /generations      →  Returns { generationId: "abc123" }
@@ -24,7 +23,7 @@ Wait ~5 seconds
 GET /generations/abc123  →  Returns { status: "completed", gammaUrl: "...", exportUrl: "..." }
 ```
 
-## What you get back
+### What you get back
 
 When status is `completed`, the response includes:
 
@@ -33,7 +32,7 @@ When status is `completed`, the response includes:
 | `gammaUrl`  | Direct link to view/share the presentation in Gamma                 |
 | `exportUrl` | Download URL for the exported file (if `exportAs` was specified)    |
 
-## Generation states
+### Generation states
 
 | Status      | Meaning              | What to Do                                    |
 | ----------- | -------------------- | --------------------------------------------- |
@@ -41,7 +40,7 @@ When status is `completed`, the response includes:
 | `completed` | Done!                | Stop polling — use `gammaUrl` and export URLs |
 | `failed`    | Something went wrong | Stop polling, check the `error` object        |
 
-## Code examples
+### Code examples
 
 {% tabs %}
 {% tab title="Python" %}
@@ -199,11 +198,11 @@ done
 {% endtab %}
 {% endtabs %}
 
-## Using Automation Platforms
+### Using automation platforms
 
 Popular automation platforms have built-in ways to handle delays and polling:
 
-### Zapier
+#### Zapier
 
 Use the **Delay** action between your HTTP Request steps:
 
@@ -215,7 +214,7 @@ Use the **Delay** action between your HTTP Request steps:
 
 Zapier's "Delay for" action pauses your Zap for a specified time (minimum 1 minute). For most Gamma generations, a single 60-second delay followed by a status check works well.
 
-### Make (formerly Integromat)
+#### Make (formerly Integromat)
 
 Use the **Sleep** module or a polling pattern:
 
@@ -225,7 +224,7 @@ Use the **Sleep** module or a polling pattern:
 4. **Router** with filter → Check if `status` is `completed`
 5. Use **Repeater** + **Sleep** for polling loop
 
-### n8n
+#### n8n
 
 Use the **Wait** node with time interval:
 
@@ -237,16 +236,16 @@ Use the **Wait** node with time interval:
 
 n8n's Wait node offloads execution data to the database during longer waits, so your workflow won't timeout even for complex generations.
 
-## Best practices
+### Best practices
 
 - Use 5-second polling intervals. Polling more frequently will not speed up the generation and may increase the chance of rate limiting.
 - Set a maximum timeout. Most generations complete within 2-3 minutes, so a 5-minute ceiling is a good default for automation.
 - Handle all three states: `pending`, `completed`, and `failed`.
 - Use exponential backoff if you receive a 429 response.
 
-## Common issues
+### Common issues
 
-### `status` stays `pending` for too long
+#### `status` stays `pending` for too long
 
 Generations typically complete in 1-3 minutes. If you are waiting longer than 5 minutes:
 
@@ -254,7 +253,7 @@ Generations typically complete in 1-3 minutes. If you are waiting longer than 5 
 - Verify your API key has sufficient credits
 - Try generating with fewer cards (`numCards`) to test
 
-### You receive a 429 rate-limit response
+#### You receive a 429 rate-limit response
 
 If you receive a 429 error:
 
@@ -262,7 +261,7 @@ If you receive a 429 error:
 - Check the `Retry-After` header for guidance
 - If you're using Zapier, Make, or n8n, the rate limit may be on the platform side rather than Gamma's
 
-## Related
+### Related
 
 - [Error codes](../errors-and-warnings/error-codes.md) for the full list of API errors and troubleshooting guidance
 - [Generate from text](generate-api-parameters-explained.md) for parameter-level guidance on `POST /v1.0/generations`

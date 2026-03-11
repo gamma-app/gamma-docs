@@ -1,6 +1,5 @@
 ---
 description: List all folders the authenticated user is a member of.
-icon: folder
 ---
 
 # GET /folders
