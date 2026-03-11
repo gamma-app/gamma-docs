@@ -48,7 +48,7 @@ The API uses an asynchronous polling model. After creating a generation, poll `G
 
 #### Exporting files
 
-A completed generation includes an `exportUrl` for downloading the output. This URL is temporary — download the file promptly after generation completes.
+A completed generation includes an `exportUrl` for downloading the output. This URL is signed and expires after approximately one week.
 
 #### Providing your own images
 

@@ -116,7 +116,7 @@ Defines which folder(s) your gamma is stored in.
 Indicates if you'd like to return the generated gamma as an exported file as well as a Gamma URL.
 
 * Options are `pdf`, `pptx`, or `png`
-* Download the files once generated as the links will become invalid after a period of time.
+* Export URLs are signed and expire after approximately one week. Download promptly after generation completes.
 * If you do not wish to directly export via the API, you may always do so later via the app.
 
 {% hint style="warning" %}

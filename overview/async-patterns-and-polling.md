@@ -22,7 +22,7 @@ Gamma generation is asynchronous. You start a generation, receive a `generationI
 - `POST /v1.0/generations` returns `generationId` only.
 - Poll `GET /v1.0/generations/{generationId}` every 5 seconds until `status` is `completed` or `failed`.
 - `gammaUrl` and `exportUrl` are only available from the completed status response.
-- Export URLs are temporary signed URLs, so download exported files promptly.
+- Export URLs are signed and expire after approximately one week. Download exported files promptly.
 
 ### The basic flow
 
