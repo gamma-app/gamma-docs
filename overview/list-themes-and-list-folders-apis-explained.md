@@ -27,7 +27,7 @@ Use these endpoints when you need to look up IDs for a generation request.
 - Theme objects include `type` (`standard` or `custom`), `colorKeywords`, and `toneKeywords`.
 
 {% hint style="info" %}
-This page focuses on how to use theme and folder IDs in your workflow. For the exact parameter and response schema, use the `GET /themes` and `GET /folders` pages in the API Reference tab.
+This page focuses on how to use theme and folder IDs in your workflow. For the exact parameter and response schema, see the [GET /themes](../endpoints/list-themes.md) and [GET /folders](../endpoints/list-folders.md) endpoint reference pages.
 {% endhint %}
 
 ### List themes

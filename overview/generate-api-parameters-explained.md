@@ -20,7 +20,7 @@ layout:
 Use this page when you already know you want `POST /v1.0/generations` and need help deciding how each parameter affects the output.
 
 {% hint style="info" %}
-This page explains when and why to use each parameter. For the exact request body, field types, and response schema, use the `POST /generations` and `GET /generations/{id}` pages in the API Reference tab.
+This page explains when and why to use each parameter. For the exact request body, field types, and response schema, see the [POST /generations](../endpoints/create-generation.md) and [GET /generations/{id}](../endpoints/get-generation-status.md) endpoint reference pages.
 {% endhint %}
 
 ### Quick reference
@@ -121,8 +121,8 @@ Defines which theme from Gamma will be used for the output. Themes determine the
 
 Determines how many cards are created if `auto` is chosen in `cardSplit`
 
-* Pro users can choose any integer between 1 and 60.
-* Ultra users can choose any integer between 1 and 75.
+* Pro, Teams, and Business plans: 1 to 60 cards.
+* Ultra plan: 1 to 75 cards.
 
 {% code title="" %}
 ```json

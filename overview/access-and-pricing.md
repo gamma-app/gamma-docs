@@ -47,12 +47,12 @@ Credit charges are determined based on several factors and are returned in the G
 
 | Feature         | API parameter        | Credits Charged\*                                                                                                                        |
 | --------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Number of cards | `numCards`           | 1-5 credits/card                                                                                                                         |
-| AI image model  | `imageOptions.model` | Basic models: 2 credits/image. Advanced models: 7-20 credits/image. Premium models: 20-70 credits/image. Ultra models: 30-125 credits/image. |
+| Number of cards | `numCards`           | 1-3 credits/card (varies by the text generation model Gamma selects internally)                                                          |
+| AI image model  | `imageOptions.model` | Standard: 2-15 credits/image. Advanced: 20-33 credits/image. Premium: 34-75 credits/image. Ultra: 30-125 credits/image. |
 
 \* **Credit consumption rates and the actions that consume credits are subject to change.**
 
-Card credit costs vary depending on the AI model used for text generation. Template-based generations (`POST /generations/from-template`) may cost slightly more per card than standard generations.
+Template-based generations (`POST /generations/from-template`) may cost slightly more per card than standard generations.
 
 ### Illustrative scenarios
 

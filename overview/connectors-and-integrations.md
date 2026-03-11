@@ -165,7 +165,6 @@ Use Gamma in your self-hosted or cloud n8n automation workflows with the officia
 | Generation | **Get Status** | Check the status of a generation |
 | Theme | **List** | Get available themes from your workspace |
 | Folder | **List** | Get workspace folders |
-| User | **Get Me** | Get authenticated user and workspace info |
 
 #### Getting started
 

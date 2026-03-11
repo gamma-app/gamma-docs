@@ -20,7 +20,7 @@ layout:
 Use this page when you want `POST /v1.0/generations/from-template` and need help choosing the parameters that preserve layout while swapping in new content.
 
 {% hint style="info" %}
-This page is for workflow guidance and parameter tradeoffs. For the exact request body, field types, and polling response schema, use the `POST /generations/from-template` and `GET /generations/{id}` pages in the API Reference tab.
+This page is for workflow guidance and parameter tradeoffs. For the exact request body, field types, and polling response schema, see the [POST /generations/from-template](../endpoints/create-from-template.md) and [GET /generations/{id}](../endpoints/get-generation-status.md) endpoint reference pages.
 {% endhint %}
 
 ### Quick reference

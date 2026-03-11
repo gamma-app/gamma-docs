@@ -22,9 +22,10 @@ layout:
 - Set `imageOptions.source` to `aiGenerated` when using any of the model strings below.
 - If `imageOptions.model` is omitted, Gamma selects a model automatically.
 - Higher-tier, HD, and video models usually take longer to complete, so longer polling windows may be helpful.
-- Models are grouped below by minimum plan tier. API key access still requires Pro or higher. See [Access and Pricing](../overview/access-and-pricing.md).
+- All models below are available to API users (Pro plan and above). Models are grouped by credit cost.
+- See [Access and Pricing](../overview/access-and-pricing.md) for plan and credit details.
 
-### Free (All Plans)
+### Standard models
 
 | Model Name | String | Credits/Image |
 | --- | --- | --- |
@@ -32,22 +33,16 @@ layout:
 | Flux Kontext Fast | `flux-kontext-fast` | 2 |
 | Imagen 3 Fast | `imagen-3-flash` | 2 |
 | Luma Photon Flash | `luma-photon-flash-1` | 2 |
-| Ideogram 3 Turbo | `ideogram-v3-turbo` | 10 |
 | Qwen Image Fast | `qwen-image-fast` | 3 |
-
-### Plus Plan
-
-| Model Name | String | Credits/Image |
-| --- | --- | --- |
+| Qwen Image | `qwen-image` | 3 |
 | Flux 2 Pro | `flux-2-pro` | 8 |
+| Ideogram 3 Turbo | `ideogram-v3-turbo` | 10 |
 | Imagen 4 Fast | `imagen-4-fast` | 10 |
 | Luma Photon | `luma-photon-1` | 10 |
 | Recraft V4 | `recraft-v4` | 12 |
 | Leonardo Phoenix | `leonardo-phoenix` | 15 |
-| Nano Banana Flash (Gemini 2.5 Flash) | `gemini-2.5-flash-image` | 20 |
-| Qwen Image | `qwen-image` | 3 |
 
-### Pro Plan
+### Advanced models
 
 | Model Name | String | Credits/Image |
 | --- | --- | --- |
@@ -58,26 +53,27 @@ layout:
 | Imagen 4 | `imagen-4-pro` | 20 |
 | Recraft V3 | `recraft-v3` | 20 |
 | Nano Banana Pro (Gemini 3 Pro) | `gemini-3-pro-image` | 20 |
+| Nano Banana Flash (Gemini 2.5 Flash) | `gemini-2.5-flash-image` | 20 |
 | GPT Image | `gpt-image-1-medium` | 30 |
 | Dall-E 3 | `dall-e-3` | 33 |
+
+### Premium models
+
+| Model Name | String | Credits/Image |
+| --- | --- | --- |
+| Nano Banana 2 Mini | `gemini-3.1-flash-image-mini` | 34 |
 | Recraft V3 Vector | `recraft-v3-svg` | 40 |
 | Recraft V4 Vector | `recraft-v4-svg` | 40 |
+| Ideogram 3 Quality | `ideogram-v3-quality` | 45 |
+| Nano Banana 2 | `gemini-3.1-flash-image` | 50 |
+| Nano Banana Pro HD (Gemini 3 Pro HD) | `gemini-3-pro-image-hd` | 70 |
+| Nano Banana 2 HD | `gemini-3.1-flash-image-hd` | 75 |
 
-### Nano Banana 2 (Pro Plan)
-
-| Model Name | String | Credits/Image | Resolution |
-| --- | --- | --- | --- |
-| Nano Banana 2 Mini | `gemini-3.1-flash-image-mini` | 34 | 1K |
-| Nano Banana 2 | `gemini-3.1-flash-image` | 50 | 2K |
-| Nano Banana 2 HD | `gemini-3.1-flash-image-hd` | 75 | 4K |
-
-### Ultra Plan
+### Ultra models
 
 | Model Name | String | Credits/Image |
 | --- | --- | --- |
 | Imagen 4 Ultra | `imagen-4-ultra` | 30 |
-| Ideogram 3 Quality | `ideogram-v3-quality` | 45 |
-| Nano Banana Pro HD (Gemini 3 Pro HD) | `gemini-3-pro-image-hd` | 70 |
 | GPT Image Detailed | `gpt-image-1-high` | 120 |
 | Recraft V4 Pro | `recraft-v4-pro` | 125 |
 
