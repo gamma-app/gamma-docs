@@ -19,7 +19,7 @@ Gamma integrates with popular AI assistants and automation platforms so you can 
 
 ### Quick reference
 
-- ChatGPT and Claude work on all Gamma plans and do not require an API key.
+- ChatGPT, Claude, Superhuman Go, and Atlassian Rovo work on all Gamma plans and do not require an API key.
 - Zapier, Make, n8n, and direct API integrations require an API key.
 - Use connectors when you want Gamma inside an assistant.
 - Use the API or automation platforms when you want programmatic control over prompts, polling, and downstream workflows.
@@ -143,7 +143,7 @@ Your Gamma API key is required. Generate one from your [account settings](https:
 {% endtab %}
 
 {% tab title="n8n" %}
-### n8n Integration
+### n8n integration
 
 Use Gamma in your self-hosted or cloud n8n automation workflows with the official Gamma node.
 
@@ -178,14 +178,83 @@ Use Gamma in your self-hosted or cloud n8n automation workflows with the officia
 Your Gamma API key is required. Generate one from your [account settings](https://gamma.app/settings).
 {% endtab %}
 
+{% tab title="Superhuman Go" %}
+### Superhuman Go agent
+
+Turn ideas, emails, and meeting notes into polished presentations directly inside Superhuman Go.
+
+* **Agent page**: [Gamma on Superhuman](https://superhuman.com/store/agents/gamma-47462)
+
+{% stepper %}
+{% step %}
+#### Open the Agent Store
+
+In Superhuman Go, open the **Agent Store**.
+{% endstep %}
+
+{% step %}
+#### Find Gamma
+
+Search for "Gamma" and select the Gamma agent.
+
+{% endstep %}
+
+{% step %}
+#### Add the agent
+
+Click **Try agent** and authorize access to your Gamma account.
+{% endstep %}
+{% endstepper %}
+
+Once added, ask Gamma directly in Go to generate presentations, documents, social posts, or webpages from whatever you're working on.
+
+Example prompt: "Turn this email thread into a one-pager for the leadership audience."
+{% endtab %}
+
+{% tab title="Atlassian Rovo" %}
+### Atlassian Rovo agent
+
+Use Gamma skills inside Rovo agents to generate content from your Jira and Confluence workflows.
+
+{% hint style="info" %}
+Connecting Gamma requires an **org admin** to add the Gamma MCP server from Atlassian Administration. Once connected, all users on that site can use Gamma skills in Rovo.
+{% endhint %}
+
+{% stepper %}
+{% step %}
+#### Open Atlassian Administration
+
+Go to [Atlassian Administration](https://admin.atlassian.com) and select your organization.
+{% endstep %}
+
+{% step %}
+#### Navigate to Connected apps
+
+From the sidebar, go to **Apps** → **Sites** → select your site → **Connected apps**.
+{% endstep %}
+
+{% step %}
+#### Add the Gamma MCP server
+
+Click the dropdown beside **Explore apps**, select **Add external MCP server**, and choose **Gamma** from the gallery.
+{% endstep %}
+
+{% step %}
+#### Authorize and configure
+
+Follow the installation prompts to connect your Gamma account and configure available tools.
+{% endstep %}
+{% endstepper %}
+
+Once connected, users can invoke Gamma skills in any Rovo agent conversation or build custom agents in Rovo Studio that combine Gamma with other tools.
+
+Example prompt: "Create a presentation summarizing the key decisions from this Confluence page."
+{% endtab %}
+
 {% tab title="Other Platforms" %}
 ### Other platforms
 
 Gamma's REST API works with any automation platform or custom application that can make HTTP requests.
-
-#### Supported platforms include
-
-* **Custom applications** — Any backend that can call REST APIs
 
 #### Getting started
 
@@ -208,7 +277,7 @@ See the [Generate API parameters guide](generate-api-parameters-explained.md) fo
 
 | You want to... | Use | Plan required |
 | --- | --- | --- |
-| Create gammas with an AI assistant | [ChatGPT](#chatgpt-app) or [Claude](#claude-connector) | Any plan |
+| Create gammas with an AI assistant | [ChatGPT](#chatgpt-app), [Claude](#claude-connector), [Superhuman Go](#superhuman-go-agent), or [Atlassian Rovo](#atlassian-rovo-agent) | Any plan |
 | Automate with no-code workflows | [Zapier](#zapier-integration), [Make](#make-integration), or [n8n](#n8n-integration) | Pro+ (API key) |
 | Build a custom MCP integration | [MCP server](gamma-mcp-server.md) | Any plan |
 | Build a custom app with full programmatic control | [Gamma API](generate-api-parameters-explained.md) | Pro+ (API key) |

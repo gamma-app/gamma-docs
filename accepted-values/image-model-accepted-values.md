@@ -81,34 +81,6 @@ layout:
 | GPT Image Detailed | `gpt-image-1-high` | 120 |
 | Recraft V4 Pro | `recraft-v4-pro` | 125 |
 
-### Video Models (Ultra Plan)
-
-{% hint style="info" %}
-Video models may take significantly longer to generate (up to several minutes). If using these via the API, we recommend polling for up to 10 minutes with 30-second intervals.
-{% endhint %}
-
-| Model Name | String | Credits/Video |
-| --- | --- | --- |
-| Leonardo Motion 2 Fast | `leonardo-motion-2-fast` | 98 |
-| Luma Ray 2 Flash | `luma-ray-2-flash` | 120 |
-| Leonardo Motion 2 | `leonardo-motion-2` | 195 |
-| Veo 3.1 Fast | `veo-3.1-fast` | 300 |
-| Luma Ray 2 | `luma-ray-2` | 350 |
-| Veo 3.1 | `veo-3.1` | 800 |
-
-### Deprecated Models
-
-The following models have been replaced. If you pass these values, Gamma will automatically redirect to the replacement model.
-
-| Deprecated Model | Replacement |
-| --- | --- |
-| `flux-1-quick` | `flux-2-klein` |
-| `flux-1-pro` | `flux-2-pro` |
-| `flux-1-ultra` | `flux-2-max` |
-| `flux-kontext-max` | `flux-2-flex` |
-| `playground-3` | `flux-2-pro` |
-| `imagen-3-pro` | `imagen-4-pro` |
-
 ### Related
 
 - [Generate from text](../overview/generate-api-parameters-explained.md) for `imageOptions` guidance
