@@ -28,14 +28,17 @@
 * [Optimize image URLs](overview/image-url-best-practices.md)
 * [Add charts and structured content](overview/charts-and-structured-content.md)
 
-## MCP & Connectors
+## MCP
 
 * [Set up the MCP server](overview/gamma-mcp-server.md)
+* [MCP tools reference](overview/mcp-tools-reference.md)
+
+## Connectors
+
 * [Connect integrations](overview/connectors-and-integrations.md)
 
 ## Reference
 
-* [Changelog](overview/changelog.md)
 * [Image models](accepted-values/image-model-accepted-values.md)
 * [Output languages](accepted-values/output-language-accepted-values.md)
 * [Error codes](errors-and-warnings/error-codes.md)

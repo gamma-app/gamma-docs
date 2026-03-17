@@ -8,7 +8,7 @@ layout:
   tableOfContents:
     visible: true
   outline:
-    visible: false
+    visible: true
   pagination:
     visible: true
 ---
@@ -23,6 +23,7 @@ Gamma MCP is a hosted server that gives AI tools the ability to create gammas on
 - Available on all Gamma plans. Generations charge credits.
 - Three capabilities: generate content, browse themes, organize to folders.
 - Uses OAuth with Dynamic Client Registration for custom integrations.
+- See [MCP tools reference](mcp-tools-reference.md) for full parameter tables and authentication details.
 
 ### Capabilities
 
@@ -111,6 +112,7 @@ Visit the [Model Context Protocol website](https://modelcontextprotocol.io/) for
 
 ### Related
 
+- [MCP tools reference](mcp-tools-reference.md) for authentication, parameter tables, and error handling
 - [Connect integrations](connectors-and-integrations.md) for platform-specific setup instructions
 - [Generate from text](generate-api-parameters-explained.md) for the full parameter reference
-- [Access and Pricing](access-and-pricing.md) for credit costs and plan details
+- [Access and pricing](access-and-pricing.md) for credit costs and plan details
