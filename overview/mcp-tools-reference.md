@@ -147,13 +147,18 @@ Each slot object (`topLeft`, `topCenter`, etc.) accepts:
 
 Optional `sharingOptions` object for controlling access after generation.
 
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `workspaceAccess` | `enum` | Workspace member access: `edit`, `comment`, `view`, `noAccess`, `fullAccess` |
+| `externalAccess` | `enum` | External user access: `edit`, `comment`, `view`, `noAccess` |
+| `emailOptions` | `object` | Share via email to specific recipients (see below) |
+
+**Email options object**
+
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `workspaceAccess` | `enum` | No | Workspace member access: `edit`, `comment`, `view`, `noAccess`, `fullAccess` |
-| `externalAccess` | `enum` | No | External user access: `edit`, `comment`, `view`, `noAccess` |
-| `emailOptions` | `object` | No | Share via email to specific recipients |
-| `emailOptions.recipients` | `array[string]` | Yes | Email addresses to share with |
-| `emailOptions.access` | `enum` | Yes | Recipient access level: `edit`, `comment`, `view`, `fullAccess` |
+| `recipients` | `array[string]` | Yes | Email addresses to share with |
+| `access` | `enum` | Yes | Recipient access level: `edit`, `comment`, `view`, `fullAccess` |
 
 ### Output
 
