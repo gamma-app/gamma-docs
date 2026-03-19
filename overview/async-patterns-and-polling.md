@@ -254,6 +254,91 @@ n8n's Wait node offloads execution data to the database during longer waits, so 
 - Handle all three states: `pending`, `completed`, and `failed`.
 - Use exponential backoff if you receive a 429 response.
 
+### Rate limit headers and adaptive polling
+
+Every API response includes headers that show your current rate limit usage. Use these to adjust your polling speed dynamically instead of waiting for a `429` error.
+
+To see these headers in curl, add the `-i` flag. You can also use `-v` for full verbose output including request headers and TLS details, but `-i` is cleaner for inspecting rate limits.
+
+{% code title="curl -i example" %}
+```bash
+curl -i https://public-api.gamma.app/v1.0/generations/abc123 \
+  -H "X-API-KEY: your-api-key"
+```
+{% endcode %}
+
+{% code title="Response with headers" %}
+```
+HTTP/2 200
+content-type: application/json
+x-ratelimit-limit-burst: 10000
+x-ratelimit-remaining-burst: 9994
+x-ratelimit-limit: 40000
+x-ratelimit-remaining: 39988
+x-ratelimit-limit-daily: 200000
+x-ratelimit-remaining-daily: 199950
+
+{
+  "generationId": "abc123",
+  "status": "completed",
+  "gammaUrl": "https://gamma.app/docs/abc123",
+  "credits": {
+    "deducted": 15,
+    "remaining": 485
+  }
+}
+```
+{% endcode %}
+
+Without `-i`, you'd only see the JSON body. The headers are always present — `-i` just tells curl to display them. In Python, JavaScript, or any HTTP client, these headers are always accessible on the response object without any special flag.
+
+| Header | Description |
+| --- | --- |
+| `x-ratelimit-limit-burst` | Maximum requests allowed in the current short window |
+| `x-ratelimit-remaining-burst` | Requests remaining in the current short window |
+| `x-ratelimit-limit` | Maximum requests allowed per hour |
+| `x-ratelimit-remaining` | Requests remaining in the current hour |
+| `x-ratelimit-limit-daily` | Maximum requests allowed per day |
+| `x-ratelimit-remaining-daily` | Requests remaining today |
+
+#### Adaptive polling example
+
+Instead of a fixed 5-second interval, read `x-ratelimit-remaining-burst` and slow down when capacity is low:
+
+{% tabs %}
+{% tab title="Python" %}
+```python
+remaining = int(status_response.headers.get("X-RateLimit-Remaining-Burst", 9999))
+
+if remaining < 100:
+    poll_interval = 15
+else:
+    poll_interval = 5
+
+time.sleep(poll_interval)
+```
+{% endtab %}
+
+{% tab title="JavaScript" %}
+```javascript
+const remaining = parseInt(
+  statusResponse.headers.get("X-RateLimit-Remaining-Burst") ?? "9999"
+);
+
+const pollInterval = remaining < 100 ? 15000 : 5000;
+await sleep(pollInterval);
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+**Generation time varies.** Larger decks, AI-generated images, and higher-quality image models all increase generation time. A 5-card deck with no images may complete in under a minute, while a 40-card deck with AI images could take several minutes. Factor this into your timeout and polling logic — there is no single "right" interval for all requests.
+{% endhint %}
+
+#### Handling a 429 response
+
+If you hit the rate limit, the API returns `429 Too Many Requests`. Pause for 30 seconds before retrying, then use exponential backoff if subsequent requests also return `429`.
+
 ### Common issues
 
 #### `status` stays `pending` for too long
@@ -269,7 +354,8 @@ Generations typically complete in 1-3 minutes. If you are waiting longer than 5 
 If you receive a 429 error:
 
 - Use 5+ second polling intervals
-- Check the `Retry-After` header for guidance
+- Use `curl -i` to check the `x-ratelimit-remaining-burst` header and see if you're near the limit
+- See [Rate limit headers and adaptive polling](#rate-limit-headers-and-adaptive-polling) above for how to throttle dynamically
 - If you're using Zapier, Make, or n8n, the rate limit may be on the platform side rather than Gamma's
 
 ### Related
