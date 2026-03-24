@@ -21,7 +21,7 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 
 - `400` means the request shape or values are invalid.
 - `401` usually means the API key is missing or invalid.
-- `402` means the workspace is out of credits.
+- `403` with `"Insufficient credits remaining"` means the workspace is out of credits.
 - `404` on generation polling usually means the `generationId` is wrong or unavailable.
 - `429` means you should slow down and retry later.
 
@@ -40,7 +40,7 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 | ----------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | 400         | Input validation errors                                   | Invalid parameters detected. Check the error details for specific parameter requirements.                                               |
 | 401         | Invalid API key                                           | The provided API key is invalid or not associated with an eligible account.                                                              |
-| 402         | Insufficient credits                                      | Your workspace does not have enough credits. Purchase more at [gamma.app/settings/billing](https://gamma.app/settings/billing) or enable auto-recharge. |
+| 403         | Insufficient credits remaining                            | Your workspace does not have enough credits. Purchase more at [gamma.app/settings/billing](https://gamma.app/settings/billing) or enable auto-recharge. |
 | 403         | Forbidden                                                 | Access denied. You do not have permission for this resource, or the requested feature is not available on your plan.                     |
 | 404         | Generation ID not found. generationId: xxxxxx             | The specified generation ID could not be located. Check and correct your generation ID.                                                 |
 | 422         | Failed to generate text. Check your inputs and try again. | Generation produced an empty output. Review your input parameters and ensure your instructions are clear.                               |
@@ -74,6 +74,16 @@ Below are detailed descriptions of error codes returned by the Gamma API.
 * Verify your API key starts with `sk-gamma-`
 * Check that the key hasn’t been revoked
 * Ensure the header is `X-API-KEY` (case-sensitive)
+
+</details>
+
+<details>
+
+<summary>403 - Insufficient credits</summary>
+
+* Check `credits.remaining` on `completed` and `failed` poll responses to monitor your balance
+* Enable [auto-recharge](https://gamma.app/settings/billing) to avoid interruptions
+* In automated workflows, check the remaining balance after each completed generation before starting another
 
 </details>
 

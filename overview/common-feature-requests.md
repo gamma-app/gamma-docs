@@ -36,6 +36,10 @@ The Gamma API focuses on content generation and workspace management. This page 
 | List available themes | `GET /themes` |
 | List workspace folders | `GET /folders` |
 
+{% hint style="info" %}
+The API focuses on generation — each call produces a new, fully styled gamma. All generation is asynchronous: start a generation with `POST /generations`, then poll for the result with `GET /generations/{id}`. See [Poll for results](async-patterns-and-polling.md) for the full workflow.
+{% endhint %}
+
 ### Working outside the current scope
 
 #### Updating content after generation

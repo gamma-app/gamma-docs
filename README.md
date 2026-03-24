@@ -40,6 +40,10 @@ All requests require an API key in the `X-API-KEY` header. Generate a key from [
 
 API key access requires a Pro, Ultra, Teams, or Business plan. [Some connectors](overview/connectors-and-integrations.md) work on all plans and do not require an API key.
 
+{% hint style="info" %}
+**Machine-readable docs** are available at [developers.gamma.app/llms.txt](https://developers.gamma.app/llms.txt) and [developers.gamma.app/llms-full.txt](https://developers.gamma.app/llms-full.txt). Every page is also available as markdown by appending `.md` to the URL.
+{% endhint %}
+
 ## Quickstart
 
 ### 1. Start a generation

@@ -415,6 +415,10 @@ Determines the aspect ratio of the cards to be generated. Fluid cards expand wit
 * Options if `format` is `document`: `fluid` **(default)**, `pageless`, `letter`, `a4`
 * Options if `format` is `social`: `1x1`, `4x5`**(default)** (good for Instagram posts and LinkedIn carousels), `9x16` (good for Instagram and TikTok stories)
 
+{% hint style="warning" %}
+**Only the values listed above are accepted** — custom ratios or pixel dimensions are not supported. The `dimensions` value must also be valid for the chosen `format`. If they don't match, the API applies a default for that format and includes a warning in the response.
+{% endhint %}
+
 {% code title="Example" %}
 ```json
 "cardOptions": {

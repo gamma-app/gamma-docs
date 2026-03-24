@@ -254,6 +254,28 @@ n8n's Wait node offloads execution data to the database during longer waits, so 
 - Handle all three states: `pending`, `completed`, and `failed`.
 - Use exponential backoff if you receive a 429 response.
 
+### Running multiple generations
+
+You can start multiple generations in parallel. To manage throughput:
+
+- Use the `x-ratelimit-remaining-burst` header on each response to pace your requests. See [Rate limit headers and adaptive polling](#rate-limit-headers-and-adaptive-polling) below for how to read these headers.
+- Stagger your `POST /generations` calls and poll the resulting IDs round-robin rather than waiting for each generation to complete before starting the next.
+- If responses slow down or you receive a `429`, back off and let the rate limit headers guide your pacing.
+
+### Starting a generation without waiting
+
+`POST /generations` returns a `generationId` immediately — you do not need to wait for the generation to finish inline. To poll later, all you need is your API key and the `generationId`.
+
+This is useful for workflows that start a generation in one step and check the result in a later step. For example, a multi-step automation can fire off a generation, continue with other work, and come back to poll `GET /generations/{generationId}` when it is ready to use the result.
+
+### Monitoring credit usage
+
+The `credits` field (with `deducted` and `remaining`) appears on `completed` and `failed` poll responses. It is not included while the generation is still `pending`.
+
+- Check `credits.remaining` after each completed generation before starting another.
+- If credits run out, subsequent `POST /generations` calls return `403` with `"Insufficient credits remaining"`. Checking the remaining balance proactively avoids unexpected failures mid-workflow.
+- Enable [auto-recharge](https://gamma.app/settings/billing) to avoid interruptions.
+
 ### Rate limit headers and adaptive polling
 
 Every API response includes headers that show your current rate limit usage. Use these to adjust your polling speed dynamically instead of waiting for a `429` error.
