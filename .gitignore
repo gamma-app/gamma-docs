@@ -7,4 +7,8 @@ api/public-api-source
 api/openapi-live.yaml
 research/
 internal-notes/
+webinars/
+byron-prep/
+redirects/
+openapi.yaml
 .cursor/

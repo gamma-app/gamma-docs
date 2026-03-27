@@ -1,0 +1,415 @@
+{
+	"info": {
+		"name": "Gamma Public API",
+		"description": "Complete collection for the Gamma Public API with example requests at varying complexity levels.\n\nAuthentication: Add your API key to the collection variable `api_key`, or set the `X-API-KEY` header on each request.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{ "key": "key", "value": "X-API-KEY", "type": "string" },
+			{ "key": "value", "value": "{{api_key}}", "type": "string" },
+			{ "key": "in", "value": "header", "type": "string" }
+		]
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.gamma.app",
+			"description": "API base URL. Use https://api.staging.gamma.app for staging."
+		},
+		{
+			"key": "api_key",
+			"value": "",
+			"description": "Your Gamma API key"
+		},
+		{
+			"key": "generation_id",
+			"value": "",
+			"description": "Set automatically after creating a generation"
+		}
+	],
+	"item": [
+		{
+			"name": "Generations",
+			"description": "Create and poll generation jobs.",
+			"item": [
+				{
+					"name": "Create generation — minimal",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"5 ways AI is transforming healthcare\",\n  \"textMode\": \"generate\"\n}"
+						},
+						"description": "Simplest possible request. Only the two required fields: `inputText` and `textMode`. Gamma picks all defaults (presentation format, 10 cards, auto card split, AI-generated images, default theme)."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"        console.log('Saved generation_id: ' + json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create generation — with format and theme",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"Quarterly sales report for Q3 2025. Revenue grew 23% YoY driven by enterprise expansion. Key wins include Acme Corp ($450K ARR) and GlobalTech ($320K ARR). Churn decreased to 4.2% from 5.8% last quarter.\",\n  \"textMode\": \"generate\",\n  \"format\": \"presentation\",\n  \"numCards\": 8,\n  \"themeId\": \"YOUR_THEME_ID\",\n  \"textOptions\": {\n    \"amount\": \"medium\",\n    \"tone\": \"professional, data-driven\",\n    \"audience\": \"executive leadership team\"\n  }\n}"
+						},
+						"description": "Adds format, card count, theme, and text options. Replace `themeId` with a real ID from the List themes request."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create generation — with images and card options",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"The Future of Renewable Energy\\n---\\nSolar power costs have dropped 89% since 2010\\n---\\nWind energy now provides 10% of global electricity\\n---\\nBattery storage technology is the missing piece\\n---\\nPolicy frameworks driving adoption worldwide\",\n  \"textMode\": \"generate\",\n  \"format\": \"presentation\",\n  \"cardSplit\": \"inputTextBreaks\",\n  \"imageOptions\": {\n    \"source\": \"aiGenerated\",\n    \"model\": \"flux-kontext-fast\",\n    \"stylePreset\": \"photorealistic\"\n  },\n  \"cardOptions\": {\n    \"dimensions\": \"16x9\"\n  },\n  \"additionalInstructions\": \"Use bold data visualizations where possible. Make the title card visually striking.\"\n}"
+						},
+						"description": "Uses `inputTextBreaks` card splitting with `\\n---\\n` separators, AI image generation with a named `stylePreset`, fixed 16:9 dimensions, and additional instructions."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create generation — full options with header/footer and sharing",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"Product launch plan for Project Aurora. Target launch date: April 15. Key milestones include beta testing (March 1-15), marketing campaign kickoff (March 20), press embargo lift (April 10), and launch event (April 15).\",\n  \"textMode\": \"generate\",\n  \"format\": \"presentation\",\n  \"numCards\": 12,\n  \"cardSplit\": \"auto\",\n  \"themeId\": \"YOUR_THEME_ID\",\n  \"textOptions\": {\n    \"amount\": \"detailed\",\n    \"tone\": \"professional, inspiring\",\n    \"audience\": \"cross-functional product team\",\n    \"language\": \"en\"\n  },\n  \"imageOptions\": {\n    \"source\": \"aiGenerated\",\n    \"stylePreset\": \"illustration\"\n  },\n  \"cardOptions\": {\n    \"dimensions\": \"16x9\",\n    \"headerFooter\": {\n      \"topRight\": {\n        \"type\": \"image\",\n        \"source\": \"themeLogo\",\n        \"size\": \"sm\"\n      },\n      \"bottomLeft\": {\n        \"type\": \"text\",\n        \"value\": \"Confidential — Internal Use Only\"\n      },\n      \"bottomRight\": {\n        \"type\": \"cardNumber\"\n      },\n      \"hideFromFirstCard\": true,\n      \"hideFromLastCard\": true\n    }\n  },\n  \"sharingOptions\": {\n    \"workspaceAccess\": \"view\",\n    \"externalAccess\": \"noAccess\",\n    \"emailOptions\": {\n      \"recipients\": [\"pm@example.com\", \"eng-lead@example.com\"],\n      \"access\": \"comment\"\n    }\n  },\n  \"folderIds\": [\"YOUR_FOLDER_ID\"],\n  \"exportAs\": \"pdf\",\n  \"additionalInstructions\": \"Include a timeline visualization card. End with a clear call-to-action slide listing next steps and owners.\"\n}"
+						},
+						"description": "Kitchen-sink example using every parameter: text options, AI images, 16:9 with header/footer (logo, confidential text, card numbers), sharing with email recipients, folder assignment, PDF export, and additional instructions."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create generation — document format",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"Write a comprehensive onboarding guide for new engineering hires. Cover: development environment setup, code review process, deployment pipeline, on-call rotation, and team communication norms.\",\n  \"textMode\": \"generate\",\n  \"format\": \"document\",\n  \"numCards\": 6,\n  \"textOptions\": {\n    \"amount\": \"extensive\",\n    \"tone\": \"friendly, helpful\",\n    \"audience\": \"new software engineers\"\n  },\n  \"imageOptions\": {\n    \"source\": \"noImages\"\n  },\n  \"cardOptions\": {\n    \"dimensions\": \"pageless\"\n  }\n}"
+						},
+						"description": "Document format with pageless layout, extensive text, no images. Good for internal docs and guides."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create generation — social post",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"5 tips for better remote meetings: 1. Camera on 2. Mute when not speaking 3. Use the chat for questions 4. Share agenda beforehand 5. End 5 minutes early\",\n  \"textMode\": \"preserve\",\n  \"format\": \"social\",\n  \"numCards\": 5,\n  \"imageOptions\": {\n    \"source\": \"aiGenerated\",\n    \"style\": \"bold, colorful, graphic design\"\n  },\n  \"cardOptions\": {\n    \"dimensions\": \"4x5\"\n  },\n  \"exportAs\": \"png\"\n}"
+						},
+						"description": "Social media carousel (4:5 for Instagram/LinkedIn) with PNG export, preserved text, and AI images."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create generation — condense long content",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"Paste your long-form content here — meeting notes, research papers, reports, etc. Gamma will condense it into a concise presentation while preserving key points.\",\n  \"textMode\": \"condense\",\n  \"format\": \"presentation\",\n  \"numCards\": 8,\n  \"textOptions\": {\n    \"amount\": \"brief\"\n  },\n  \"imageOptions\": {\n    \"source\": \"pictographic\"\n  }\n}"
+						},
+						"description": "Uses `condense` mode to summarize long content into a brief presentation with Pictographic images."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create generation — with inline images",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inputText\": \"# Our New Office\\nWe're excited to announce our new headquarters!\\n\\nhttps://images.unsplash.com/photo-1497366216548-37526070297c?w=1200\\n---\\n# The Team Space\\nCollaborative areas designed for cross-functional work.\\n\\nhttps://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200\\n---\\n# What's Next\\nJoin us for the grand opening on April 1st!\",\n  \"textMode\": \"preserve\",\n  \"format\": \"presentation\",\n  \"cardSplit\": \"inputTextBreaks\",\n  \"imageOptions\": {\n    \"source\": \"noImages\"\n  },\n  \"cardOptions\": {\n    \"dimensions\": \"16x9\"\n  }\n}"
+						},
+						"description": "Provides image URLs inline in `inputText` with `noImages` source so Gamma uses only the provided URLs. Uses `preserve` mode and `inputTextBreaks` for precise card control."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get generation status",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations/{{generation_id}}", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations", "{{generation_id}}"] },
+						"description": "Poll this endpoint after creating a generation. The `generation_id` variable is set automatically by the create requests. Status will be `pending`, `completed`, or `failed`."
+					}
+				}
+			]
+		},
+		{
+			"name": "Generate from Template",
+			"description": "Create content from an existing Gamma template.",
+			"item": [
+				{
+					"name": "Create from template — minimal",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations/from-template", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations", "from-template"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"gammaId\": \"YOUR_TEMPLATE_GAMMA_ID\",\n  \"prompt\": \"Create a version of this pitch deck for our Series B fundraise. Revenue is $8M ARR, growing 3x YoY, with 200 enterprise customers.\"\n}"
+						},
+						"description": "Minimal template generation. The template Gamma must have exactly one page. Replace `gammaId` with a real template ID."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Create from template — with options",
+					"request": {
+						"method": "POST",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/generations/from-template", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "generations", "from-template"] },
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"gammaId\": \"YOUR_TEMPLATE_GAMMA_ID\",\n  \"prompt\": \"Adapt this client proposal template for Acme Corp. They need a data platform migration from on-prem to cloud. Budget is $2M, timeline is 6 months. Key stakeholders: CTO (technical depth), CFO (ROI focus).\",\n  \"themeId\": \"YOUR_THEME_ID\",\n  \"imageOptions\": {\n    \"model\": \"flux-kontext-fast\",\n    \"style\": \"clean, corporate, modern\"\n  },\n  \"sharingOptions\": {\n    \"workspaceAccess\": \"edit\",\n    \"emailOptions\": {\n      \"recipients\": [\"sales-lead@example.com\"],\n      \"access\": \"comment\"\n    }\n  },\n  \"folderIds\": [\"YOUR_FOLDER_ID\"],\n  \"exportAs\": \"pptx\"\n}"
+						},
+						"description": "Template generation with theme override, AI image options, sharing, folder placement, and PPTX export."
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.generationId) {",
+									"        pm.collectionVariables.set('generation_id', json.generationId);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Themes",
+			"description": "Browse and search available themes.",
+			"item": [
+				{
+					"name": "List all themes",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/themes", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "themes"] },
+						"description": "Returns all themes available to the workspace, including standard and custom themes. Use the `id` from the response in the `themeId` parameter of generation requests."
+					}
+				},
+				{
+					"name": "Search themes by name",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/public-api/v1.0/themes?query=corporate",
+							"host": ["{{base_url}}"],
+							"path": ["public-api", "v1.0", "themes"],
+							"query": [{ "key": "query", "value": "corporate", "description": "Search themes by name" }]
+						},
+						"description": "Searches themes by name. Try different terms like 'minimal', 'bold', 'dark', etc."
+					}
+				},
+				{
+					"name": "List themes — paginated",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/public-api/v1.0/themes?limit=5",
+							"host": ["{{base_url}}"],
+							"path": ["public-api", "v1.0", "themes"],
+							"query": [
+								{ "key": "limit", "value": "5", "description": "Max results per page" },
+								{ "key": "after", "value": "", "description": "Pagination cursor from previous response", "disabled": true }
+							]
+						},
+						"description": "Paginated theme listing. Use `nextCursor` from the response as the `after` parameter for the next page."
+					}
+				}
+			]
+		},
+		{
+			"name": "Folders",
+			"description": "Browse and search workspace folders.",
+			"item": [
+				{
+					"name": "List all folders",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{base_url}}/public-api/v1.0/folders", "host": ["{{base_url}}"], "path": ["public-api", "v1.0", "folders"] },
+						"description": "Returns all folders the authenticated user is a member of. Use the `id` from the response in the `folderIds` parameter of generation requests."
+					}
+				},
+				{
+					"name": "Search folders by name",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/public-api/v1.0/folders?query=marketing",
+							"host": ["{{base_url}}"],
+							"path": ["public-api", "v1.0", "folders"],
+							"query": [{ "key": "query", "value": "marketing", "description": "Search folders by name" }]
+						},
+						"description": "Searches folders by name."
+					}
+				}
+			]
+		}
+	]
+}

@@ -354,6 +354,41 @@ This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The
 ```
 {% endcode %}
 
+**`imageOptions.stylePreset`** _(optional)_
+
+Instead of writing a free-text `style` string, you can choose a built-in art style preset. Each named preset applies a curated style prompt that produces a consistent visual look across all generated images.
+
+| Preset | Description |
+| --- | --- |
+| `photorealistic` | Highly detailed, cinematic, professional photography |
+| `illustration` | Modern vector illustration with clean linework and flat color fills |
+| `abstract` | Non-representational abstract art with flowing gradients and geometric forms |
+| `3D` | 3D-rendered style |
+| `lineArt` | Clean, minimal line art in pictographic style |
+| `custom` | Uses your `imageOptions.style` string as the prompt (default behavior) |
+
+* If you omit `stylePreset`, the default is `custom` -- existing behavior is unchanged.
+* When a named preset (anything other than `custom`) is used, the `style` field is ignored and the API returns a warning.
+* To combine a preset with your own direction, use `custom` and provide a `style` string.
+
+{% code title="Example — named preset" %}
+```json
+"imageOptions": {
+	"stylePreset": "illustration",
+	"source": "aiGenerated"
+  }
+```
+{% endcode %}
+
+{% code title="Example — custom style (default)" %}
+```json
+"imageOptions": {
+	"stylePreset": "custom",
+	"style": "watercolor, soft edges, muted tones"
+  }
+```
+{% endcode %}
+
 **What about accent images?**
 
 {% hint style="info" %}

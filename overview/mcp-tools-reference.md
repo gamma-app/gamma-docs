@@ -101,9 +101,10 @@ Optional `imageOptions` object for controlling image sourcing.
 
 | Parameter | Type     | Description                                                                                                                                             |
 | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`  | `enum`   | Image source: `aiGenerated`, `webAllImages`, `webFreeToUse`, `webFreeToUseCommercially`, `pictographic`, `giphy`, `unsplash`, `placeholder`, `noImages` |
-| `model`   | `string` | AI image model (only when `source` is `aiGenerated`)                                                                                                    |
-| `style`   | `string` | Style for AI images (e.g., `photorealistic`, `illustration`)                                                                                            |
+| `source`      | `enum`   | Image source: `aiGenerated`, `webAllImages`, `webFreeToUse`, `webFreeToUseCommercially`, `pictographic`, `giphy`, `unsplash`, `placeholder`, `noImages` |
+| `model`       | `string` | AI image model (only when `source` is `aiGenerated`)                                                                                                    |
+| `style`       | `string` | Custom style description for AI images (used when `stylePreset` is `custom` or omitted)                                                                 |
+| `stylePreset` | `enum`   | Art style preset: `photorealistic`, `illustration`, `abstract`, `3D`, `lineArt`, `custom`. Defaults to `custom`                                         |
 
 ### Card options
 

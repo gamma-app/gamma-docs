@@ -23,6 +23,15 @@ layout:
 - The v0.2 synchronous API was removed in January 2026.
 
 {% updates format="full" %}
+{% update date="2026-03-27" %}
+### Image style presets
+
+* New `imageOptions.stylePreset` parameter on the Generate endpoint and MCP `generate` tool
+* Choose from built-in art styles: `photorealistic`, `illustration`, `abstract`, `3D`, `lineArt`, or use `custom` with your own `style` string
+* Defaults to `custom` (existing behavior unchanged)
+
+{% endupdate %}
+
 {% update date="2026-03-06" %}
 ### ChatGPT App live
 
@@ -44,7 +53,6 @@ Gamma is now available as an app in ChatGPT. Create presentations, documents, an
 ### Create from template GA, new models, and more
 
 * **Create from Template** is now generally available — no longer gated by a feature flag
-* New `imageOptions.stylePreset` parameter — choose from `photorealistic`, `illustration`, `abstract`, `3D`, `lineArt`, or `custom`
 * **Export as PNG** — `exportAs` now accepts `png` in addition to `pptx` and `pdf`
 * `GET /v1.0/generations/{id}` now returns `gammaId` (the file ID) for completed generations
 * **Card margin images** — `<top-left type="image" src="..." />` supported in head-tag XML for create-from-template
