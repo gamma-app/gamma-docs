@@ -27,7 +27,8 @@ Complete reference for the Gamma MCP server's authentication, available tools, i
 ## Quick reference
 
 * All requests require an OAuth 2.0 Bearer token.
-* Three tools: `generate`, `get_themes`, `get_folders`.
+* Four tools: `generate`, `read_gamma`, `get_themes`, `get_folders`.
+* `read_gamma` accepts a Gamma file ID or full Gamma URL and is read-only.
 * OAuth discovery via RFC 9728 at `/.well-known/oauth-protected-resource`.
 * Dynamic Client Registration supported via RFC 7591.
 * Errors return `{ "error": "...", "isError": true }`.
@@ -56,6 +57,15 @@ GET /.well-known/oauth-protected-resource
 
 The authorization server supports [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591) Dynamic Client Registration. Discover the registration endpoint URL from the authorization server metadata obtained via the OAuth discovery endpoint above.
 
+### OAuth consent permissions
+
+When a user connects your app, Gamma asks them to approve these permissions:
+
+* Create gammas in your workspace
+* Read gammas in your workspace
+* List folders from your workspace
+* List themes from your workspace
+
 ### Authentication errors
 
 A failed authentication returns `401 Unauthorized` with a `WWW-Authenticate` header:
@@ -71,6 +81,7 @@ Use the `resource_metadata` URI to discover the authorization server and initiat
 | Tool          | Description                                                | Read-only | Destructive | Idempotent |
 | ------------- | ---------------------------------------------------------- | --------- | ----------- | ---------- |
 | `generate`    | Create presentations, documents, webpages, or social posts | No        | No          | No         |
+| `read_gamma`  | Read the full content of an existing Gamma                 | Yes       | No          | Yes        |
 | `get_themes`  | Browse or search the Gamma theme library                   | Yes       | No          | Yes        |
 | `get_folders` | Browse or search your Gamma folders                        | Yes       | No          | Yes        |
 
@@ -171,6 +182,28 @@ Optional `sharingOptions` object for controlling access after generation.
 | `credits.remaining` | `int`    | Remaining credits after generation                               |
 | `error`             | `string` | Error message (when `status` is `failed`)                        |
 
+## read_gamma
+
+Read the content of an existing Gamma presentation or document. Use this when the user wants to inspect, reference, or learn from a Gamma that already exists.
+
+This tool is read-only and idempotent. It cannot edit the Gamma.
+
+### Input
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `gammaIdOrUrl` | `string` | Yes | Gamma file ID or full Gamma URL. Example: `g5aykcic8ujm71s` or `https://gamma.app/docs/My-Deck-g5aykcic8ujm71s` |
+
+### Response format
+
+Returns formatted text that includes the Gamma title and the full content of every page in order. The tool is designed to surface human-readable content, not raw HTML or JSON.
+
+* `Title: <gamma title>` identifies the Gamma title.
+* `=== Page N: <title> ===` marks each page or card in original order.
+* Each page body contains the full human-readable content for that page, including text, images, videos, embeds, charts, tables, diagrams, and other visuals.
+
+The connected user must have view access to the Gamma in the selected workspace. Archived gammas cannot be read.
+
 ## get\_themes
 
 Browse or search the Gamma theme library. Use the returned `id` in the `generate` tool's `themeId` parameter.
@@ -230,6 +263,9 @@ All tools return errors in a consistent format:
 | Error                    | Description                                                                                                       |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
 | `401 Unauthorized`       | Missing or invalid OAuth Bearer token — see [Authentication errors](mcp-tools-reference.md#authentication-errors) |
+| `403 Forbidden`          | The connected user does not have permission to view the requested Gamma in the selected workspace                 |
+| `404 Not found`          | The Gamma file ID or URL does not resolve to a Gamma the connected user can access                                |
+| `400 Bad request`        | The requested Gamma is archived and cannot be read                                                                |
 | Invalid parameter values | One or more parameters do not match expected format or values                                                     |
 | Rate limit exceeded      | Too many requests in a given time period                                                                          |
 | Network connectivity     | Unable to establish connection to the server                                                                      |

@@ -15,19 +15,22 @@ layout:
 
 # Set up the MCP server
 
-Gamma MCP is a hosted server that gives AI tools the ability to create gammas on your behalf. Integrations like the Gamma connectors in Claude and ChatGPT are powered by this server.
+Gamma MCP is a hosted server that lets AI tools create new gammas and read existing Gamma presentations or documents on your behalf. Integrations like the Gamma connectors in Claude and ChatGPT are powered by this server.
 
 ### Quick reference
 
 - Works with any AI tool that supports the Model Context Protocol.
 - Available on all Gamma plans. Generations charge credits.
-- Three capabilities: generate content, browse themes, organize to folders.
+- Four capabilities: generate content, read existing gammas, browse themes, organize to folders.
+- Reading requires view access to the Gamma in the connected workspace.
 - Uses OAuth with Dynamic Client Registration for custom integrations.
 - See [MCP tools reference](mcp-tools-reference.md) for full parameter tables and authentication details.
 
 ### Capabilities
 
 **Generate content** -- create presentations, documents, webpages, or social posts with control over text density, tone, audience, language, images, themes, layout, headers/footers, export format, and sharing permissions.
+
+**Read existing gammas** -- retrieve the full content of a presentation or document when you provide a Gamma file ID or URL. This tool is read-only and cannot modify the Gamma.
 
 **Browse themes** -- search Gamma's theme library by name. Each theme includes tone and color keywords to help match your style.
 
@@ -55,6 +58,8 @@ To use a Gamma Connector, you need an AI tool with a Gamma Connector in its libr
 <a href="https://docs.google.com/forms/d/1y5EJFP8pbl2-0PfTQexcs5vsvWpnPj3Q9bKOaH_4wuE/viewform" class="button primary">Request MCP Access</a>
 
 The form asks for your name, email, company, use case description, OAuth redirect URIs, and a logo for the consent page (SVG, PNG, or JPEG, 256x256 px).
+
+Connected apps request permission to create gammas, read gammas, list folders, and list themes in the selected workspace.
 
 ### Troubleshooting
 
@@ -101,7 +106,7 @@ Not today. Editing is only available in the [Gamma app](https://gamma.app).
 <details>
 <summary>What can I request through Gamma MCP?</summary>
 
-The same capabilities as the Generate API. See the [Generate API parameters](generate-api-parameters-explained.md) guide for the full list.
+You can create new content with the same generation controls as the Generate API, browse themes, browse folders, and read existing Gamma presentations or documents with `read_gamma`. See the [MCP tools reference](mcp-tools-reference.md) for the full tool list and parameter details.
 </details>
 
 <details>
