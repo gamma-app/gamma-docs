@@ -33,8 +33,6 @@ layout:
 | Flux Kontext Fast | `flux-kontext-fast` | 2 |
 | Imagen 3 Fast | `imagen-3-flash` | 2 |
 | Luma Photon Flash | `luma-photon-flash-1` | 2 |
-| Qwen Image Fast | `qwen-image-fast` | 3 |
-| Qwen Image | `qwen-image` | 3 |
 | Flux 2 Pro | `flux-2-pro` | 8 |
 | Ideogram 3 Turbo | `ideogram-v3-turbo` | 10 |
 | Imagen 4 Fast | `imagen-4-fast` | 10 |
