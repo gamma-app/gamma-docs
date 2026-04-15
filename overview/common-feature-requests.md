@@ -24,7 +24,7 @@ The Gamma API focuses on content generation and workspace management. This page 
 - Generation is asynchronous: create, then poll until complete.
 - Export URLs are temporary -- download files promptly.
 - Image URLs can be included in `inputText` but must be publicly accessible.
-- Submit feature requests on our [Canny board](https://gamma.canny.io).
+- Submit feature requests on our [Canny board](https://meetgamma.canny.io).
 
 ### What the API covers
 
