@@ -1,10 +1,10 @@
 ---
-description: Generate content from an existing Gamma template with variable substitution.
+description: Adapt, remix, or transform an existing Gamma. The template's structure is preserved by default and changes only when your prompt asks.
 ---
 
 # POST /generations/from-template
 
-Start an asynchronous generation from an existing Gamma template. Use this when you want to keep a fixed layout and swap in new content.
+Start an asynchronous generation by adapting an existing Gamma — swap content, retarget for a new audience, transform the subject, replace images, or restructure cards. The template's structure is preserved by default; it only changes when your prompt explicitly asks.
 
 {% openapi-operation spec="gamma-public-api-v1" path="/v1.0/generations/from-template" method="post" %}
 [OpenAPI gamma-public-api-v1](https://openapi.gitbook.com/o/1xFv2gf06r2iQQzarEcy/openapi/gamma-public-api-v1)
