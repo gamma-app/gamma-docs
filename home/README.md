@@ -88,13 +88,13 @@ const { generationId } = await response.json();
 {% endtab %}
 {% endtabs %}
 
-Response:
-
+{% code title="Response" %}
 ```json
 {
   "generationId": "abc123xyz"
 }
 ```
+{% endcode %}
 
 ### 2. Poll for the result
 
@@ -138,8 +138,7 @@ do {
 {% endtab %}
 {% endtabs %}
 
-Response when complete:
-
+{% code title="Response (completed)" %}
 ```json
 {
   "generationId": "abc123xyz",
@@ -152,6 +151,7 @@ Response when complete:
   }
 }
 ```
+{% endcode %}
 
 ### 3. Use your Gamma
 

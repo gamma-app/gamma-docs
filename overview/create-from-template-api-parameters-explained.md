@@ -17,10 +17,10 @@ layout:
 
 # Generate from template
 
-Use this page when you want `POST /v1.0/generations/from-template` and need help choosing the parameters that preserve layout while swapping in new content.
+`POST /v1.0/generations/from-template` generates new content into an existing one-page template while preserving layout. The sections below explain how each parameter affects that workflow.
 
 {% hint style="info" %}
-This page is for workflow guidance and parameter tradeoffs. For the exact request body, field types, and polling response schema, see the [POST /generations/from-template](../endpoints/create-from-template.md) and [GET /generations/{id}](../endpoints/get-generation-status.md) endpoint reference pages.
+For the exact request body, field types, and polling response schema, see [POST /generations/from-template](../endpoints/create-from-template.md) and [GET /generations/{id}](../endpoints/get-generation-status.md).
 {% endhint %}
 
 ### Quick reference

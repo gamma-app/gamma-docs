@@ -17,10 +17,10 @@ layout:
 
 # Generate from text
 
-Use this page when you already know you want `POST /v1.0/generations` and need help deciding how each parameter affects the output.
+`POST /v1.0/generations` accepts many optional fields; the sections below describe how each one shapes the output.
 
 {% hint style="info" %}
-This page explains when and why to use each parameter. For the exact request body, field types, and response schema, see the [POST /generations](../endpoints/create-generation.md) and [GET /generations/{id}](../endpoints/get-generation-status.md) endpoint reference pages.
+For the exact request body, field types, and response schema, see [POST /generations](../endpoints/create-generation.md) and [GET /generations/{id}](../endpoints/get-generation-status.md).
 {% endhint %}
 
 ### Quick reference
@@ -140,7 +140,6 @@ Determines how your content will be divided into cards.
 * Choosing `auto` tells Gamma to looks at the `numCards` field and divide up content accordingly. (It will not adhere to text breaks \n---\n in your `inputText`.)
 * Choosing `inputTextBreaks` tells Gamma that it should look for text breaks \n---\n in your `inputText` and divide the content based on this. (It will not respect `numCards`.)
   * Note: One \n---\n = one break, ie, text with one break will produce two cards, two break will produce three cards, and so on.
-* Here are some scenarios to guide your use of these parameters and explain how they work
 
 | inputText contains \n---\n and how many | cardSplit       | numCards   | output has         |
 | --------------------------------------- | --------------- | ---------- | ------------------ |
