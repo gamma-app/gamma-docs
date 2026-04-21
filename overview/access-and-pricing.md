@@ -54,6 +54,15 @@ Credit charges are determined based on several factors and are returned in the G
 
 Template-based generations (`POST /generations/from-template`) may cost slightly more per card than standard generations.
 
+### How credits are attributed
+
+Each workspace member has their own credit bucket inside the workspace. Credits do not pool across members.
+
+- **REST API:** calls made with a given API key are attributed to the key's owner. Credits deduct from that user's bucket.
+- **MCP (Claude, ChatGPT, custom integrations):** each user authenticates individually via OAuth. Credits deduct from the authenticating user's bucket, even when multiple users share a workspace.
+
+Workspace subscription billing aggregates at the workspace level (one invoice). Credit consumption is tracked per user.
+
 ### Illustrative scenarios
 
 * Deck with 10 cards + 5 images using a basic image model = \~20-60 credits
