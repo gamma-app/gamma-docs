@@ -180,12 +180,14 @@ This field is relevant if the `imageOptions.source` chosen is `aiGenerated`. The
 
 #### sharingOptions
 
-**`sharingOptions.workspaceAccess`** _(optional, defaults to workspace share settings)_
+**`sharingOptions.workspaceAccess`** _(optional, defaults to workspace setting)_
 
 Determines level of access members in your workspace will have to your generated gamma.
 
 * Options are: `noAccess`, `view`, `comment`, `edit`, `fullAccess`
-* `fullAccess`allows members from your workspace to view, comment, edit, and share with others.
+* `fullAccess` allows members from your workspace to view, comment, edit, and share with others.
+
+When omitted, Gamma applies the workspace default. Admins set it at [Settings > Sharing](https://gamma.app/settings/sharing) under "Default workspace sharing permission for new gammas." Setting the default to "No access" makes every new gamma private without needing to pass `noAccess` on every API call. Explicit values in the API request always override the workspace default.
 
 ```json
 "sharingOptions": {
@@ -193,11 +195,13 @@ Determines level of access members in your workspace will have to your generated
 }
 ```
 
-**`sharingOptions.externalAccess`** _(optional, defaults to workspace share settings)_
+**`sharingOptions.externalAccess`** _(optional, defaults to workspace setting)_
 
 Determines level of access members **outside your workspace** will have to your generated gamma.
 
 * Options are: `noAccess`, `view`, `comment`, or `edit`
+
+When omitted, Gamma applies the workspace default. Admins set it at [Settings > Sharing](https://gamma.app/settings/sharing) under "Default link sharing permission for new gammas." Setting the default to "No access" disables link sharing by default. Explicit values in the API request always override the workspace default.
 
 {% code title="Example" %}
 ```json
