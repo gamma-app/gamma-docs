@@ -2,13 +2,10 @@ openapi: 3.0.0
 paths:
   /v1.0/generations:
     post:
-      operationId: createGeneration
-      x-stability: stable
-      summary: Create async generation
       description: >-
         Creates an asynchronous generation job from provided text input. Returns
-        a generation ID that can be used to poll for status. See the
-        [Quickstart](/) for a complete example.
+        a generation ID that can be used to poll for status.
+      operationId: createGeneration
       parameters: []
       requestBody:
         required: true
@@ -37,20 +34,17 @@ paths:
           description: Insufficient credits
         '403':
           description: Access denied or feature not available
-      tags:
-        - public-api
       security:
         - api-key: []
+      summary: Create async generation
+      tags:
+        - public-api
   /v1.0/generations/{id}:
     get:
-      operationId: getGenerationStatus
-      x-stability: stable
-      summary: Get generation status
       description: >-
         Retrieves the current status of a generation job. Poll this endpoint
-        until status is "completed" or "failed". See [Async Patterns and
-        Polling](/overview/async-patterns-and-polling) for full polling
-        implementations.
+        until status is "completed" or "failed".
+      operationId: getGenerationStatus
       parameters:
         - name: id
           required: true
@@ -70,19 +64,17 @@ paths:
           description: Invalid or missing API key
         '404':
           description: Generation not found
-      tags:
-        - public-api
       security:
         - api-key: []
+      summary: Get generation status
+      tags:
+        - public-api
   /v1.0/themes:
     get:
-      operationId: listThemes
-      x-stability: stable
-      summary: List themes
       description: >-
         Lists all themes available to the workspace, including standard themes
-        and custom workspace themes. See [Themes and Folders
-        APIs](/overview/list-themes-and-list-folders-apis-explained).
+        and custom workspace themes.
+      operationId: listThemes
       parameters:
         - name: query
           required: false
@@ -94,7 +86,7 @@ paths:
         - name: limit
           required: false
           in: query
-          description: Maximum results to return (1-100)
+          description: Maximum number of themes to return
           schema:
             minimum: 1
             maximum: 50
@@ -103,7 +95,7 @@ paths:
         - name: after
           required: false
           in: query
-          description: Pagination cursor from previous response
+          description: Cursor for pagination (from previous response's nextCursor)
           schema:
             example: eyJpZCI6IjEyMyJ9
             type: string
@@ -116,19 +108,17 @@ paths:
                 $ref: '#/components/schemas/ListThemesResponse'
         '401':
           description: Invalid or missing API key
-      tags:
-        - public-api
       security:
         - api-key: []
+      summary: List themes
+      tags:
+        - public-api
   /v1.0/folders:
     get:
-      operationId: listFolders
-      x-stability: stable
-      summary: List folders
       description: >-
         Lists all folders the authenticated user is a member of within the
-        workspace. See [Themes and Folders
-        APIs](/overview/list-themes-and-list-folders-apis-explained).
+        workspace.
+      operationId: listFolders
       parameters:
         - name: query
           required: false
@@ -140,7 +130,7 @@ paths:
         - name: limit
           required: false
           in: query
-          description: Maximum results to return
+          description: Maximum number of folders to return
           schema:
             minimum: 1
             maximum: 50
@@ -149,7 +139,7 @@ paths:
         - name: after
           required: false
           in: query
-          description: Pagination cursor from previous response
+          description: Cursor for pagination (from previous response's nextCursor)
           schema:
             example: eyJpZCI6IjEyMyJ9
             type: string
@@ -162,18 +152,17 @@ paths:
                 $ref: '#/components/schemas/ListFoldersResponse'
         '401':
           description: Invalid or missing API key
-      tags:
-        - public-api
       security:
         - api-key: []
+      summary: List folders
+      tags:
+        - public-api
   /v1.0/gammas/{gammaId}/archive:
     post:
-      operationId: archiveGamma
-      x-stability: stable
-      summary: Archive a Gamma
       description: >-
         Archives a Gamma document. The operation is idempotent - archiving an
         already archived Gamma succeeds.
+      operationId: archiveGamma
       parameters:
         - name: gammaId
           required: true
@@ -199,19 +188,17 @@ paths:
           description: Invalid or missing API key
         '403':
           description: Access denied - edit permission required
-      tags:
-        - public-api
       security:
         - api-key: []
+      summary: Archive a Gamma
+      tags:
+        - public-api
   /v1.0/generations/from-template:
     post:
-      operationId: createFromTemplateGeneration
-      x-stability: stable
-      summary: Create generation from template
       description: >-
         Creates an asynchronous generation job from a template Gamma with
-        variable substitution. See [Create from Template
-        Parameters](/overview/create-from-template-api-parameters-explained).
+        variable substitution.
+      operationId: createFromTemplateGeneration
       parameters: []
       requestBody:
         required: true
@@ -240,10 +227,11 @@ paths:
           description: Insufficient credits
         '403':
           description: Feature not enabled for workspace
-      tags:
-        - public-api
       security:
         - api-key: []
+      summary: Create generation from template
+      tags:
+        - public-api
 info:
   title: Gamma Public API
   description: >-
@@ -265,269 +253,344 @@ components:
       name: X-API-KEY
       description: API key for authentication
   schemas:
-    TextMode:
-      type: string
-      description: How to interpret the input text
-      enum:
-        - generate
-        - condense
-        - preserve
-    DocFormat:
-      type: string
-      description: Output format
-      enum:
-        - presentation
-        - document
-        - social
-        - webpage
-    CardSplit:
-      type: string
-      description: Content splitting strategy across cards
-      enum:
-        - inputTextBreaks
-        - auto
-    TextAmount:
-      type: string
-      description: Controls the amount of text generated per card
-      enum:
-        - brief
-        - medium
-        - detailed
-        - extensive
-    AILocale:
-      type: string
-      description: ISO language code for content generation
-      enum:
-        - en
-        - en-gb
-        - en-in
-        - es
-        - es-es
-        - es-mx
-        - es-419
-        - ca
-        - fr
-        - zh-cn
-        - zh-tw
-        - ko
-        - ja
-        - ja-da
-        - pt-br
-        - pt-pt
-        - de
-        - it
-        - ru
-        - pl
-        - uk
-        - ro
-        - hu
-        - cs
-        - el
-        - tr
-        - ar
-        - ar-sa
-        - he
-        - fa
-        - nl
-        - sv
-        - da
-        - nb
-        - fi
-        - id
-        - vi
-        - hi
-        - gu
-        - mr
-        - te
-        - bn
-        - ta
-        - ur
-        - kn
-        - ml
-        - th
-        - sr
-        - hr
-        - sq
-        - bg
-        - sl
-        - bs
-        - mk
-        - sw
-        - ha
-        - yo
-        - tl
-        - ms
-        - kk
-        - uz
-        - af
-        - lv
-        - lt
-        - et
-        - is
-        - cy
     TextOptions:
       type: object
       properties:
         amount:
+          type: string
+          description: Controls the amount of text generated per card
           example: auto
-          $ref: '#/components/schemas/TextAmount'
+          enum:
+            - brief
+            - medium
+            - detailed
+            - extensive
+        language:
+          type: string
+          description: Language code for the generated content
+          example: en
+          enum:
+            - en
+            - en-gb
+            - en-in
+            - es
+            - es-es
+            - es-mx
+            - es-419
+            - ca
+            - fr
+            - zh-cn
+            - zh-tw
+            - ko
+            - ja
+            - ja-da
+            - pt-br
+            - pt-pt
+            - de
+            - it
+            - ru
+            - pl
+            - uk
+            - ro
+            - hu
+            - cs
+            - el
+            - tr
+            - ar
+            - ar-sa
+            - he
+            - fa
+            - nl
+            - sv
+            - da
+            - nb
+            - fi
+            - id
+            - vi
+            - hi
+            - gu
+            - mr
+            - te
+            - bn
+            - ta
+            - ur
+            - kn
+            - ml
+            - th
+            - sr
+            - hr
+            - sq
+            - bg
+            - sl
+            - bs
+            - mk
+            - sw
+            - ha
+            - yo
+            - tl
+            - ms
+            - kk
+            - uz
+            - af
+            - lv
+            - lt
+            - et
+            - is
+            - cy
         tone:
           type: string
-          description: The tone or writing style (e.g., professional, casual, academic)
+          description: The tone or writing style for the generated text
           example: professional
           minLength: 0
           maxLength: 500
         audience:
           type: string
-          description: Target audience description for tailored content
+          description: The target audience for the content
           example: marketing executives
           minLength: 0
           maxLength: 500
-        language:
-          example: en
-          $ref: '#/components/schemas/AILocale'
-    ImageSource:
+    ImageModel:
       type: string
-      description: Source for card images
       enum:
-        - webAllImages
-        - webFreeToUse
-        - webFreeToUseCommercially
-        - aiGenerated
-        - pictographic
-        - giphy
-        - pexels
-        - placeholder
-        - noImages
-        - themeAccent
+        - dall-e-3
+        - imagen-3-flash
+        - imagen-3-pro
+        - imagen-4-pro
+        - imagen-4-ultra
+        - ideogram-v3
+        - ideogram-v3-turbo
+        - ideogram-v3-quality
+        - flux-1-pro
+        - flux-1-quick
+        - flux-1-ultra
+        - flux-kontext-pro
+        - flux-kontext-max
+        - flux-kontext-fast
+        - leonardo-phoenix
+        - recraft-v3
+        - recraft-v3-svg
+        - recraft-v4
+        - recraft-v4-svg
+        - recraft-v4-pro
+        - luma-photon-1
+        - luma-photon-flash-1
+        - gpt-image-1-medium
+        - gpt-image-1-high
+        - gpt-image-1-mini-low
+        - gpt-image-1-mini-medium
+        - gpt-image-1-mini-high
+        - qwen-image
+        - qwen-image-fast
+        - gemini-2.5-flash-image
+        - veo-3.1-fast
+        - veo-3.1
+        - luma-ray-2-flash
+        - luma-ray-2
+        - leonardo-motion-2-fast
+        - leonardo-motion-2
+        - gemini-3-pro-image
+        - gemini-3-pro-image-hd
+        - gemini-3.1-flash-image-mini
+        - gemini-3.1-flash-image
+        - gemini-3.1-flash-image-hd
+        - flux-2-pro
+        - flux-2-flex
+        - flux-2-max
+        - flux-2-klein
+      description: AI model to use for image generation
+      x-gamma-image-models:
+        - model: dall-e-3
+          minPlan: pro
+          credits: 33
+        - model: imagen-3-flash
+          minPlan: null
+          credits: 2
+        - model: imagen-3-pro
+          minPlan: plus
+          credits: 8
+        - model: imagen-4-pro
+          minPlan: pro
+          credits: 20
+        - model: imagen-4-ultra
+          minPlan: ultra
+          credits: 30
+        - model: ideogram-v3
+          minPlan: pro
+          credits: 20
+        - model: ideogram-v3-turbo
+          minPlan: null
+          credits: 6
+        - model: ideogram-v3-quality
+          minPlan: ultra
+          credits: 45
+        - model: flux-1-pro
+          minPlan: plus
+          credits: 8
+        - model: flux-1-quick
+          minPlan: null
+          credits: 2
+        - model: flux-1-ultra
+          minPlan: ultra
+          credits: 30
+        - model: flux-kontext-pro
+          minPlan: pro
+          credits: 20
+        - model: flux-kontext-max
+          minPlan: ultra
+          credits: 40
+        - model: flux-kontext-fast
+          minPlan: null
+          credits: 2
+        - model: leonardo-phoenix
+          minPlan: plus
+          credits: 15
+        - model: recraft-v3
+          minPlan: pro
+          credits: 20
+        - model: recraft-v3-svg
+          minPlan: pro
+          credits: 40
+        - model: recraft-v4
+          minPlan: plus
+          credits: 12
+        - model: recraft-v4-svg
+          minPlan: pro
+          credits: 40
+        - model: recraft-v4-pro
+          minPlan: ultra
+          credits: 125
+        - model: luma-photon-1
+          minPlan: plus
+          credits: 10
+        - model: luma-photon-flash-1
+          minPlan: null
+          credits: 2
+        - model: gpt-image-1-medium
+          minPlan: pro
+          credits: 30
+        - model: gpt-image-1-high
+          minPlan: ultra
+          credits: 120
+        - model: gpt-image-1-mini-low
+          minPlan: plus
+          credits: 2
+        - model: gpt-image-1-mini-medium
+          minPlan: plus
+          credits: 8
+        - model: gpt-image-1-mini-high
+          minPlan: pro
+          credits: 20
+        - model: qwen-image
+          minPlan: plus
+          credits: 3
+        - model: qwen-image-fast
+          minPlan: null
+          credits: 3
+        - model: gemini-2.5-flash-image
+          minPlan: plus
+          credits: 20
+        - model: veo-3.1-fast
+          minPlan: ultra
+          credits: 300
+        - model: veo-3.1
+          minPlan: ultra
+          credits: 800
+        - model: luma-ray-2-flash
+          minPlan: ultra
+          credits: 120
+        - model: luma-ray-2
+          minPlan: ultra
+          credits: 350
+        - model: leonardo-motion-2-fast
+          minPlan: ultra
+          credits: 98
+        - model: leonardo-motion-2
+          minPlan: ultra
+          credits: 195
+        - model: gemini-3-pro-image
+          minPlan: pro
+          credits: 70
+        - model: gemini-3-pro-image-hd
+          minPlan: ultra
+          credits: 120
+        - model: gemini-3.1-flash-image-mini
+          minPlan: null
+          credits: 34
+        - model: gemini-3.1-flash-image
+          minPlan: pro
+          credits: 50
+        - model: gemini-3.1-flash-image-hd
+          minPlan: ultra
+          credits: 75
+        - model: flux-2-pro
+          minPlan: plus
+          credits: 8
+        - model: flux-2-flex
+          minPlan: pro
+          credits: 20
+        - model: flux-2-max
+          minPlan: pro
+          credits: 20
+        - model: flux-2-klein
+          minPlan: null
+          credits: 2
     ImageOptions:
       type: object
       properties:
         model:
+          description: AI model to use for image generation
+          example: flux-2-pro
+          allOf:
+            - $ref: '#/components/schemas/ImageModel'
+        source:
           type: string
-          description: >-
-            AI model for image generation. Available models depend on your plan.
-            See [Image model accepted values](/accepted-values/image-model-accepted-values)
-            for all models with plan requirements and credits.
-          example: flux-kontext-fast
+          description: 'Source for images: AI-generated or web search'
+          example: aiGenerated
           enum:
-            - dall-e-3
-            - imagen-3-flash
-            - imagen-3-pro
-            - imagen-4-fast
-            - imagen-4-pro
-            - imagen-4-ultra
-            - playground-3
-            - ideogram-v2
-            - ideogram-v2-turbo
-            - ideogram-v2a
-            - ideogram-v2a-turbo
-            - ideogram-v3
-            - ideogram-v3-turbo
-            - ideogram-v3-quality
-            - ideogram-v3-flash
-            - flux-1-schnell
-            - flux-1-pro
-            - flux-1-quick
-            - flux-1-ultra
-            - flux-kontext-pro
-            - flux-kontext-max
-            - flux-kontext-fast
-            - leonardo-phoenix
-            - recraft-v3
-            - recraft-v3-svg
-            - recraft-v4
-            - recraft-v4-svg
-            - recraft-v4-pro
-            - luma-photon-1
-            - luma-photon-flash-1
-            - gpt-image-1-low
-            - gpt-image-1-medium
-            - gpt-image-1-high
-            - gpt-image-1-mini-low
-            - gpt-image-1-mini-medium
-            - gpt-image-1-mini-high
-            - gemini-2.5-flash-image
-            - veo-3.1-fast
-            - veo-3.1
-            - luma-ray-2-flash
-            - luma-ray-2
-            - leonardo-motion-2-fast
-            - leonardo-motion-2
-            - gemini-3-pro-image
-            - gemini-3-pro-image-hd
-            - gemini-3.1-flash-image-mini
-            - gemini-3.1-flash-image
-            - gemini-3.1-flash-image-hd
-            - flux-2-pro
-            - flux-2-flex
-            - flux-2-max
-            - flux-2-klein
+            - webAllImages
+            - webFreeToUse
+            - webFreeToUseCommercially
+            - aiGenerated
+            - pictographic
+            - giphy
+            - pexels
+            - placeholder
+            - noImages
+            - themeAccent
         style:
           type: string
-          description: >-
-            Style description for AI-generated images. See
-            [Image URL Best Practices](/overview/image-url-best-practices).
+          description: Style description for AI-generated images
           example: photorealistic, professional
           minLength: 0
-          maxLength: 500
-        source:
-          example: aiGenerated
-          $ref: '#/components/schemas/ImageSource'
-    CardDimensions:
-      type: string
-      description: Card dimensions/aspect ratio
-      enum:
-        - fluid
-        - 16x9
-        - 4x3
-        - pageless
-        - letter
-        - a4
-        - 1x1
-        - 4x5
-        - 9x16
-    HeaderFooterElementType:
-      type: string
-      description: Type of element to display
-      enum:
-        - cardNumber
-        - image
-        - text
+          maxLength: 5000
     HeaderFooterElement:
       type: object
       properties:
         type:
+          type: object
+          description: Type of element to display
           example: text
-          $ref: '#/components/schemas/HeaderFooterElementType'
         source:
-          type: string
-          description: Source for the image element
+          type: object
+          description: Image source type (required when type is "image")
           example: themeLogo
-          enum:
-            - themeLogo
-            - custom
         src:
           type: string
-          description: HTTPS URL for custom image
+          description: Custom image URL (required when source is "custom")
           example: https://example.com/logo.png
+          format: uri
           minLength: 1
           maxLength: 2048
         value:
           type: string
-          description: Text content to display
+          description: Text content (required when type is "text")
           example: Confidential
           minLength: 1
           maxLength: 500
         size:
-          type: string
+          type: object
           description: Size of the image element
           example: md
-          enum:
-            - sm
-            - md
-            - lg
-            - xl
       required:
         - type
     HeaderFooter:
@@ -559,200 +622,183 @@ components:
             - $ref: '#/components/schemas/HeaderFooterElement'
         hideFromFirstCard:
           type: boolean
-          description: Hide header/footer from first card
+          description: Hide header/footer from the first card (title card)
           example: true
         hideFromLastCard:
           type: boolean
-          description: Hide header/footer from last card
+          description: Hide header/footer from the last card
           example: false
     CardOptions:
       type: object
       properties:
         dimensions:
+          type: string
+          description: Card aspect ratio/dimensions
           example: 16x9
-          $ref: '#/components/schemas/CardDimensions'
+          enum:
+            - fluid
+            - 16x9
+            - 4x3
+            - pageless
+            - letter
+            - a4
+            - 1x1
+            - 4x5
+            - 9x16
         headerFooter:
-          description: >-
-            Header and footer configuration. See
-            [Header and Footer Formatting](/overview/header-and-footer-formatting)
-            for layout examples.
+          description: Header and footer configuration
           allOf:
             - $ref: '#/components/schemas/HeaderFooter'
-    WorkspacePermission:
-      type: string
-      description: Access level for workspace members
-      enum:
-        - edit
-        - comment
-        - view
-        - noAccess
-        - fullAccess
-    ExternalPermission:
-      type: string
-      description: Access level for external users via shared link
-      enum:
-        - edit
-        - comment
-        - view
-        - noAccess
-    EmailPermission:
-      type: string
-      description: Permission level for email recipients
-      enum:
-        - edit
-        - comment
-        - view
-        - fullAccess
     EmailOptions:
       type: object
       properties:
+        access:
+          type: string
+          description: Permission level for email recipients
+          example: view
+          enum:
+            - edit
+            - comment
+            - view
+            - fullAccess
         recipients:
-          description: List of email addresses to share with
+          description: Email addresses to share with
           example:
             - user@example.com
+          minItems: 1
           type: array
           items:
             type: string
-        access:
-          example: view
-          $ref: '#/components/schemas/EmailPermission'
+            format: email
       required:
         - recipients
-        - access
     SharingOptions:
       type: object
       properties:
         workspaceAccess:
+          type: string
+          description: Default access level for workspace members
           example: view
-          $ref: '#/components/schemas/WorkspacePermission'
+          enum:
+            - edit
+            - comment
+            - view
+            - noAccess
+            - fullAccess
         externalAccess:
-          example: noAccess
-          $ref: '#/components/schemas/ExternalPermission'
+          type: string
+          description: Access level for external users (via shared link)
+          example: none
+          enum:
+            - edit
+            - comment
+            - view
+            - noAccess
         emailOptions:
           description: Email sharing configuration
           allOf:
             - $ref: '#/components/schemas/EmailOptions'
-    ExportFormat:
-      type: string
-      description: Auto-export format after generation completes
-      enum:
-        - pptx
-        - pdf
-        - png
     Generation:
       type: object
       properties:
+        textMode:
+          type: string
+          description: How to interpret the input text
+          example: outline
+          enum:
+            - generate
+            - condense
+            - preserve
+        format:
+          type: string
+          description: Output format for the generated Gamma
+          example: presentation
+          enum:
+            - presentation
+            - document
+            - social
+            - webpage
+        cardSplit:
+          type: string
+          description: How to split content across cards
+          example: auto
+          enum:
+            - inputTextBreaks
+            - auto
+        exportAs:
+          type: string
+          description: Export format for automatic export after generation
+          example: pdf
+          enum:
+            - pptx
+            - pdf
+            - png
         inputText:
           type: string
-          description: >-
-            Input text for generation (topic, outline, or content). See
-            [Generate API Parameters](/overview/generate-api-parameters-explained)
-            for input strategies.
+          description: The text content to generate from (topic, outline, or full content)
           example: Quarterly sales report for Q3 2024
           minLength: 1
           maxLength: 400000
         additionalInstructions:
           type: string
-          description: Additional context or instructions for AI
+          description: Additional instructions for the AI
           example: Focus on year-over-year growth metrics
           minLength: 0
           maxLength: 5000
-        textMode:
-          example: generate
-          $ref: '#/components/schemas/TextMode'
-        format:
-          example: presentation
-          $ref: '#/components/schemas/DocFormat'
         numCards:
           type: number
-          description: >-
-            Target number of cards to generate. Limits vary by plan — see
-            [Access and Pricing](/overview/access-and-pricing).
+          description: Target number of cards/slides to generate
           example: 10
           minimum: 1
-        cardSplit:
-          example: auto
-          $ref: '#/components/schemas/CardSplit'
         themeId:
           type: string
-          description: >-
-            Theme ID to apply. Get IDs from
-            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
+          description: Theme ID to apply (from /themes endpoint)
           example: theme_abc123
         textOptions:
-          description: >-
-            Text generation options. See
-            [Generate API Parameters](/overview/generate-api-parameters-explained)
-            for tone, audience, and language guidance.
+          description: Text generation options
           allOf:
             - $ref: '#/components/schemas/TextOptions'
         imageOptions:
-          description: >-
-            Image generation and selection options. See
-            [Image model accepted values](/accepted-values/image-model-accepted-values)
-            for all models with plan requirements and credits.
+          description: Image generation and selection options
           allOf:
             - $ref: '#/components/schemas/ImageOptions'
         cardOptions:
-          description: >-
-            Card dimensions and layout options. See
-            [Header and Footer Formatting](/overview/header-and-footer-formatting)
-            for layout examples.
+          description: Card dimensions and layout options
           allOf:
             - $ref: '#/components/schemas/CardOptions'
         sharingOptions:
-          description: >-
-            Sharing and permissions options. See
-            [Generate API Parameters](/overview/generate-api-parameters-explained)
-            for permission examples.
+          description: Sharing and permissions options
           allOf:
             - $ref: '#/components/schemas/SharingOptions'
         folderIds:
-          description: >-
-            Folders to add the generated Gamma to. Get IDs from
-            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
+          description: Folder IDs to place the generated Gamma in
           example:
             - folder_abc
           maxItems: 10
           type: array
           items:
             type: string
-        exportAs:
-          description: >-
-            Auto-export format. See
-            [Async Patterns and Polling](/overview/async-patterns-and-polling)
-            for downloading exports.
-          example: pdf
-          $ref: '#/components/schemas/ExportFormat'
       required:
         - inputText
-        - textMode
     CreateGenerationResponse:
       type: object
       properties:
         generationId:
           type: string
-          description: Unique generation job identifier for status polling
+          description: Unique identifier for the generation job
           example: abc123xyz
         warnings:
           type: string
-          description: Warnings about ignored or adjusted request parameters
-          example: Image model ignored when source is 'web'
+          description: Warnings about the request (e.g., ignored parameters)
+          example: Image model ignored when source is web
       required:
         - generationId
-    GenerationStatus:
-      type: string
-      description: Current status of the generation job
-      enum:
-        - pending
-        - completed
-        - failed
     ErrorResponse:
       type: object
       properties:
         message:
           type: string
-          description: Human-readable error description
+          description: Human-readable error message
           example: Failed to generate content
         statusCode:
           type: number
@@ -766,11 +812,11 @@ components:
       properties:
         deducted:
           type: number
-          description: Credits deducted for this generation
+          description: Number of credits deducted for this operation
           example: 10
         remaining:
           type: number
-          description: Credits remaining in workspace after deduction
+          description: Remaining credits in the workspace
           example: 490
       required:
         - deducted
@@ -780,40 +826,35 @@ components:
       properties:
         generationId:
           type: string
-          description: Generation job identifier
+          description: Unique identifier for the generation job
           example: abc123xyz
         status:
+          type: object
+          description: Current status of the generation job
           example: completed
-          $ref: '#/components/schemas/GenerationStatus'
         gammaId:
           type: string
-          description: File identifier for the generated Gamma
+          description: File ID of the generated Gamma (when completed)
           example: 9xJZ8QmN2
         gammaUrl:
           type: string
-          description: URL to view the generated Gamma
+          description: URL to the generated Gamma (when completed)
           example: https://gamma.app/docs/abc123
         error:
-          description: Error details when status is "failed"
+          description: Error details (when failed)
           allOf:
             - $ref: '#/components/schemas/ErrorResponse'
         exportUrl:
           type: string
-          description: Download URL for exported file (PDF/PPTX)
+          description: URL to download exported file (when exportAs was specified)
           example: https://gamma.app/export/abc123.pdf
         credits:
-          description: Credit deduction details
+          description: Credit usage information
           allOf:
             - $ref: '#/components/schemas/CreditsResponse'
       required:
         - generationId
         - status
-    ThemeType:
-      type: string
-      description: Source of the theme
-      enum:
-        - standard
-        - custom
     ThemeItem:
       type: object
       properties:
@@ -823,10 +864,10 @@ components:
           example: theme_abc123
         name:
           type: string
-          description: Theme display name
+          description: Display name of the theme
           example: Corporate Blue
         colorKeywords:
-          description: Color-related keywords
+          description: Keywords describing the theme's color palette
           example:
             - blue
             - professional
@@ -835,7 +876,7 @@ components:
           items:
             type: string
         toneKeywords:
-          description: Tone/style keywords
+          description: Keywords describing the theme's tone/style
           example:
             - formal
             - business
@@ -843,8 +884,9 @@ components:
           items:
             type: string
         type:
+          type: object
+          description: 'Theme type: standard (built-in) or custom (workspace-created)'
           example: standard
-          $ref: '#/components/schemas/ThemeType'
       required:
         - id
         - name
@@ -853,22 +895,23 @@ components:
       type: object
       properties:
         data:
-          description: List of themes
+          description: Array of theme items
           type: array
           items:
             $ref: '#/components/schemas/ThemeItem'
         hasMore:
           type: boolean
-          description: Whether more results are available
+          description: Whether more results exist beyond this page
           example: true
         nextCursor:
           type: string
           nullable: true
-          description: Cursor for next page, null if no more results
+          description: Cursor for fetching the next page (null if no more results)
           example: eyJpZCI6IjQ1NiJ9
       required:
         - data
         - hasMore
+        - nextCursor
     FolderItem:
       type: object
       properties:
@@ -878,7 +921,7 @@ components:
           example: folder_abc123
         name:
           type: string
-          description: Folder display name
+          description: Display name of the folder
           example: Marketing Materials
       required:
         - id
@@ -887,32 +930,33 @@ components:
       type: object
       properties:
         data:
-          description: List of folders
+          description: Array of folder items
           type: array
           items:
             $ref: '#/components/schemas/FolderItem'
         hasMore:
           type: boolean
-          description: Whether more results are available
+          description: Whether more results exist beyond this page
           example: true
         nextCursor:
           type: string
           nullable: true
-          description: Cursor for next page, null if no more results
+          description: Cursor for fetching the next page (null if no more results)
           example: eyJpZCI6IjQ1NiJ9
       required:
         - data
         - hasMore
+        - nextCursor
     ArchiveGammaResponse:
       type: object
       properties:
         gammaId:
           type: string
-          description: ID of the archived Gamma
+          description: The ID of the archived Gamma
           example: gamma_abc123
         archived:
           type: boolean
-          description: Always true on success
+          description: Confirmation that the Gamma is archived
           example: true
       required:
         - gammaId
@@ -921,122 +965,59 @@ components:
       type: object
       properties:
         model:
-          type: string
           description: AI model for image generation
-          example: flux-kontext-fast
-          enum:
-            - dall-e-3
-            - imagen-3-flash
-            - imagen-3-pro
-            - imagen-4-fast
-            - imagen-4-pro
-            - imagen-4-ultra
-            - playground-3
-            - ideogram-v2
-            - ideogram-v2-turbo
-            - ideogram-v2a
-            - ideogram-v2a-turbo
-            - ideogram-v3
-            - ideogram-v3-turbo
-            - ideogram-v3-quality
-            - ideogram-v3-flash
-            - flux-1-schnell
-            - flux-1-pro
-            - flux-1-quick
-            - flux-1-ultra
-            - flux-kontext-pro
-            - flux-kontext-max
-            - flux-kontext-fast
-            - leonardo-phoenix
-            - recraft-v3
-            - recraft-v3-svg
-            - recraft-v4
-            - recraft-v4-svg
-            - recraft-v4-pro
-            - luma-photon-1
-            - luma-photon-flash-1
-            - gpt-image-1-low
-            - gpt-image-1-medium
-            - gpt-image-1-high
-            - gpt-image-1-mini-low
-            - gpt-image-1-mini-medium
-            - gpt-image-1-mini-high
-            - gemini-2.5-flash-image
-            - veo-3.1-fast
-            - veo-3.1
-            - luma-ray-2-flash
-            - luma-ray-2
-            - leonardo-motion-2-fast
-            - leonardo-motion-2
-            - gemini-3-pro-image
-            - gemini-3-pro-image-hd
-            - gemini-3.1-flash-image-mini
-            - gemini-3.1-flash-image
-            - gemini-3.1-flash-image-hd
-            - flux-2-pro
-            - flux-2-flex
-            - flux-2-max
-            - flux-2-klein
+          example: flux-2-pro
+          allOf:
+            - $ref: '#/components/schemas/ImageModel'
         style:
           type: string
-          description: Style description for AI-generated images
+          description: Style description for images
           example: photorealistic
           minLength: 0
-          maxLength: 500
-      x-stability: stable
+          maxLength: 5000
     FromTemplateGeneration:
       type: object
       properties:
+        exportAs:
+          type: string
+          description: Export format for automatic export after generation
+          example: pdf
+          enum:
+            - pptx
+            - pdf
+            - png
         prompt:
           type: string
-          description: >-
-            Text prompt describing the content to generate. See
-            [Create from Template Parameters](/overview/create-from-template-api-parameters-explained).
+          description: Text prompt describing what to generate
           example: Q3 financial summary for investors
           minLength: 1
           maxLength: 400000
         gammaId:
           type: string
           description: >-
-            File ID of the template Gamma (must have exactly one Page). See
-            [Create from Template Parameters](/overview/create-from-template-api-parameters-explained)
-            for how to find your template ID.
+            The File ID of the gamma to be used as a template. The File must
+            contain exactly one Page.
           example: gamma_abc123
         themeId:
           type: string
-          description: >-
-            Theme ID to apply. Get IDs from
-            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
+          description: Theme ID to apply to the generated Gamma
           example: theme_xyz789
         imageOptions:
           description: Image generation options
           allOf:
             - $ref: '#/components/schemas/FromTemplateImageOptions'
         sharingOptions:
-          description: >-
-            Sharing and permissions options. See
-            [Generate API Parameters](/overview/generate-api-parameters-explained)
-            for permission examples.
+          description: Sharing and permissions options
           allOf:
             - $ref: '#/components/schemas/SharingOptions'
         folderIds:
-          description: >-
-            Folders to add the generated Gamma to. Get IDs from
-            [Themes and Folders APIs](/overview/list-themes-and-list-folders-apis-explained).
+          description: Folder IDs to place the generated Gamma in
           example:
             - folder_abc
           maxItems: 10
           type: array
           items:
             type: string
-        exportAs:
-          description: >-
-            Auto-export format. See
-            [Async Patterns and Polling](/overview/async-patterns-and-polling)
-            for downloading exports.
-          example: pdf
-          $ref: '#/components/schemas/ExportFormat'
-      x-stability: stable
       required:
         - prompt
         - gammaId
@@ -1045,12 +1026,11 @@ components:
       properties:
         generationId:
           type: string
-          description: Generation job identifier for status polling
+          description: Unique identifier for the generation job
           example: gen_xyz789
         warnings:
           type: string
-          description: Warnings about request processing
+          description: Warnings about the request
           example: Some template variables were not found
-      x-stability: stable
       required:
         - generationId
