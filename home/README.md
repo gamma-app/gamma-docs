@@ -88,13 +88,13 @@ const { generationId } = await response.json();
 {% endtab %}
 {% endtabs %}
 
-Response:
-
+{% code title="Response" %}
 ```json
 {
   "generationId": "abc123xyz"
 }
 ```
+{% endcode %}
 
 ### 2. Poll for the result
 
@@ -110,6 +110,7 @@ curl https://public-api.gamma.app/v1.0/generations/YOUR_GENERATION_ID \
 
 {% tab title="Python" %}
 ```python
+import requests
 import time
 
 while True:
@@ -138,8 +139,7 @@ do {
 {% endtab %}
 {% endtabs %}
 
-Response when complete:
-
+{% code title="Response (completed)" %}
 ```json
 {
   "generationId": "abc123xyz",
@@ -152,6 +152,7 @@ Response when complete:
   }
 }
 ```
+{% endcode %}
 
 ### 3. Use your Gamma
 
