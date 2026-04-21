@@ -30,7 +30,7 @@ curl -i -X POST "https://public-api.gamma.app/v1.0/generations" \
 
 Without `-i`, curl only shows the JSON body. In Python, JavaScript, or any HTTP client, these headers are accessible on the response object without any special flag.
 
-For a full breakdown of the rate limit headers and how to use them for adaptive polling, see [Rate limit headers and adaptive polling](../overview/async-patterns-and-polling.md#rate-limit-headers-and-adaptive-polling).
+See [Rate limit headers and adaptive polling](../overview/async-patterns-and-polling.md#rate-limit-headers-and-adaptive-polling) for how to use these headers to pace polling.
 
 ## Related
 

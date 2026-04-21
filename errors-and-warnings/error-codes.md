@@ -15,8 +15,6 @@ layout:
 
 # Error codes
 
-Below are detailed descriptions of error codes returned by the Gamma API.
-
 ### Quick reference
 
 - `400` means the request shape or values are invalid.

@@ -16,7 +16,7 @@ layout:
 
 # API scope and limits
 
-The Gamma API focuses on content generation and workspace management. This page clarifies what falls within the current API scope and how to handle common use cases that sit outside it.
+The Gamma API focuses on content generation and workspace management. Common use cases that sit outside that scope are covered below with the closest workaround.
 
 ### Quick reference
 

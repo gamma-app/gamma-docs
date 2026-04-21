@@ -17,7 +17,7 @@ layout:
 
 # Optimize image URLs
 
-You can include your own images in API-generated gammas by placing image URLs directly in your `inputText` (Generate API) or `prompt` (Create from Template API). This page covers the technical requirements and common pitfalls.
+You can include your own images in API-generated gammas by placing image URLs directly in your `inputText` (Generate API) or `prompt` (Create from Template API). The technical requirements and common pitfalls are below.
 
 ### Quick reference
 
