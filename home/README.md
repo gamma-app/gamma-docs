@@ -110,6 +110,7 @@ curl https://public-api.gamma.app/v1.0/generations/YOUR_GENERATION_ID \
 
 {% tab title="Python" %}
 ```python
+import requests
 import time
 
 while True:
