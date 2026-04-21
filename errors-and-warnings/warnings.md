@@ -117,6 +117,41 @@ When using `textMode: "preserve"`, text generation options like `amount`, `tone`
 }
 ```
 
+#### Workspace-restricted sharing fields
+
+If a workspace admin has restricted workspace sharing or disabled access links, Gamma strips the corresponding `sharingOptions` field from your request and returns a warning. The generation still completes using the admin-enforced default.
+
+**Request:**
+
+```json
+{
+  "inputText": "Q3 product strategy",
+  "textMode": "generate",
+  "sharingOptions": {
+    "workspaceAccess": "comment",
+    "externalAccess": "view"
+  }
+}
+```
+
+**Response (workspace sharing restricted):**
+
+```json
+{
+  "generationId": "xxxxxxxxxx",
+  "warnings": "sharingOptions.workspaceAccess was ignored because workspace sharing is restricted by a workspace admin."
+}
+```
+
+**Response (access links disabled):**
+
+```json
+{
+  "generationId": "xxxxxxxxxx",
+  "warnings": "sharingOptions.externalAccess was ignored because access links are disabled by a workspace admin."
+}
+```
+
 ### Best practices
 
 - Log and review warnings during development so ignored parameters are easy to spot.
