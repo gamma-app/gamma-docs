@@ -106,5 +106,5 @@ API access requires a Pro, Ultra, Teams, or Business plan. See [Access and Prici
 ### Related
 
 - [Generate from text](generate-api-parameters-explained.md) for a parameter-by-parameter walkthrough of `POST /v1.0/generations`
-- [Generate from a template](create-from-template-api-parameters-explained.md) for the fixed-layout workflow
+- [Generate from a template](create-from-template-api-parameters-explained.md) for the template-based remix workflow
 - [Poll for results](async-patterns-and-polling.md) for complete polling implementations
