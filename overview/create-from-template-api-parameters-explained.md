@@ -17,7 +17,7 @@ layout:
 
 # Generate from template
 
-`POST /v1.0/generations/from-template` generates new content into an existing one-page template while preserving layout. The sections below explain how each parameter affects that workflow.
+`POST /v1.0/generations/from-template` adapts, remixes, or transforms an existing Gamma. The template's structure is preserved by default and changes only when your prompt asks. The sections below explain how each parameter shapes the output.
 
 {% hint style="info" %}
 For the exact request body, field types, and polling response schema, see [POST /generations/from-template](../endpoints/create-from-template.md) and [GET /generations/{id}](../endpoints/get-generation-status.md).
@@ -29,6 +29,25 @@ For the exact request body, field types, and polling response schema, see [POST 
 - The template Gamma must contain exactly one page.
 - Use `themeId`, `folderIds`, `exportAs`, and `sharingOptions` the same way you would in the standard generation flow.
 - Poll `GET /v1.0/generations/{generationId}` to retrieve `gammaUrl`, `exportUrl`, and credit usage.
+
+### What you can ask for
+
+The `prompt` parameter is the same instruction surface as the Remix feature in the Gamma app, and it supports a broader set of operations than "fill in the blanks". You can adapt content for a new audience, transform the subject, add or remove cards, lock specific cards, and more.
+
+| Category | Example prompt |
+| --- | --- |
+| Tailoring to an audience | `Adapt this pitch deck for a healthcare audience, highlighting regulatory compliance, patient safety, and clinical outcomes` |
+| Replacing or transforming content | `Using this lesson plan about climate change, create a new one about clean energy` |
+| Variables & placeholders | `Replace all instances of [[client-name]] with Acme Corp and update the contact information` |
+| Referencing cards | `On card 9, update the pricing information with the new rates` |
+| Adding cards | `After the introduction, create three case study cards using the template and content below` |
+| Removing cards | `Remove the team bios section and the duplicate intro slide at the start` |
+| "Locking" cards | `Do not edit the title card, team bios, or thank you slide — they should stay exactly as written` |
+| Images | `Use this logo to replace the placeholder image on the title slide` (include image URLs in your prompt) |
+| Populating from data | `Fill out the client overview card using their responses from this intake form` |
+| Reordering cards | `Reorder the sections so that "Our Solution" comes before "The Problem" and move the case studies to the end` |
+
+Combine these patterns in a single prompt, or describe the outcome you want and let Gamma figure out the operations. Placeholder tokens like `[[client-name]]` are a convention, not a requirement of the endpoint — any notation works as long as your intent is clear.
 
 ### Top-level parameters
 

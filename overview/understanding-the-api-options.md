@@ -46,7 +46,7 @@ See [Poll for results](async-patterns-and-polling.md) for full implementation ex
 ### Quick reference
 
 - Use `POST /v1.0/generations` when you want Gamma to create the layout from your prompt and parameters.
-- Use `POST /v1.0/generations/from-template` when you already have a Gamma template and want repeated outputs in the same structure.
+- Use `POST /v1.0/generations/from-template` when you want to adapt an existing Gamma — swap content, retarget the audience, transform the subject, replace images, or restructure cards.
 - Poll `GET /v1.0/generations/{generationId}` until `status` is `completed` or `failed`.
 - Use `GET /v1.0/themes` and `GET /v1.0/folders` to look up IDs before generation.
 
@@ -55,9 +55,9 @@ See [Poll for results](async-patterns-and-polling.md) for full implementation ex
 | | Generate API | Create from Template API |
 | --- | --- | --- |
 | **Endpoint** | `POST /v1.0/generations` | `POST /v1.0/generations/from-template` |
-| **When to use** | Creating from scratch. Maximum flexibility — you control format, tone, audience, images, layout, and more. | Producing variations of a consistent layout. Design the template once in the Gamma app, then generate new content into it. |
+| **When to use** | Creating from scratch. Maximum flexibility — you control format, tone, audience, images, layout, and more. | Adapting an existing Gamma — swap content, retarget the audience, transform the subject, replace images, or restructure cards. Design a template once in the Gamma app and reuse it programmatically. |
 | **Required fields** | `inputText` + `textMode` | `prompt` + `gammaId` |
-| **Key difference** | AI determines the layout based on your parameters. | Layout stays fixed to your template. Only the content changes. |
+| **Key difference** | AI determines the layout based on your parameters. | The template's structure is preserved by default; your prompt can also change content, audience, card count, or order. |
 
 Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`. See the full parameter reference for each:
 
@@ -106,5 +106,5 @@ API access requires a Pro, Ultra, Teams, or Business plan. See [Access and Prici
 ### Related
 
 - [Generate from text](generate-api-parameters-explained.md) for a parameter-by-parameter walkthrough of `POST /v1.0/generations`
-- [Generate from a template](create-from-template-api-parameters-explained.md) for the fixed-layout workflow
+- [Generate from a template](create-from-template-api-parameters-explained.md) for the template-based remix workflow
 - [Poll for results](async-patterns-and-polling.md) for complete polling implementations
