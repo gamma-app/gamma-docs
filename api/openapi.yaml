@@ -379,6 +379,9 @@ components:
         - gpt-image-1-mini-low
         - gpt-image-1-mini-medium
         - gpt-image-1-mini-high
+        - gpt-image-2-mini
+        - gpt-image-2
+        - gpt-image-2-hd
         - gemini-2.5-flash-image
         - veo-3.1-fast
         - veo-3.1
@@ -470,7 +473,7 @@ components:
           minPlan: ultra
           credits: 120
         - model: gpt-image-1-mini-low
-          minPlan: plus
+          minPlan: null
           credits: 2
         - model: gpt-image-1-mini-medium
           minPlan: plus
@@ -478,6 +481,15 @@ components:
         - model: gpt-image-1-mini-high
           minPlan: pro
           credits: 20
+        - model: gpt-image-2-mini
+          minPlan: null
+          credits: 5
+        - model: gpt-image-2
+          minPlan: pro
+          credits: 20
+        - model: gpt-image-2-hd
+          minPlan: ultra
+          credits: 115
         - model: gemini-2.5-flash-image
           minPlan: plus
           credits: 20
