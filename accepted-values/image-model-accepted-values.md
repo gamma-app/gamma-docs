@@ -33,6 +33,7 @@ layout:
 | Flux Kontext Fast | `flux-kontext-fast` | 2 |
 | Imagen 3 Fast | `imagen-3-flash` | 2 |
 | Luma Photon Flash | `luma-photon-flash-1` | 2 |
+| GPT Image 2 Mini | `gpt-image-2-mini` | 5 |
 | Flux 2 Pro | `flux-2-pro` | 8 |
 | Ideogram 3 Turbo | `ideogram-v3-turbo` | 10 |
 | Imagen 4 Fast | `imagen-4-fast` | 10 |
@@ -53,6 +54,7 @@ layout:
 | Nano Banana Pro (Gemini 3 Pro) | `gemini-3-pro-image` | 20 |
 | Nano Banana Flash (Gemini 2.5 Flash) | `gemini-2.5-flash-image` | 20 |
 | GPT Image | `gpt-image-1-medium` | 30 |
+| GPT Image 2 | `gpt-image-2` | 20 |
 | Dall-E 3 | `dall-e-3` | 33 |
 
 ### Premium models
@@ -73,6 +75,7 @@ layout:
 | --- | --- | --- |
 | Imagen 4 Ultra | `imagen-4-ultra` | 30 |
 | GPT Image Detailed | `gpt-image-1-high` | 120 |
+| GPT Image 2 HD | `gpt-image-2-hd` | 115 |
 | Recraft V4 Pro | `recraft-v4-pro` | 125 |
 
 ### Related
