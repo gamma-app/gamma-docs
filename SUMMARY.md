@@ -18,6 +18,10 @@
 * [GET /themes](endpoints/list-themes.md)
 * [GET /folders](endpoints/list-folders.md)
 
+## Management
+
+* [POST /gammas/{gammaId}/archive](endpoints/archive-gamma.md)
+
 ## Guides
 
 * [Generate from text](overview/generate-api-parameters-explained.md)

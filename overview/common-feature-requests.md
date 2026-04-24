@@ -24,6 +24,7 @@ The Gamma API focuses on content generation and workspace management. Common use
 - Generation is asynchronous: create, then poll until complete.
 - Export URLs are temporary -- download files promptly.
 - Image URLs can be included in `inputText` but must be publicly accessible.
+- Archiving is available and does not deduct credits.
 - Submit feature requests on our [Canny board](https://meetgamma.canny.io).
 
 ### What the API covers
@@ -35,6 +36,7 @@ The Gamma API focuses on content generation and workspace management. Common use
 | Poll generation status and get results | `GET /generations/{id}` |
 | List available themes | `GET /themes` |
 | List workspace folders | `GET /folders` |
+| Archive a gamma | `POST /gammas/{gammaId}/archive` |
 
 {% hint style="info" %}
 The API focuses on generation — each call produces a new, fully styled gamma. All generation is asynchronous: start a generation with `POST /generations`, then poll for the result with `GET /generations/{id}`. See [Poll for results](async-patterns-and-polling.md) for the full workflow.

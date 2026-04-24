@@ -39,6 +39,12 @@ For the exact request schema, field types, and response contract, see the indivi
 
 The completed response includes `gammaUrl` (view it in Gamma) and `exportUrl` (download as PDF, PPTX, or PNG).
 {% endstep %}
+
+{% step %}
+#### Archive when done
+
+`POST /v1.0/gammas/{gammaId}/archive` to remove the Gamma from the active workspace. No credits deducted.
+{% endstep %}
 {% endstepper %}
 
 See [Poll for results](async-patterns-and-polling.md) for full implementation examples in Python, JavaScript, and cURL.
@@ -49,6 +55,7 @@ See [Poll for results](async-patterns-and-polling.md) for full implementation ex
 - Use `POST /v1.0/generations/from-template` when you want to adapt an existing Gamma — swap content, retarget the audience, transform the subject, replace images, or restructure cards.
 - Poll `GET /v1.0/generations/{generationId}` until `status` is `completed` or `failed`.
 - Use `GET /v1.0/themes` and `GET /v1.0/folders` to look up IDs before generation.
+- Use `POST /v1.0/gammas/{gammaId}/archive` to remove a Gamma from the active workspace. Pass the file ID from the poll response, not the web app URL slug.
 
 ### Two ways to generate
 
@@ -85,6 +92,7 @@ Both endpoints support `themeId`, `exportAs`, `sharingOptions`, and `folderIds`.
 | --- | --- |
 | `GET /v1.0/themes` | List available themes (standard + custom workspace themes). Use the `id` as `themeId`. |
 | `GET /v1.0/folders` | List workspace folders. Use folder `id` values in `folderIds`. |
+| `POST /v1.0/gammas/{gammaId}/archive` | Archive a Gamma. Uses the `gammaId` returned by a completed generation. |
 
 Both list endpoints use cursor-based pagination: check `hasMore`, pass `nextCursor` as the `after` query param.
 

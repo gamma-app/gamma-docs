@@ -20,6 +20,7 @@ layout:
 - `400` means the request shape or values are invalid.
 - `401` usually means the API key is missing or invalid.
 - `403` with `"Insufficient credits remaining"` means the workspace is out of credits.
+- `403` on `/archive` usually means the `gammaId` is a web app URL slug instead of the API file ID.
 - `404` on generation polling usually means the `generationId` is wrong or unavailable.
 - `429` means you should slow down and retry later.
 
@@ -40,6 +41,7 @@ layout:
 | 401         | Invalid API key                                           | The provided API key is invalid or not associated with an eligible account.                                                              |
 | 403         | Insufficient credits remaining                            | Your workspace does not have enough credits. Purchase more at [gamma.app/settings/billing](https://gamma.app/settings/billing) or enable auto-recharge. |
 | 403         | Forbidden                                                 | Access denied. You do not have permission for this resource, or the requested feature is not available on your plan.                     |
+| 403         | Access denied. You must have edit permission to archive this gamma. | The `gammaId` is wrong (web app URL slug instead of API file ID), the Gamma is not in the API key's workspace, or the key owner lacks edit permission. |
 | 404         | Generation ID not found. generationId: xxxxxx             | The specified generation ID could not be located. Check and correct your generation ID.                                                 |
 | 422         | Failed to generate text. Check your inputs and try again. | Generation produced an empty output. Review your input parameters and ensure your instructions are clear.                               |
 | 429         | Too many requests                                         | Too many requests have been made. Retry after the rate limit period.                                                                    |
@@ -72,6 +74,17 @@ layout:
 * Verify your API key starts with `sk-gamma-`
 * Check that the key hasn’t been revoked
 * Ensure the header is `X-API-KEY` (case-sensitive)
+
+</details>
+
+<details>
+
+<summary>403 - Archive access denied</summary>
+
+* Verify you are using the `gammaId` from the generation poll response, not the slug from the web app URL.
+* The API file ID typically starts with `g_`. The URL slug (e.g. `bc7s74ruzod20f4`) will not work.
+* Confirm the Gamma belongs to the same workspace as the API key.
+* Check that the API key owner has edit permission on the Gamma.
 
 </details>
 
